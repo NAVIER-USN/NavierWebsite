@@ -14,12 +14,13 @@ const Navbar = async () => {
     <header>
       <nav className="select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-8 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
         <h1 className="text-sm md:text-xl">Navier</h1>
-        <ul className="flex items-center gap-3">
+        <ul className="flex items-center gap-10">
           <li>
             <Links />
+          </li>
+          <li>
             <ThemeSwitch />
           </li>
-          <li></li>
         </ul>
       </nav>
     </header>

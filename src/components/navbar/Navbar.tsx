@@ -1,6 +1,7 @@
 import React from 'react'
 import ThemeSwitch from '../theme-switch/ThemeSwitch'
 import Links from './links/Links'
+import Link from 'next/link'
 import Image from 'next/image'
 import { client } from '../../../lib/contentful/client'
 
@@ -9,6 +10,7 @@ const Navbar = async () => {
   let logoDarkmode = ''
   let logoLightmode = ''
 
+  //Fetching logos
   try {
     const response = await client.getEntries({ content_type: 'logo' })
     logos = response.items
@@ -17,6 +19,7 @@ const Navbar = async () => {
     throw error
   }
 
+  //Placing logos in variables
   for (let i = 0; i < logos[0].fields.logos.length; i++) {
     if (
       logos &&
@@ -36,20 +39,26 @@ const Navbar = async () => {
   return (
     <header>
       <nav className="select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-8 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
-        <Image
-          src={logoDarkmode}
-          alt="Navier logo"
-          width={150}
-          height={100}
-          className="dark:block hidden"
-        />
-        <Image
-          src={logoLightmode}
-          alt="Navier logo"
-          width={150}
-          height={100}
-          className="block dark:hidden"
-        />
+        <Link href="/">
+          <Image
+            src={logoDarkmode}
+            alt="Navier logo"
+            width={150}
+            height={100}
+            priority={true}
+            className="dark:block hidden"
+          />
+        </Link>
+        <Link href="/">
+          <Image
+            src={logoLightmode}
+            alt="Navier logo"
+            width={150}
+            height={100}
+            priority={true}
+            className="block dark:hidden"
+          />
+        </Link>
 
         <ul className="flex items-center gap-10">
           <li>

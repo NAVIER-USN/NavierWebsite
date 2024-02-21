@@ -1,19 +1,56 @@
 import React from 'react'
 import ThemeSwitch from '../theme-switch/ThemeSwitch'
 import Links from './links/Links'
+import Image from 'next/image'
+import { client } from '../../../lib/contentful/client'
 
 const Navbar = async () => {
-  // Fetch logo entry
-  const logoEntryUrl = `${process.env.BASE_URL}/spaces/${process.env.SPACE_ID}/environments/${process.env.ENVIRONMENT}/entries/${process.env.MODEL_ENTRY}?access_token=${process.env.ACCESS_TOKEN}`
-  const entryResponse = await fetch(logoEntryUrl)
-  const entryData = await entryResponse.json()
-  const logoData = entryData.fields.modelFile.sys.id
-  console.log(logoData)
+  let logos = []
+  let logoDarkmode = ''
+  let logoLightmode = ''
+
+  try {
+    const response = await client.getEntries({ content_type: 'logo' })
+    logos = response.items
+  } catch (error) {
+    console.error('Error fetching logos:', error)
+    throw error
+  }
+
+  for (let i = 0; i < logos[0].fields.logos.length; i++) {
+    if (
+      logos &&
+      logos[0].fields.logos[i].fields.title.toLowerCase() === 'darkmode'
+    ) {
+      logoDarkmode = `https:${logos[0].fields.logos[i].fields.file.url}`
+    } else if (
+      logos &&
+      logos[0].fields.logos[i].fields.title.toLowerCase() === 'lightmode'
+    ) {
+      logoLightmode = `https:${logos[0].fields.logos[i].fields.file.url}`
+    } else {
+      console.error('Error handling logos')
+    }
+  }
 
   return (
     <header>
       <nav className="select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-8 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
-        <h1 className="text-sm md:text-xl">Navier</h1>
+        <Image
+          src={logoDarkmode}
+          alt="Navier logo"
+          width={150}
+          height={100}
+          className="dark:block hidden"
+        />
+        <Image
+          src={logoLightmode}
+          alt="Navier logo"
+          width={150}
+          height={100}
+          className="block dark:hidden"
+        />
+
         <ul className="flex items-center gap-10">
           <li>
             <Links />

@@ -39,26 +39,23 @@ const Navbar = async () => {
   return (
     <header>
       <nav className="select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-8 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
-        <Link href="/">
-          <Image
-            src={logoDarkmode}
-            alt="Navier logo"
-            width={150}
-            height={100}
-            priority={true}
-            className="dark:block hidden"
-          />
-        </Link>
-        <Link href="/">
-          <Image
-            src={logoLightmode}
-            alt="Navier logo"
-            width={150}
-            height={100}
-            priority={true}
-            className="block dark:hidden"
-          />
-        </Link>
+        {/* Add stylingen til link i stedet for Imagine */}
+        <Image
+          src={logoDarkmode}
+          alt="Navier logo"
+          width={150}
+          height={100}
+          priority={true}
+          className="dark:block hidden"
+        />
+        <Image
+          src={logoLightmode}
+          alt="Navier logo"
+          width={150}
+          height={100}
+          priority={true}
+          className="block dark:hidden"
+        />
 
         <ul className="flex items-center gap-10">
           <li>

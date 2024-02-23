@@ -1,12 +1,12 @@
 'use client'
 import React, { Suspense, useRef, useState, useEffect } from 'react'
 import {
-  Canvas,
-  useLoader,
-  useFrame,
-  ThreeEvent,
-  ThreeElements,
-  useThree
+    Canvas,
+    useLoader,
+    useFrame,
+    ThreeEvent,
+    ThreeElements,
+    useThree
 } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/Addons.js'
 import { Environment, OrbitControls } from '@react-three/drei'
@@ -14,87 +14,89 @@ import { Mesh, MeshStandardMaterial, Color } from 'three'
 
 ///////////////////////////////////////////////////////////////////////////////////////
 interface ModelProps {
-  modelUrl: string
-  position: [number, number, number]
+    modelUrl: string
+    position: [number, number, number]
 }
 
 const Model: React.FC<ModelProps> = ({ modelUrl, position }) => {
-  const gltf = useLoader(GLTFLoader, modelUrl)
-  const [hoveredMesh, setHoveredMesh] = useState<Mesh | null>(null)
+    const gltf = useLoader(GLTFLoader, modelUrl)
+    const [hoveredMesh, setHoveredMesh] = useState<Mesh | null>(null)
 
-  const currentlyHoveredRef = useRef<Mesh | null>(null)
+    const currentlyHoveredRef = useRef<Mesh | null>(null)
 
-  const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
-    const mesh = e.object as Mesh
-    // Reset previous hovered mesh's emissive properties
-    if (
-      currentlyHoveredRef.current &&
-      currentlyHoveredRef.current.material instanceof MeshStandardMaterial
-    ) {
-      currentlyHoveredRef.current.material.emissiveIntensity = 0
-      currentlyHoveredRef.current.material.emissive = new Color(0x000000)
-    }
-    // Set new hovered mesh and its emissive properties
-    currentlyHoveredRef.current = mesh
-    if (mesh.material instanceof MeshStandardMaterial) {
-      mesh.material.emissiveIntensity = 1
-      mesh.material.emissive = new Color(0xffffff)
-    }
-  }
-
-  const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
-    const mesh = e.object as Mesh
-    if (mesh.material instanceof MeshStandardMaterial) {
-      mesh.material.emissiveIntensity = 0
-      mesh.material.emissive = new Color(0x000000)
-    }
-    // Clear the ref if the pointer is out
-    if (currentlyHoveredRef.current === mesh) {
-      currentlyHoveredRef.current = null
-    }
-  }
-
-  return (
-    <group position={position}>
-      {gltf.scene.children.map((child, index) => {
+    const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
+        const mesh = e.object as Mesh
+        // Reset previous hovered mesh's emissive properties
         if (
-          child instanceof Mesh &&
-          child.material instanceof MeshStandardMaterial
+            currentlyHoveredRef.current &&
+            currentlyHoveredRef.current.material instanceof MeshStandardMaterial
         ) {
-          // Ensure each mesh uses a unique material instance
-          const material = child.material.clone()
-          return (
-            <mesh
-              key={index}
-              geometry={child.geometry}
-              material={material}
-              onPointerOver={handlePointerOver}
-              onPointerOut={handlePointerOut}
-            />
-          )
+            currentlyHoveredRef.current.material.emissiveIntensity = 0
+            currentlyHoveredRef.current.material.emissive = new Color(0x000000)
         }
-        return null
-      })}
-    </group>
-  )
+        // Set new hovered mesh and its emissive properties
+        currentlyHoveredRef.current = mesh
+        if (mesh.material instanceof MeshStandardMaterial) {
+            mesh.material.emissiveIntensity = 1
+            mesh.material.emissive = new Color(0xffffff)
+        }
+    }
+
+    const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
+        const mesh = e.object as Mesh
+        if (mesh.material instanceof MeshStandardMaterial) {
+            mesh.material.emissiveIntensity = 0
+            mesh.material.emissive = new Color(0x000000)
+        }
+        // Clear the ref if the pointer is out
+        if (currentlyHoveredRef.current === mesh) {
+            currentlyHoveredRef.current = null
+        }
+    }
+
+    return (
+        <group position={position}>
+            {gltf.scene.children.map((child, index) => {
+                if (
+                    child instanceof Mesh &&
+                    child.material instanceof MeshStandardMaterial
+                ) {
+                    // Ensure each mesh uses a unique material instance
+                    const material = child.material.clone()
+                    return (
+                        <mesh
+                            key={index}
+                            geometry={child.geometry}
+                            material={material}
+                            onPointerOver={handlePointerOver}
+                            onPointerOut={handlePointerOut}
+                        />
+                    )
+                }
+                return null
+            })}
+        </group>
+    )
 }
 
 export default function ModelRendererClient({
-  modelUrl
+    modelUrl
 }: {
-  modelUrl: string
+    modelUrl: string
 }) {
-  return (
-    <Canvas>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 15, 10]} angle={0.3} />
-      <Suspense fallback={null}>
-        <Model modelUrl={modelUrl} position={[0, 0, 0]} />
-        <OrbitControls />
-        <Environment preset="sunset" background={false} />
-      </Suspense>
-    </Canvas>
-  )
+    return (
+        <div style={{ height: '100%', width: '100%' }}>
+            <Canvas style={{ height: '100%', width: '100%' }}>
+                <ambientLight intensity={0.5} />
+                <spotLight position={[10, 15, 10]} angle={0.3} />
+                <Suspense fallback={null}>
+                    <Model modelUrl={modelUrl} position={[0, 0, 0]} />
+                    <OrbitControls />
+                    <Environment preset="sunset" background={false} />
+                </Suspense>
+            </Canvas>
+        </div>
+    )
 }
 
 /*

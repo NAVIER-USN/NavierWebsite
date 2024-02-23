@@ -17,7 +17,7 @@ const SponsorsPage = async () => {
     }
 
     return (
-        <div>
+        <div className="mx-auto md:px-10 sm:px-20">
             <SponsorOrder sponsors={sponsors} />
         </div>
     )

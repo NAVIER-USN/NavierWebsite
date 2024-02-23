@@ -3,9 +3,11 @@ import Image from 'next/image'
 import { client } from '../../../lib/contentful/client'
 
 const SponsorsPage = async () => {
-  /*
+    /*
 	
 	let sponsors = []
+
+	//Fetching sponsors
 	try {
 		const response = await client.getEntries({ content_type: 'sponsorPage' })
 		sponsors = response.items

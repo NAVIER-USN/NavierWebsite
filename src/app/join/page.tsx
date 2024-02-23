@@ -4,6 +4,8 @@ import { client } from '../../../lib/contentful/client'
 
 const JoinPage = async () => {
     let join = []
+
+    //Fetching join us page
     try {
         const response = await client.getEntries({ content_type: 'joinUsPage' })
         join = response.items

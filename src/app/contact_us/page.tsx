@@ -4,6 +4,8 @@ import { client } from '../../../lib/contentful/client'
 
 const ContactUsPage = async () => {
     let contact = []
+
+    //Fetching contact us page
     try {
         const response = await client.getEntries({
             content_type: 'contactInfoPage'

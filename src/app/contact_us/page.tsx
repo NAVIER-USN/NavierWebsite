@@ -1,10 +1,24 @@
-import { createClient, Asset } from 'contentful'
-import { GetStaticProps } from 'next'
+import React from 'react'
+import Image from 'next/image'
+import { client } from '../../../lib/contentful/client'
 
-const ContactUsPage = () => (
-  <main>
-    <h1>Contact us!</h1>
-  </main>
-)
+const ContactUsPage = async () => {
+    let contact = []
+    try {
+        const response = await client.getEntries({
+            content_type: 'contactInfoPage'
+        })
+        contact = response.items
+    } catch (error) {
+        console.error('Error fetching logos:', error)
+        throw error
+    }
+    console.log('contact page', contact[0])
+    return (
+        <div>
+            <h1>{contact[0].fields.title}</h1>
+        </div>
+    )
+}
 
 export default ContactUsPage

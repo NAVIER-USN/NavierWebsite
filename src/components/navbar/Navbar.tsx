@@ -41,22 +41,24 @@ const Navbar = async () => {
         <header>
             <nav className="select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-5 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
                 {/* Add stylingen til link i stedet for Imagine */}
-                <Image
-                    src={logoDarkmode}
-                    alt="Navier logo"
-                    width={150}
-                    height={100}
-                    priority={true}
-                    className="dark:block hidden"
-                />
-                <Image
-                    src={logoLightmode}
-                    alt="Navier logo"
-                    width={150}
-                    height={100}
-                    priority={true}
-                    className="block dark:hidden"
-                />
+                <Link href="/">
+                    <Image
+                        src={logoDarkmode}
+                        alt="Navier logo"
+                        width={150}
+                        height={100}
+                        priority={true}
+                        className="dark:block hidden"
+                    />
+                    <Image
+                        src={logoLightmode}
+                        alt="Navier logo"
+                        width={150}
+                        height={100}
+                        priority={true}
+                        className="block dark:hidden"
+                    />
+                </Link>
                 <ul className="flex items-center gap-10">
                     <li className="hidden md:block">
                         <Links />
@@ -65,7 +67,10 @@ const Navbar = async () => {
                         <ThemeSwitch />
                     </li>
                     <li className="block md:hidden">
-                        <BurgerMenu />
+                        <BurgerMenu
+                            logoLightmode={logoLightmode}
+                            logoDarkmode={logoDarkmode}
+                        />
                     </li>
                 </ul>
             </nav>

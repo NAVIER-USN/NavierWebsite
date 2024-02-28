@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import React, { useState } from 'react'
 import ThemeSwitch from '@/components/theme-switch/ThemeSwitch'
 import {
@@ -10,7 +11,12 @@ import {
     AiOutlineInstagram
 } from 'react-icons/ai'
 
-const BurgerMenu = () => {
+type Logo = {
+    logoDarkmode: string
+    logoLightmode: string
+}
+
+const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const handleNav = () => {
@@ -100,6 +106,26 @@ const BurgerMenu = () => {
                     <AiOutlineFacebook size={40} />
                     <AiOutlineTwitter size={40} />
                     <AiOutlineInstagram size={40} />
+                </div>
+                <div className="flex justify-center">
+                    <Link href="/">
+                        <Image
+                            src={logoDarkmode}
+                            alt="Navier logo"
+                            width={150}
+                            height={100}
+                            priority={true}
+                            className="dark:block hidden"
+                        />
+                        <Image
+                            src={logoLightmode}
+                            alt="Navier logo"
+                            width={150}
+                            height={100}
+                            priority={true}
+                            className="block dark:hidden"
+                        />
+                    </Link>
                 </div>
             </div>
         </div>

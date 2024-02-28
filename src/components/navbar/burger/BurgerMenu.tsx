@@ -25,7 +25,7 @@ const BurgerMenu = () => {
             <div
                 className={
                     isOpen
-                        ? 'fixed right-0 top-0 w-[65%] sm:hidden bg-foreground-light dark:bg-foreground-dark shadow-xl dark:shadow-none p-5 ease-in duration-500 z-10'
+                        ? 'fixed right-0 top-0 w-[65%] md:hidden bg-foreground-light dark:bg-foreground-dark shadow-xl p-5 ease-in duration-500 z-10'
                         : 'fixed right-[-100%] top-0 p-10 ease-in duration-500'
                 }
             >
@@ -45,7 +45,7 @@ const BurgerMenu = () => {
                         >
                             <Link
                                 href="/"
-                                className="text-text-dark dark:text-text-light hover:underline "
+                                className="text-text-dark dark:text-text-light hover:underline"
                             >
                                 Home
                             </Link>

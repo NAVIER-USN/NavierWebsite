@@ -102,7 +102,7 @@ const Members = ({ allMembers }: MembersProps) => {
                                 key={index}
                                 className="bg-foreground-light dark:bg-foreground-dark rounded-br-xl overflow-hidden shadow-md"
                             >
-                                <div className="relative h-64 max-w-[256px]">
+                                <div className="relative h-64 max-w-[256px] ">
                                     {member.fields.photo.fields.file.url && (
                                         <Image
                                             alt={`${member.fields.name}'s picture`}

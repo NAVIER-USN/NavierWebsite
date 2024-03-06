@@ -28,6 +28,7 @@ export interface Asset {
     sys: Link
     fields: {
         title: string
+        role: string
         description: string
         file: {
             url: string

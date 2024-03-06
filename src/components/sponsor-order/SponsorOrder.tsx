@@ -12,17 +12,16 @@ const SponsorOrder: React.FC<SponsorOrderProps> = ({ sponsors }) => {
     const imageLightmodeStyling = 'block dark:hidden w-full object-contain'
     //Positioning
     const imageContainerPositioning =
-        'min-h-64 w-full items-center justify-center overflow-hidden'
+        'min-h-64 w-full flex flex-col items-center justify-center overflow-hidden'
     const textContainerPositioning = 'w-full'
-
     const sortedSponsors = [...sponsors].sort(
         (a, b) => b.fields.importance - a.fields.importance
     )
 
     return (
-        <div className="flex flex-col items-center gap-10 py-10 ">
+        <div className="flex flex-col items-center gap-10 py-10">
             {/* First sponsor */}
-            <div className="grid md:grid-cols-2 grid-rows-2 gap-10 max-w-6xl">
+            <div className="grid md:grid-cols-2 grid-rows-2 gap-10 max-w-4xl">
                 <div className={`${defaultStylingCard} row-span-2 `}>
                     <div className={`${imageContainerPositioning}`}>
                         <Image

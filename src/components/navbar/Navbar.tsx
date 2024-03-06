@@ -40,7 +40,6 @@ const Navbar = async () => {
     return (
         <header>
             <nav className="select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-5 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
-                {/* Add stylingen til link i stedet for Imagine */}
                 <Link href="/">
                     <Image
                         src={logoDarkmode}

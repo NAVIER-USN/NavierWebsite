@@ -77,6 +77,20 @@ const Members = ({ allMembers }: MembersProps) => {
         }
     })
 
+    management.sort((a, b) => {
+        if (a.fields.role === b.fields.role) {
+            return a.fields.name.localeCompare(b.fields.name)
+        }
+        return a.fields.role.localeCompare(b.fields.role)
+    })
+
+    members.sort((a, b) => {
+        if (a.fields.role === b.fields.role) {
+            return a.fields.name.localeCompare(b.fields.name)
+        }
+        return a.fields.role.localeCompare(b.fields.role)
+    })
+
     return (
         <div>
             <div>
@@ -88,14 +102,15 @@ const Members = ({ allMembers }: MembersProps) => {
                                 key={index}
                                 className="bg-foreground-light dark:bg-foreground-dark rounded-br-xl overflow-hidden shadow-md"
                             >
-                                <div className="relative h-64">
+                                <div className="relative h-64 max-w-[256px]">
                                     {member.fields.photo.fields.file.url && (
                                         <Image
                                             alt={`${member.fields.name}'s picture`}
                                             src={`https:${member.fields.photo.fields.file.url}`}
-                                            layout="fill"
-                                            objectFit="cover"
+                                            width={750}
+                                            height={750}
                                             priority={true}
+                                            className="object-cover h-full"
                                         />
                                     )}
                                 </div>
@@ -120,27 +135,33 @@ const Members = ({ allMembers }: MembersProps) => {
                         return (
                             <div
                                 key={index}
-                                className="bg-foreground-light dark:bg-foreground-dark rounded-br-xl overflow-hidden shadow-md"
+                                className="bg-foreground-light dark:bg-foreground-dark rounded-br-xl overflow-hidden shadow-md flex flex-col"
                             >
-                                <div className="relative h-64">
+                                <div className="relative h-64 max-w-[256px]">
                                     {member.fields.photo.fields.file.url && (
                                         <Image
                                             alt={`${member.fields.name}'s picture`}
                                             src={`https:${member.fields.photo.fields.file.url}`}
-                                            layout="fill"
-                                            objectFit="cover"
+                                            width={750}
+                                            height={750}
                                             priority={true}
+                                            className="object-cover h-full"
                                         />
                                     )}
                                 </div>
 
-                                <div className="p-3">
-                                    <h3 className="text-lg font-bold mb-1">
-                                        {member.fields.name}
-                                    </h3>
-                                    <h4 className="text-md dark:text-gray-400">
-                                        {member.fields.role}
-                                    </h4>
+                                <div className="flex-grow p-3 flex flex-col justify-between">
+                                    <div className="flex-grow">
+                                        <h3 className="text-lg font-bold pb-2">
+                                            {member.fields.name}
+                                        </h3>
+                                        {/* Add any other content here */}
+                                    </div>
+                                    <div>
+                                        <h4 className="text-md dark:text-gray-400">
+                                            {member.fields.role}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         )

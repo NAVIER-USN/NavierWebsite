@@ -3,7 +3,7 @@ import { client } from '../../../lib/contentful/client'
 import Members from '@/components/members/Members'
 
 const MembersPage = async () => {
-    let members = []
+    let members = null
     //Fetching members
     try {
         const response = await client.getEntries({

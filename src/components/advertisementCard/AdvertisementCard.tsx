@@ -27,7 +27,7 @@ const AdvertisementCard = ({ advertisements }: AdvertisementCardProps) => {
                             key={index}
                             className="lg:w-1/3 md:w-1/2 w-full px-4 mb-4"
                         >
-                            <div className="bg-foreground-light dark:bg-foreground-dark p-6 rounded-lg">
+                            <div className="bg-foreground-light dark:bg-foreground-dark p-6 rounded-lg shadow-md">
                                 <h2 className="text-lg font-semibold">
                                     {advertisement.fields.position}
                                 </h2>

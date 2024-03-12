@@ -1,7 +1,6 @@
 import React from 'react'
 import { client } from '../../../lib/contentful/client'
 import AdvertisementCard from '@/components/advertisementCard/AdvertisementCard'
-import { div } from 'three/examples/jsm/nodes/Nodes.js'
 
 const JoinPage = async () => {
     let join = []

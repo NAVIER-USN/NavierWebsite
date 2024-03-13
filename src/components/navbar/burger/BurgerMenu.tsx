@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import ThemeSwitch from '@/components/theme-switch/ThemeSwitch'
+import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
 import {
     AiOutlineMenu,
     AiOutlineClose,

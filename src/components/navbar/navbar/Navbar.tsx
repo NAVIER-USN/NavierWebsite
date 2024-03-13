@@ -1,10 +1,10 @@
 import React from 'react'
-import ThemeSwitch from '../theme-switch/ThemeSwitch'
-import Links from './links/LinksNavbar'
+import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
+import Links from '../links/LinksNavbar'
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '../../../lib/contentful/client'
-import BurgerMenu from './burger/BurgerMenu'
+import { client } from '../../../../lib/contentful/client'
+import BurgerMenu from '../burger/BurgerMenu'
 
 const Navbar = async () => {
     let logos = []
@@ -44,18 +44,18 @@ const Navbar = async () => {
                     <Image
                         src={logoDarkmode}
                         alt="Navier logo"
-                        width={150}
-                        height={100}
+                        width={1500}
+                        height={1000}
                         priority={true}
-                        className="dark:block hidden"
+                        className="dark:block hidden max-w-[150px]"
                     />
                     <Image
                         src={logoLightmode}
                         alt="Navier logo"
-                        width={150}
-                        height={100}
+                        width={1500}
+                        height={1000}
                         priority={true}
-                        className="block dark:hidden"
+                        className="block dark:hidden max-w-[150px]"
                     />
                 </Link>
                 <ul className="flex items-center gap-10">

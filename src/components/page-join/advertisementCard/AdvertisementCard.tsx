@@ -25,9 +25,9 @@ const AdvertisementCard = ({ advertisements }: AdvertisementCardProps) => {
                     advertisement.fields.active ? (
                         <div
                             key={index}
-                            className="lg:w-1/3 md:w-1/2 w-full px-4 mb-4"
+                            className="lg:w-1/3 md:w-1/2 w-full p-4"
                         >
-                            <div className="bg-foreground-light dark:bg-foreground-dark p-6 rounded-lg">
+                            <div className="bg-foreground-light dark:bg-foreground-dark p-6 rounded-lg shadow-md">
                                 <h2 className="text-lg font-semibold">
                                     {advertisement.fields.position}
                                 </h2>
@@ -35,7 +35,7 @@ const AdvertisementCard = ({ advertisements }: AdvertisementCardProps) => {
                                     {advertisement.fields.jobDescription}
                                 </p>
                                 <Link href={advertisement.fields.formUrl}>
-                                    <button className="mt-3 p-1.5 rounded-md bg-blue-600 text-text-light hover:underline">
+                                    <button className="mt-3 p-1.5 rounded-md bg-button-light dark:bg-button-dark text-lg hover:underline">
                                         Apply
                                     </button>
                                 </Link>

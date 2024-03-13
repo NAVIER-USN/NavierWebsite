@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { client } from '../../../lib/contentful/client'
 import React from 'react'
+import { FiPhone, FiMail } from 'react-icons/fi'
 
 const Footer = async () => {
     let footerData = null
@@ -41,12 +42,25 @@ const Footer = async () => {
                         </div>
                     </div>
                     <div>
+                        <p className="font-bold">Address</p>
+                        <ul>
+                            <li>{footerData.address}</li>
+                            <li>
+                                {footerData.postalCode} {footerData.city}
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
                         <p className="font-bold">Contact</p>
-                        <p className="my-2">
-                            +47 {formattedPhoneNumber}
-                            {/*split numbers*/}
-                        </p>
-                        <p>{footerData.email}</p>
+                        <ul>
+                            <li className="flex flex-row items-center">
+                                <FiPhone className="mr-2" />
+                                +47 {formattedPhoneNumber}
+                            </li>
+                            <li className="flex flex-row items-center">
+                                <FiMail className="mr-2" /> {footerData.email}
+                            </li>
+                        </ul>
                         <div className="flex justify-center space-x-4 my-2"></div>
                     </div>
                 </div>

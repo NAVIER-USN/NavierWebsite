@@ -1,6 +1,6 @@
 import React from 'react'
 import { client } from '../../../lib/contentful/client'
-import SponsorOrder from '@/components/sponsor-order/SponsorOrder'
+import SponsorOrder from '@/components/page-sponsor/sponsor-card-and-order/SponsorOrder'
 
 const SponsorsPage = async () => {
     let sponsors = []

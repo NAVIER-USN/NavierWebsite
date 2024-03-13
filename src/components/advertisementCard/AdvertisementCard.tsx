@@ -35,7 +35,7 @@ const AdvertisementCard = ({ advertisements }: AdvertisementCardProps) => {
                                     {advertisement.fields.jobDescription}
                                 </p>
                                 <Link href={advertisement.fields.formUrl}>
-                                    <button className="mt-3 p-1.5 rounded-md bg-blue-600 text-text-light hover:underline">
+                                    <button className="mt-3 p-1.5 rounded-md bg-button-light dark:bg-button-dark text-lg hover:underline">
                                         Apply
                                     </button>
                                 </Link>

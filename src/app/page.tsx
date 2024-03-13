@@ -1,4 +1,4 @@
-import ModelRendererClient from '@/components/3d-model/3dModel'
+import ModelRendererClient from '@/components/page-home/3d-model/3dModel'
 import { fetchAsset, fetchEntry } from '../../services/contentfulService'
 
 const HomePage = async () => {

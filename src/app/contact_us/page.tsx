@@ -1,6 +1,6 @@
 import React from 'react'
 import { client } from '../../../lib/contentful/client'
-import EmailForm from '@/components/contact_us/email-form/EmailForm'
+import EmailForm from '@/components/page-contact/email-form/EmailForm'
 
 const ContactUsPage = async () => {
     let contact = []

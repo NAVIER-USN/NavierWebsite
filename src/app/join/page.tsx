@@ -1,6 +1,6 @@
 import React from 'react'
 import { client } from '../../../lib/contentful/client'
-import AdvertisementCard from '@/components/advertisementCard/AdvertisementCard'
+import AdvertisementCard from '@/components/page-join/advertisementCard/AdvertisementCard'
 
 const JoinPage = async () => {
     let join = []

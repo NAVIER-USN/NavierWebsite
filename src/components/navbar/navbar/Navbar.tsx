@@ -1,10 +1,10 @@
 import React from 'react'
-import ThemeSwitch from '../theme-switch/ThemeSwitch'
-import Links from './links/LinksNavbar'
+import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
+import Links from '../links/LinksNavbar'
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '../../../lib/contentful/client'
-import BurgerMenu from './burger/BurgerMenu'
+import { client } from '../../../../lib/contentful/client'
+import BurgerMenu from '../burger/BurgerMenu'
 
 const Navbar = async () => {
     let logos = []

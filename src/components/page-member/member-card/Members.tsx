@@ -77,13 +77,6 @@ const Members = ({ allMembers }: MembersProps) => {
         }
     })
 
-    management.sort((a, b) => {
-        if (a.fields.role === b.fields.role) {
-            return a.fields.name.localeCompare(b.fields.name)
-        }
-        return a.fields.role.localeCompare(b.fields.role)
-    })
-
     members.sort((a, b) => {
         if (a.fields.role === b.fields.role) {
             return a.fields.name.localeCompare(b.fields.name)
@@ -155,7 +148,6 @@ const Members = ({ allMembers }: MembersProps) => {
                                         <h3 className="text-lg font-bold pb-2">
                                             {member.fields.name}
                                         </h3>
-                                        {/* Add any other content here */}
                                     </div>
                                     <div>
                                         <h4 className="text-md dark:text-gray-400">

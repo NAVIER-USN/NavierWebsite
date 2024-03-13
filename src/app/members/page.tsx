@@ -1,6 +1,6 @@
 import React from 'react'
 import { client } from '../../../lib/contentful/client'
-import Members from '@/components/members/Members'
+import Members from '@/components/page-member/member-card/Members'
 
 const MembersPage = async () => {
     let members = null

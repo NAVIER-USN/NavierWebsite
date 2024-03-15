@@ -1,6 +1,13 @@
-import EventMap from '@/components/page-home/event-map/EventMap'
+import dynamic from 'next/dynamic'
 import { client } from '../../lib/contentful/client'
 import Image from 'next/image'
+
+const EventMap = dynamic(
+    () => import('@/components/page-home/event-map/EventMap'),
+    {
+        ssr: false
+    }
+)
 
 const HomePage = async () => {
     let home = null
@@ -27,9 +34,14 @@ const HomePage = async () => {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
-            <h3>MAP</h3>
-            <EventMap eventData={home.upcomingEvents} />
-            <div className="overflow-hidden">
+            <div className="flex flex-col justify-center my-32">
+                <h3 className="text-2xl text-center md:text-4xl pb-0 md:pb-6 font-semibold pt-5 md:pt-0">
+                    Upcoming events
+                </h3>
+
+                <EventMap eventData={home.upcomingEvents} />
+            </div>
+            <div className="overflow-hidden ">
                 <Image
                     src={`https://${home.secondBigImage.fields.file.url}`}
                     alt={home.firstBigImage.fields.title}

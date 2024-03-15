@@ -3,7 +3,7 @@ import { client } from '../../../lib/contentful/client'
 import AdvertisementCard from '@/components/page-join/advertisementCard/AdvertisementCard'
 
 const JoinPage = async () => {
-    let join = []
+    let join = null
 
     //Fetching join us page
     try {

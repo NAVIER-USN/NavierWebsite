@@ -19,6 +19,7 @@ module.exports = {
                 'input-background-light': '#B9D7EA',
                 'button-light': '#769FCD'
             },
+
             gridTemplateRows: {
                 layout: 'auto 1fr auto'
             }

@@ -31,7 +31,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
             <div
                 className={
                     isOpen
-                        ? 'fixed right-0 top-0 w-[65%] md:hidden bg-foreground-light dark:bg-foreground-dark shadow-xl p-5 ease-in duration-500 z-10'
+                        ? 'fixed right-0 top-0 w-[65%] md:hidden bg-foreground-light dark:bg-foreground-dark shadow-2xl p-5 ease-in duration-500 z-10'
                         : 'fixed right-[-100%] top-0 p-10 ease-in duration-500'
                 }
             >

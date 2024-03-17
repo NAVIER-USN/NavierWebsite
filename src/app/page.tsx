@@ -1,33 +1,79 @@
-import ModelRendererClient from '@/components/page-home/3d-model/3dModel'
-import { fetchAsset, fetchEntry } from '../../services/contentfulService'
+import dynamic from 'next/dynamic'
+import { client } from '../../lib/contentful/client'
+import Image from 'next/image'
+
+const EventMap = dynamic(
+    () => import('@/components/page-home/event-map/EventMap'),
+    {
+        ssr: false
+    }
+)
 
 const HomePage = async () => {
-    let modelUrl = ''
+    let home = null
 
-    //Fetching 3d model
     try {
-        const entryData = await fetchEntry(process.env.MODEL_ENTRY!)
-        const fileId = entryData.fields.modelFile.sys.id
-        const fileData = await fetchAsset(fileId)
-
-        if (fileData && fileData.fields.file) {
-            modelUrl = fileData.fields.file.url
-        } else {
-            console.error('File field is undefined')
-            return <div>Error loading model</div>
-        }
+        const response = await client.getEntries({
+            content_type: 'homePage'
+        })
+        home = response.items[0].fields
     } catch (error) {
-        console.error('Error fetching data:', error)
-        return <div>Error loading page</div>
+        console.error('Error fetching logos:', error)
+        throw error
     }
+
     return (
-        <main className="flex justify-center items-center h-screen w-screen">
-            <div className="flex justify-center items-center h-full w-full">
-                <div style={{ height: '80vh', width: '80vw' }}>
-                    {modelUrl && <ModelRendererClient modelUrl={modelUrl} />}
-                </div>
+        <main>
+            <div className="overflow-hidden">
+                <Image
+                    src={`https://${home.firstBigImage.fields.file.url}`}
+                    alt={home.firstBigImage.fields.title}
+                    priority={true}
+                    width={2000}
+                    height={2000}
+                    className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
+                />
             </div>
+            <div className="flex flex-col justify-center my-32">
+                <h3 className="text-2xl text-center md:text-4xl pb-0 md:pb-6 font-semibold pt-5 md:pt-0">
+                    Upcoming events
+                </h3>
+
+                <EventMap eventData={home.upcomingEvents} />
+            </div>
+            <div className="overflow-hidden ">
+                <Image
+                    src={`https://${home.secondBigImage.fields.file.url}`}
+                    alt={home.firstBigImage.fields.title}
+                    priority={true}
+                    width={2000}
+                    height={2000}
+                    className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
+                />
+            </div>
+
+            <h3>INSTAGRAM FEED</h3>
+            <div className="overflow-hidden">
+                <Image
+                    src={`https://${home.thirdBigImage.fields.file.url}`}
+                    alt={home.thirdBigImage.fields.title}
+                    priority={true}
+                    width={2000}
+                    height={2000}
+                    className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
+                />
+            </div>
+            <h3>SPONSORS</h3>
         </main>
     )
 }
 export default HomePage
+
+/*		
+			3D MODEL
+				<div className="flex justify-center items-center h-full w-full">
+					<div style={{ height: '80vh', width: '80vw' }}>
+						{modelUrl && <ModelRendererClient modelUrl={modelUrl} />}
+					</div>
+				</div>
+*/

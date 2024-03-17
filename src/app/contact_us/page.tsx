@@ -3,7 +3,7 @@ import { client } from '../../../lib/contentful/client'
 import EmailForm from '@/components/page-contact/email-form/EmailForm'
 
 const ContactUsPage = async () => {
-    let contact = []
+    let contact = null
 
     //Fetching contact us page
     try {

@@ -73,14 +73,11 @@ const EventMap = ({ eventData }: Props) => {
 
     return (
         <div className="flex flex-col justify-center w-full md:flex-row p-4 bg-foreground-light dark:bg-foreground-dark shadow-2xl">
-            <div className="w-full md:w-70vw max-w-[2000px]">
+            <div className="w-full md:w-70vw">
                 <MapContainer
                     center={[markers[0].latitude, markers[0].longitude]}
                     zoom={ZOOM_LEVEL}
-                    style={{
-                        height: '60vh',
-                        width: '100%'
-                    }}
+                    className="h-[60vh] w-full max-w-[2000px]"
                     scrollWheelZoom={false}
                 >
                     <TileLayer

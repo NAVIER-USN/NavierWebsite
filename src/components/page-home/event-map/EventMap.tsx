@@ -107,7 +107,7 @@ const EventMap = ({ eventData }: Props) => {
                     />
                 </MapContainer>
             </div>
-            <div className="h-full md:pl-4 w-full md:max-w-80 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300">
+            <div className="h-full md:pl-4 w-full md:max-w-80 overflow-y-scroll">
                 <ul className="max-h-[60vh]">
                     {eventData.map((event, index) => (
                         <li key={index} className="pb-2">

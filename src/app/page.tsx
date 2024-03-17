@@ -26,7 +26,7 @@ const HomePage = async () => {
         <main>
             <div className="overflow-hidden">
                 <Image
-                    src={`https://${home.firstBigImage.fields.file.url}`}
+                    src={`https:${home.firstBigImage.fields.file.url}`}
                     alt={home.firstBigImage.fields.title}
                     priority={true}
                     width={2000}
@@ -43,7 +43,7 @@ const HomePage = async () => {
             </div>
             <div className="overflow-hidden ">
                 <Image
-                    src={`https://${home.secondBigImage.fields.file.url}`}
+                    src={`https:${home.secondBigImage.fields.file.url}`}
                     alt={home.firstBigImage.fields.title}
                     priority={true}
                     width={2000}
@@ -55,7 +55,7 @@ const HomePage = async () => {
             <h3>INSTAGRAM FEED</h3>
             <div className="overflow-hidden">
                 <Image
-                    src={`https://${home.thirdBigImage.fields.file.url}`}
+                    src={`https:${home.thirdBigImage.fields.file.url}`}
                     alt={home.thirdBigImage.fields.title}
                     priority={true}
                     width={2000}
@@ -68,12 +68,3 @@ const HomePage = async () => {
     )
 }
 export default HomePage
-
-/*		
-			3D MODEL
-				<div className="flex justify-center items-center h-full w-full">
-					<div style={{ height: '80vh', width: '80vw' }}>
-						{modelUrl && <ModelRendererClient modelUrl={modelUrl} />}
-					</div>
-				</div>
-*/

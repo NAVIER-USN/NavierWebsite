@@ -45,7 +45,7 @@ export interface Asset {
     }
 }
 
-export interface SponsorOrderProps {
+export interface SponsorProps {
     sponsors: Sponsor[]
 }
 

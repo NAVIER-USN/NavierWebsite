@@ -1,8 +1,8 @@
-import { Sponsor, SponsorOrderProps } from '@/types/contentful'
+import { Sponsor, SponsorProps } from '@/types/contentful'
 import Image from 'next/image'
 import React from 'react'
 
-const SponsorOrder: React.FC<SponsorOrderProps> = ({ sponsors }) => {
+const SponsorOrder: React.FC<SponsorProps> = ({ sponsors }) => {
     //Styling
     const defaultStylingCard =
         'bg-foreground-light dark:bg-foreground-dark shadow-xl rounded-lg p-6'
@@ -21,7 +21,7 @@ const SponsorOrder: React.FC<SponsorOrderProps> = ({ sponsors }) => {
     return (
         <div className="flex flex-col items-center gap-10 py-10">
             {/* First sponsor */}
-            <div className="grid md:grid-cols-2 grid-rows-2 gap-10 max-w-4xl">
+            <div className="grid md:grid-cols-2 grid-rows-2 gap-10 max-w-4xl items-center">
                 <div className={`${defaultStylingCard} row-span-2 `}>
                     <div className={`${imageContainerPositioning}`}>
                         <Image
@@ -60,7 +60,7 @@ const SponsorOrder: React.FC<SponsorOrderProps> = ({ sponsors }) => {
 
                 {/* Second and third sponsors */}
 
-                <div className="lg:flex lg:flex-col grid items-center gap-10 max-w-5xl row-span-2">
+                <div className="lg:flex lg:flex-col grid items-center gap-10 max-w-80 row-span-2">
                     {sortedSponsors
                         .slice(1, 3)
                         .map((sponsor: Sponsor, index: number) => (
@@ -104,7 +104,10 @@ const SponsorOrder: React.FC<SponsorOrderProps> = ({ sponsors }) => {
                 {sortedSponsors
                     .slice(3)
                     .map((sponsor: Sponsor, index: number) => (
-                        <div key={index} className={`${defaultStylingCard}`}>
+                        <div
+                            key={index}
+                            className={`${defaultStylingCard} max-w-80`}
+                        >
                             <div className={`${imageContainerPositioning}`}>
                                 <Image
                                     src={`https:${sponsor.fields.logoDarkmode.fields.file.url}`}

@@ -3,7 +3,7 @@ import { client } from '../../../lib/contentful/client'
 import SponsorOrder from '@/components/page-sponsor/sponsor-card-and-order/SponsorOrder'
 
 const SponsorsPage = async () => {
-    let sponsors = []
+    let sponsors = null
 
     //Fetching sponsors
     try {
@@ -17,9 +17,9 @@ const SponsorsPage = async () => {
     }
 
     return (
-        <div className="mx-auto sm:px-7 md:px-20 px-2">
+        <main className="mx-auto sm:px-7 md:px-20 px-2">
             <SponsorOrder sponsors={sponsors} />
-        </div>
+        </main>
     )
 }
 

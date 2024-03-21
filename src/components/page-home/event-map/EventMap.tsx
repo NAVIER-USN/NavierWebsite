@@ -117,17 +117,21 @@ const EventMap = ({ eventData }: Props) => {
                             {eventData.map((event, index) => (
                                 <li key={index} className="pb-2">
                                     <div
-                                        className="cursor-pointer hover:underline flex flex-row justify-between select-none px-3 pb-3 border-solid border-b-2 border-text-dark dark:border-text-light"
+                                        className="cursor-pointer hover:underline flex flex-row justify-between items-center select-none px-3 pb-3 border-solid border-b-2 border-text-dark dark:border-text-light"
                                         onClick={() => handleEventClick(event)}
                                     >
                                         <p className="text-lg font-semibold">
                                             {event.fields.eventName}
                                         </p>
-                                        {selectedEvent === event ? (
-                                            <SlArrowUp />
-                                        ) : (
-                                            <SlArrowDown />
-                                        )}
+                                        <div className="flex items-center">
+                                            {' '}
+                                            {/* Added wrapper div */}
+                                            {selectedEvent === event ? (
+                                                <SlArrowUp />
+                                            ) : (
+                                                <SlArrowDown />
+                                            )}
+                                        </div>
                                     </div>
                                     {selectedEvent === event && (
                                         <div className="px-2 py-1.5">

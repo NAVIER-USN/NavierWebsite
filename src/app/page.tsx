@@ -90,8 +90,7 @@ export default async function HomePage() {
             <div className="flex flex-col mx-auto justify-center pb-14">
                 <EventMap eventData={home.upcomingEvents} />
             </div>
-
-            <div className="overflow-hidden ">
+            <div className="overflow-hidden">
                 <Image
                     src={`https:${home.secondBigImage.fields.file.url}`}
                     alt={home.firstBigImage.fields.title}

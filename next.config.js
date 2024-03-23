@@ -8,6 +8,12 @@ const nextConfig = {
                 hostname: 'images.ctfassets.net',
                 port: '',
                 pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'scontent.cdninstagram.com',
+                port: '',
+                pathname: '/**'
             }
         ]
     }

@@ -24,7 +24,7 @@ const Footer = async () => {
     return (
         <footer className="bg-background-light text-text-dark p-4 border-solid border-t-2 border-gray-300 dark:border-gray-700 dark:text-text-light dark:bg-background-dark">
             <div className="flex flex-row justify-center">
-                <div className="flex flex-row gap-6 md:gap-16">
+                <div className="flex flex-col text-center md:text-left md:flex-row gap-6 md:gap-16">
                     <div>
                         <p className="font-bold">Social Media</p>
                         <div className="flex flex-col">

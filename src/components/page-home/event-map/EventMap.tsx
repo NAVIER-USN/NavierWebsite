@@ -72,8 +72,8 @@ const EventMap = ({ eventData }: Props) => {
     })
 
     return (
-        <div className="flex flex-col items-center justify-center w-full p-4 bg-foreground-light dark:bg-foreground-dark shadow-2xl">
-            <div className="w-full max-w-[2000px]">
+        <div className="flex flex-col items-center justify-center w-full">
+            <div className="w-full max-w-[2000px] bg-foreground-light dark:bg-foreground-dark shadow-2xl rounded-lg md:rounded-r-lg">
                 <div className="flex flex-col lg:flex-row">
                     <div className="w-full lg:w-4/5">
                         <MapContainer
@@ -112,8 +112,8 @@ const EventMap = ({ eventData }: Props) => {
                             />
                         </MapContainer>
                     </div>
-                    <div className="md:pl-4 w-full lg:w-1/5 pt-3 lg:pt-0">
-                        <ul className="max-h-[60vh] overflow-y-auto">
+                    <div className=" w-full lg:w-1/5 pt-3 lg:pt-0">
+                        <ul className="max-h-[60vh] overflow-y-auto p-5">
                             {eventData.map((event, index) => (
                                 <li key={index} className="pb-2">
                                     <div

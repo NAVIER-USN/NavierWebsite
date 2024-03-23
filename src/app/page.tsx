@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { client } from '../../lib/contentful/client'
 import Image from 'next/image'
 import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontPageSponsorLayout'
+import InstagramSlider from '@/components/page-home/instagram-slider/InstagramSlider'
 
 const EventMap = dynamic(
     () => import('@/components/page-home/event-map/EventMap'),
@@ -10,7 +11,42 @@ const EventMap = dynamic(
     }
 )
 
-const HomePage = async () => {
+// Instagram fetch
+async function getData(url: string) {
+    const res = await fetch(url)
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json()
+}
+
+/*
+
+async function getContentfulData(contentType: string) {
+	const res = await client.getEntries({
+		content_type: contentType
+	})
+	
+    if (!res.ok) {
+		throw new Error('Failed to fetch data')
+    }
+	
+    return res.json()
+}
+
+*/
+/*
+
+const home = getContentfulData('homePage')
+const sponsors = getContentfulData('sponsorsPage')
+	
+*/
+
+export default async function HomePage() {
+    const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.NAVIER_INSTAGRAM_ACCESS_TOKEN}&limit=10`
+    const instagram = await getData(instagramUrl)
     let home = null
     let sponsors = null
 
@@ -21,12 +57,20 @@ const HomePage = async () => {
         const sponsorRes = await client.getEntries({
             content_type: 'sponsorsPage'
         })
+
         home = homeRes.items[0].fields
         sponsors = sponsorRes.items[0].fields.sponsors
     } catch (error) {
         console.error('Error fetching logos:', error)
         throw error
     }
+    /*
+
+	<div className="w-full max-w-[100vw] mx-auto sm:max-w-5xl h-full justify-center pt-12">
+        <InstagramSlider instagramProps={instagram.data} />
+    </div>
+
+	*/
 
     return (
         <main>
@@ -40,13 +84,13 @@ const HomePage = async () => {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
-            <div className="flex flex-col justify-center my-32">
-                <h3 className="text-2xl text-center md:text-4xl pb-0 md:pb-6 font-semibold pt-5 md:pt-0">
-                    Upcoming events
-                </h3>
-
+            <h3 className="text-2xl text-center md:text-4xl pt-14 pb-4 p-0 md:p-10 font-semibold">
+                Upcoming events
+            </h3>
+            <div className="flex flex-col mx-auto justify-center pb-14">
                 <EventMap eventData={home.upcomingEvents} />
             </div>
+
             <div className="overflow-hidden ">
                 <Image
                     src={`https:${home.secondBigImage.fields.file.url}`}
@@ -57,7 +101,13 @@ const HomePage = async () => {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
-            <h3>INSTAGRAM FEED</h3>
+            <h3 className="text-2xl text-center md:text-4xl font-semibold pt-5">
+                Instagram
+            </h3>
+            <div className="w-full max-w-[100vw] flex mx-auto sm:max-w-5xl h-full justify-center">
+                <InstagramSlider instagramProps={instagram.data} />
+            </div>
+
             <div className="overflow-hidden">
                 <Image
                     src={`https:${home.thirdBigImage.fields.file.url}`}
@@ -68,15 +118,14 @@ const HomePage = async () => {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
-            <div className="flex flex-col justify-center my-32">
-                <h3 className="text-2xl text-center md:text-4xl  font-semibold ">
-                    Sponsors and partners
+            <div className="flex flex-col justify-center py-32">
+                <h3 className="text-2xl text-center md:text-4xl font-semibold">
+                    Sponsors
                 </h3>
-                <div className="mx-auto sm:px-7 md:px-20 px-2">
+                <div className="mx-auto sm:px-7 md:px-20 p-2">
                     <FrontpageSponsorLayout sponsors={sponsors} />
                 </div>
             </div>
         </main>
     )
 }
-export default HomePage

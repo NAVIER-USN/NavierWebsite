@@ -48,6 +48,7 @@ const InstagramSlider = ({ instagramProps }: InstagramProps) => {
                             <SwiperSlide key={index}>
                                 <div className="flex flex-col justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer">
                                     <Image
+                                        unoptimized
                                         src={item.media_url}
                                         alt={item.caption}
                                         priority={true}

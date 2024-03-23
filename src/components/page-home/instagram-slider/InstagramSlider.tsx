@@ -27,7 +27,7 @@ const InstagramSlider = ({ instagramProps }: InstagramProps) => {
                     navigation
                     pagination={{ type: 'bullets' }}
                     modules={[FreeMode, Pagination]}
-                    className="rounded-lg"
+                    className="rounded-lg h-[70vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh]"
                     initialSlide={0}
                     centeredSlides={true}
                     loop={true}
@@ -45,17 +45,19 @@ const InstagramSlider = ({ instagramProps }: InstagramProps) => {
                 >
                     {instagramProps.map(
                         (item: InstagramSlides, index: number) => (
-                            <SwiperSlide key={index}>
-                                <div className="flex flex-col justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer">
-                                    <Image
-                                        src={item.media_url}
-                                        alt={item.caption}
-                                        priority={true}
-                                        width={1000}
-                                        height={1000}
-                                        className="block w-full h-full object-cover rounded-xl"
-                                    />
-                                </div>
+                            <SwiperSlide
+                                className="flex justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer h-full"
+                                key={item.id}
+                            >
+                                <Image
+                                    unoptimized
+                                    src={item.media_url}
+                                    alt={item.caption}
+                                    priority={true}
+                                    width={1000}
+                                    height={1000}
+                                    className="w-full h-full object-cover rounded-xl"
+                                />
                             </SwiperSlide>
                         )
                     )}

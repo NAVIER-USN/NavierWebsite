@@ -45,8 +45,11 @@ const InstagramSlider = ({ instagramProps }: InstagramProps) => {
                 >
                     {instagramProps.map(
                         (item: InstagramSlides, index: number) => (
-                            <SwiperSlide key={index}>
-                                <div className="flex flex-col justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer">
+                            <SwiperSlide>
+                                <div
+                                    className="flex flex-col justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer"
+                                    key={index}
+                                >
                                     <Image
                                         unoptimized
                                         src={item.media_url}

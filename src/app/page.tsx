@@ -3,6 +3,7 @@ import { client } from '../../lib/contentful/client'
 import Image from 'next/image'
 import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontPageSponsorLayout'
 import InstagramSlider from '@/components/page-home/instagram-slider/InstagramSlider'
+import ThreeDModelViewer from '@/components/page-home/3d-model/3dModel'
 
 const EventMap = dynamic(
     () => import('@/components/page-home/event-map/EventMap'),
@@ -64,16 +65,12 @@ export default async function HomePage() {
         console.error('Error fetching logos:', error)
         throw error
     }
-    /*
-
-	<div className="w-full max-w-[100vw] mx-auto sm:max-w-5xl h-full justify-center pt-12">
-        <InstagramSlider instagramProps={instagram.data} />
-    </div>
-
-	*/
 
     return (
         <main>
+            <div className="h-[100vh] py-6 md:py-0 bg-model-background-light dark:bg-model-background-dark">
+                <ThreeDModelViewer />
+            </div>
             <div className="overflow-hidden">
                 <Image
                     src={`https:${home.firstBigImage.fields.file.url}`}

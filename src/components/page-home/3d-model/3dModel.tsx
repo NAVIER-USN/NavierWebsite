@@ -1,169 +1,264 @@
 'use client'
-import React, { Suspense, useRef, useState, useEffect } from 'react'
+
+import React, {
+    useRef,
+    useState,
+    useEffect,
+    Suspense,
+    useCallback
+} from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
 import {
-    Canvas,
-    useLoader,
-    useFrame,
-    ThreeEvent,
-    ThreeElements,
-    useThree
-} from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/Addons.js'
-import { Environment, OrbitControls } from '@react-three/drei'
-import { Mesh, MeshStandardMaterial, Color } from 'three'
+    useGLTF,
+    OrbitControls,
+    PerspectiveCamera,
+    Environment
+} from '@react-three/drei'
+import * as THREE from 'three'
 
-///////////////////////////////////////////////////////////////////////////////////////
+useGLTF.preload('/3dmodel/model.glb')
+
+interface CustomProperty {
+    meshName: string
+    key: string
+    value: string
+    object: THREE.Object3D
+}
+
 interface ModelProps {
-    modelUrl: string
-    position: [number, number, number]
+    onCustomProperties: (properties: CustomProperty[]) => void
+    setScene: React.Dispatch<React.SetStateAction<THREE.Scene | null>>
 }
 
-const Model: React.FC<ModelProps> = ({ modelUrl, position }) => {
-    const gltf = useLoader(GLTFLoader, modelUrl)
-    const [hoveredMesh, setHoveredMesh] = useState<Mesh | null>(null)
+const Model: React.FC<ModelProps> = React.memo(
+    ({ onCustomProperties, setScene }) => {
+        const { scene } = useGLTF('/3dmodel/model.glb') as any
 
-    const currentlyHoveredRef = useRef<Mesh | null>(null)
+        useFrame(() => {
+            scene.rotation.y += 0.00005
+        })
 
-    const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
-        const mesh = e.object as Mesh
-        // Reset previous hovered mesh's emissive properties
-        if (
-            currentlyHoveredRef.current &&
-            currentlyHoveredRef.current.material instanceof MeshStandardMaterial
-        ) {
-            currentlyHoveredRef.current.material.emissiveIntensity = 0
-            currentlyHoveredRef.current.material.emissive = new Color(0x000000)
-        }
-        // Set new hovered mesh and its emissive properties
-        currentlyHoveredRef.current = mesh
-        if (mesh.material instanceof MeshStandardMaterial) {
-            mesh.material.emissiveIntensity = 1
-            mesh.material.emissive = new Color(0xffffff)
-        }
-    }
-
-    const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
-        const mesh = e.object as Mesh
-        if (mesh.material instanceof MeshStandardMaterial) {
-            mesh.material.emissiveIntensity = 0
-            mesh.material.emissive = new Color(0x000000)
-        }
-        // Clear the ref if the pointer is out
-        if (currentlyHoveredRef.current === mesh) {
-            currentlyHoveredRef.current = null
-        }
-    }
-
-    return (
-        <group position={position}>
-            {gltf.scene.children.map((child, index) => {
+        useEffect(() => {
+            setScene(scene)
+            const properties: CustomProperty[] = []
+            scene.traverse((object: THREE.Object3D) => {
                 if (
-                    child instanceof Mesh &&
-                    child.material instanceof MeshStandardMaterial
+                    object instanceof THREE.Mesh &&
+                    object.userData &&
+                    Object.keys(object.userData).length
                 ) {
-                    // Ensure each mesh uses a unique material instance
-                    const material = child.material.clone()
-                    return (
-                        <mesh
-                            key={index}
-                            geometry={child.geometry}
-                            material={material}
-                            onPointerOver={handlePointerOver}
-                            onPointerOut={handlePointerOut}
-                        />
-                    )
+                    Object.entries(object.userData).forEach(([key, value]) => {
+                        if (
+                            key !== 'name' &&
+                            typeof value === 'string' &&
+                            value.trim() !== ''
+                        ) {
+                            properties.push({
+                                meshName: object.name,
+                                key,
+                                value,
+                                object
+                            })
+                        }
+                    })
                 }
-                return null
-            })}
-        </group>
-    )
-}
+            })
+            onCustomProperties(properties)
+        }, [scene, onCustomProperties, setScene])
 
-export default function ModelRendererClient({
-    modelUrl
-}: {
-    modelUrl: string
-}) {
+        return <primitive object={scene} />
+    }
+)
+
+Model.displayName = 'Model'
+
+const ThreeDModelViewer = () => {
+    const [customProperties, setCustomProperties] = useState<CustomProperty[]>(
+        []
+    )
+    const [openItem, setOpenItem] = useState<string | null>(null)
+    const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
+    const [scene, setScene] = useState<THREE.Scene | null>(null)
+    const [selectedPropertyName, setSelectedPropertyName] = useState<
+        string | null
+    >(null)
+    const [selectedPropertyValue, setSelectedPropertyValue] = useState<
+        string | null
+    >(null)
+
+    //Fetch default property data
+    const [defaultPropertyName, setDefaultPropertyName] = useState<
+        string | null
+    >('Navier')
+    const [defaultPropertyValue, setDefaultPropertyValue] = useState<
+        string | null
+    >(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    )
+    const [isDragging, setIsDragging] = useState<boolean>(false)
+    const dragStartX = useRef<number>(0)
+    const scrollStartX = useRef<number>(0)
+    const containerRef = useRef<HTMLDivElement | null>(null)
+    const [isMobile, setIsMobile] = useState<boolean>(false)
+
+    const handleCustomProperties = useCallback(
+        (properties: CustomProperty[]) => {
+            setCustomProperties(properties)
+        },
+        []
+    )
+
+    useEffect(() => {
+        setSelectedPropertyName(defaultPropertyName)
+        setSelectedPropertyValue(defaultPropertyValue)
+    }, [])
+
+    useEffect(() => {
+        if (scene) {
+            resetMeshColors(scene)
+        }
+    }, [scene])
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    const resetMeshColors = (
+        scene: THREE.Scene,
+        newColorMeshName?: string,
+        newColor: string = 'hotpink'
+    ) => {
+        scene.traverse((object) => {
+            if (object instanceof THREE.Mesh) {
+                object.material = new THREE.MeshStandardMaterial({
+                    color: 'white',
+                    transparent: true,
+                    opacity: 1,
+                    depthWrite: true
+                })
+                object.renderOrder = 0
+            }
+        })
+
+        if (newColorMeshName) {
+            scene.traverse((object) => {
+                if (
+                    object instanceof THREE.Mesh &&
+                    object.name !== newColorMeshName
+                ) {
+                    object.material.opacity = 0.2
+                    object.material.depthWrite = false
+                    object.renderOrder = 1
+                }
+            })
+
+            const selectedMesh = scene.getObjectByName(newColorMeshName)
+            if (selectedMesh instanceof THREE.Mesh) {
+                selectedMesh.material.color.set(newColor)
+                selectedMesh.material.opacity = 1
+                selectedMesh.renderOrder = 2
+            }
+        }
+    }
+
+    const requestOpen = (meshName: string, key: string, value: string) => {
+        const identifier = `${meshName}-${key}`
+        setSelectedPropertyName(key)
+        setSelectedPropertyValue(value)
+        if (openItem === identifier) {
+            setOpenItem(null)
+            setSelectedPropertyName(defaultPropertyName)
+            setSelectedPropertyValue(defaultPropertyValue)
+
+            if (scene !== null) {
+                resetMeshColors(scene)
+            }
+        } else {
+            setOpenItem(identifier)
+            if (scene !== null) {
+                resetMeshColors(scene, meshName, 'hotpink')
+            }
+        }
+    }
+    const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        setIsDragging(true)
+        dragStartX.current = e.clientX
+        scrollStartX.current = containerRef.current?.scrollLeft || 0
+    }
+
+    const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isDragging) return
+        const dragAmount = dragStartX.current - e.clientX
+        if (containerRef.current) {
+            containerRef.current.scrollLeft = scrollStartX.current + dragAmount
+        }
+    }
+
+    const onMouseUp = () => {
+        setIsDragging(false)
+    }
+
     return (
-        <div style={{ height: '100%', width: '100%' }}>
-            <Canvas style={{ height: '100%', width: '100%' }}>
-                <ambientLight intensity={0.5} />
-                <spotLight position={[10, 15, 10]} angle={0.3} />
-                <Suspense fallback={null}>
-                    <Model modelUrl={modelUrl} position={[0, 0, 0]} />
-                    <OrbitControls />
-                    <Environment preset="sunset" background={false} />
-                </Suspense>
-            </Canvas>
+        <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full max-w[2000px]">
+            <div className="flex items-center w-full md:w-[100vw] 3xl:w-[80vw] max-w-6xl h-2/3 md:h-[70vh]">
+                <Canvas>
+                    <spotLight position={[10, 15, 10]} angle={0.3} />
+                    <PerspectiveCamera
+                        ref={cameraRef}
+                        makeDefault
+                        position={[40, 18, 50]}
+                    />
+                    <Suspense fallback={null}>
+                        <Model
+                            onCustomProperties={handleCustomProperties}
+                            setScene={setScene}
+                        />
+
+                        <OrbitControls enableZoom={false} enablePan={false} />
+                        <Environment preset="sunset" background={false} />
+                    </Suspense>
+                </Canvas>
+                <div className="hidden p-5 md:block w-[40%] h-[40%] overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
+                    <h3 className="text-2xl">{selectedPropertyName}</h3>
+                    <p className="pt-5">{selectedPropertyValue}</p>
+                </div>
+            </div>
+            <div
+                ref={containerRef}
+                className="flex flex-col md:flex-row w-full max-w-4xl gap-2 md:gap-5 overflow-auto max-h-full custom-scrollbar select-none rounded-md"
+                onMouseDown={onMouseDown}
+                onMouseMove={onMouseMove}
+                onMouseUp={onMouseUp}
+                onMouseLeave={onMouseUp}
+            >
+                {customProperties.map((prop, index) => (
+                    <div
+                        key={`${prop.meshName}-${prop.key}`}
+                        className="w-full"
+                    >
+                        <div
+                            onClick={() =>
+                                requestOpen(prop.meshName, prop.key, prop.value)
+                            }
+                            className="flex flex-col cursor-pointer p-3 md:mb-4 bg-foreground-light dark:bg-foreground-dark rounded-md shadow-lg"
+                        >
+                            <p className="truncate text-xl">{prop.key}</p>
+                            {openItem === `${prop.meshName}-${prop.key}` && (
+                                <div className="block md:hidden pt-4 bg-foreground-light dark:bg-foreground-dark rounded-md">
+                                    <p>{prop.value}</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
 
-/*
-'use client'
-import React, { Suspense, useRef, useState, useEffect } from 'react'
-import { Canvas, useLoader, useFrame, ThreeEvent } from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/Addons.js'
-import { OrbitControls } from '@react-three/drei'
-import { Mesh, MeshStandardMaterial } from 'three'
-
-interface ModelProps {
-  modelUrl: string
-}
-
-function Model({ modelUrl }: ModelProps) {
-  const gltf = useLoader(GLTFLoader, modelUrl)
-  const originalColors = useRef(new Map()).current
-
-  const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
-    event.stopPropagation()
-    const mesh = event.object as Mesh
-    if (mesh.material && mesh.material instanceof MeshStandardMaterial) {
-      if (!originalColors.has(mesh)) {
-        originalColors.set(mesh, mesh.material.color.clone())
-      }
-      mesh.material.color.set('hotpink')
-    }
-  }
-
-  const handlePointerOut = (event: ThreeEvent<PointerEvent>) => {
-    event.stopPropagation()
-    const mesh = event.object as Mesh
-    if (mesh.material && mesh.material instanceof MeshStandardMaterial) {
-      const originalColor = originalColors.get(mesh)
-      if (originalColor) {
-        mesh.material.color.copy(originalColor)
-      }
-    }
-  }
-
-  return (
-    <primitive
-      object={gltf.scene}
-      scale={5}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
-    />
-  )
-}
-
-interface ModelRendererClientProps {
-  modelUrl: string
-}
-
-export default function ModelRendererClient({
-  modelUrl
-}: ModelRendererClientProps) {
-  return (
-    <Canvas camera={{ position: [10, 0, 0], fov: 50 }}>
-      <OrbitControls />
-      <directionalLight position={[0, 10, 10]} intensity={1} />
-      <Suspense fallback={null}>
-        <pointLight position={[10, 10, 10]} />
-        <Model modelUrl={modelUrl} />
-      </Suspense>
-    </Canvas>
-  )
-}
-
-*/
+export default ThreeDModelViewer

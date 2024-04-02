@@ -60,7 +60,7 @@ const SponsorOrder: React.FC<SponsorProps> = ({ sponsors }) => {
 
                 {/* Second and third sponsors */}
 
-                <div className="lg:flex lg:flex-col grid items-center gap-10 max-w-80 row-span-2">
+                <div className="lg:flex lg:flex-col grid mx-auto items-center gap-10 md:gap-20 max-w-80 row-span-2">
                     {sortedSponsors
                         .slice(1, 3)
                         .map((sponsor: Sponsor, index: number) => (

@@ -8,8 +8,6 @@ import BurgerMenu from '../burger/BurgerMenu'
 
 const Navbar = async () => {
     let logos = []
-    let logoDarkmode = ''
-    let logoLightmode = ''
 
     //Fetching logos
     try {
@@ -20,38 +18,21 @@ const Navbar = async () => {
         throw error
     }
 
-    //Placing logos in variables
-    for (let i = 0; i < logos[0].fields.logos.length; i++) {
-        if (
-            logos &&
-            logos[0].fields.logos[i].fields.title.toLowerCase() === 'darkmode'
-        ) {
-            logoDarkmode = `https:${logos[0].fields.logos[i].fields.file.url}`
-        } else if (
-            logos &&
-            logos[0].fields.logos[i].fields.title.toLowerCase() === 'lightmode'
-        ) {
-            logoLightmode = `https:${logos[0].fields.logos[i].fields.file.url}`
-        } else {
-            console.error('Error handling logos')
-        }
-    }
-
     return (
         <header>
             <nav className="w-full select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-5 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
                 <Link href="/">
                     <Image
-                        src={logoDarkmode}
-                        alt="Navier logo"
+                        src={`https:${logos[0].fields.darkmode.fields.file.url}`}
+                        alt={logos[0].fields.darkmode.fields.title}
                         width={1500}
                         height={1000}
                         priority={true}
                         className="dark:block hidden max-w-[150px]"
                     />
                     <Image
-                        src={logoLightmode}
-                        alt="Navier logo"
+                        src={`https:${logos[0].fields.lightmode.fields.file.url}`}
+                        alt={logos[0].fields.lightmode.fields.title}
                         width={1500}
                         height={1000}
                         priority={true}
@@ -67,8 +48,8 @@ const Navbar = async () => {
                     </li>
                     <li className="block md:hidden">
                         <BurgerMenu
-                            logoLightmode={logoLightmode}
-                            logoDarkmode={logoDarkmode}
+                            logoDarkmode={`https:${logos[0].fields.darkmode.fields.file.url}`}
+                            logoLightmode={`https:${logos[0].fields.lightmode.fields.file.url}`}
                         />
                     </li>
                 </ul>

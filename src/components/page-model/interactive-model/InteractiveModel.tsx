@@ -72,7 +72,7 @@ const Model: React.FC<ModelProps> = React.memo(
 
 Model.displayName = 'Model'
 
-const ThreeDModelViewer = () => {
+const InteractiveModel = () => {
     const [customProperties, setCustomProperties] = useState<CustomProperty[]>(
         []
     )
@@ -204,8 +204,8 @@ const ThreeDModelViewer = () => {
     }
 
     return (
-        <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full max-w[2000px]">
-            <div className="flex items-center w-full md:w-[100vw] 3xl:w-[80vw] max-w-6xl h-2/3 md:h-[70vh]">
+        <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full max-w[2000px] pb-12">
+            <div className="flex items-center w-full md:w-[80vw] max-w-6xl h-2/3 md:h-[70vh]">
                 <Canvas>
                     <spotLight position={[10, 15, 10]} angle={0.3} />
                     <PerspectiveCamera
@@ -223,9 +223,9 @@ const ThreeDModelViewer = () => {
                         <Environment preset="sunset" background={false} />
                     </Suspense>
                 </Canvas>
-                <div className="hidden p-5 md:block w-[40%] h-[40%] overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
+                <div className="hidden px-4 py-3 md:block w-[40%] h-[40%] overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
                     <h3 className="text-2xl">{selectedPropertyName}</h3>
-                    <p className="pt-5">{selectedPropertyValue}</p>
+                    <p className="pt-2">{selectedPropertyValue}</p>
                 </div>
             </div>
             <div
@@ -261,4 +261,4 @@ const ThreeDModelViewer = () => {
     )
 }
 
-export default ThreeDModelViewer
+export default InteractiveModel

@@ -122,7 +122,7 @@ const Members = ({ allMembers }: MembersProps) => {
                 </div>
             </div>
             <div>
-                <h2 className="text-center text-2xl pt-8">Members</h2>
+                <h2 className="text-center text-2xl pt-8">Team</h2>
                 <div className="max-w-5xl lg:max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-10">
                     {members.map((member: MemberEntry, index: number) => {
                         return (

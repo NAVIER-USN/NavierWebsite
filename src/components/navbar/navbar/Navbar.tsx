@@ -24,7 +24,7 @@ const Navbar = async () => {
                 <Link href="/">
                     <Image
                         src={`https:${logos[0].fields.darkmode.fields.file.url}`}
-                        alt="Navier logo"
+                        alt={logos[0].fields.darkmode.fields.title}
                         width={1500}
                         height={1000}
                         priority={true}
@@ -32,7 +32,7 @@ const Navbar = async () => {
                     />
                     <Image
                         src={`https:${logos[0].fields.lightmode.fields.file.url}`}
-                        alt="Navier logo"
+                        alt={logos[0].fields.lightmode.fields.title}
                         width={1500}
                         height={1000}
                         priority={true}

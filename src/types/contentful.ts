@@ -72,5 +72,6 @@ export interface Sponsor {
         sponsor: string
         description: string
         importance: number
+        url: string
     }
 }

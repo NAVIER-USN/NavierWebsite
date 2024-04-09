@@ -1,5 +1,4 @@
 'use client'
-
 import Image from 'next/image'
 import { FreeMode, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -7,7 +6,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 
-type InstagramSlides = {
+type ImageSlides = {
     id: string
     caption: string
     media_url: string
@@ -15,11 +14,11 @@ type InstagramSlides = {
     media_type: string
     permalink: string
 }
-type InstagramProps = {
-    instagramProps: InstagramSlides[]
+type ImageProps = {
+    imageProps: ImageSlides[]
 }
 
-const InstagramSlider = ({ instagramProps }: InstagramProps) => {
+const ImageSlider = ({ imageProps }: ImageProps) => {
     return (
         <section className="max-w-full py-5">
             <div className="container">
@@ -43,28 +42,26 @@ const InstagramSlider = ({ instagramProps }: InstagramProps) => {
                         }
                     }}
                 >
-                    {instagramProps.map(
-                        (item: InstagramSlides, index: number) => (
-                            <SwiperSlide
-                                className="flex justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer h-full"
-                                key={item.id}
-                            >
-                                <Image
-                                    unoptimized
-                                    src={item.media_url}
-                                    alt={item.caption}
-                                    priority={true}
-                                    width={1000}
-                                    height={1000}
-                                    className="w-full h-full object-cover rounded-xl"
-                                />
-                            </SwiperSlide>
-                        )
-                    )}
+                    {imageProps.map((item: ImageSlides, index: number) => (
+                        <SwiperSlide
+                            className="flex justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer h-full"
+                            key={item.id}
+                        >
+                            <Image
+                                unoptimized
+                                src={item.media_url}
+                                alt={item.caption}
+                                priority={true}
+                                width={1000}
+                                height={1000}
+                                className="w-full h-full object-cover rounded-xl"
+                            />
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </div>
         </section>
     )
 }
 
-export default InstagramSlider
+export default ImageSlider

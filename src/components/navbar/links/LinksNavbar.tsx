@@ -11,10 +11,16 @@ const Links: React.FC = () => {
                 Home
             </Link>
             <Link
-                href="/members"
+                href="/join"
                 className="text-text-dark dark:text-text-light hover:underline"
             >
-                Members
+                Join
+            </Link>
+            <Link
+                href="/team"
+                className="text-text-dark dark:text-text-light hover:underline"
+            >
+                Team
             </Link>
             <Link
                 href="/sponsors"
@@ -23,16 +29,22 @@ const Links: React.FC = () => {
                 Sponsors
             </Link>
             <Link
-                href="/contact_us"
+                href="/model"
                 className="text-text-dark dark:text-text-light hover:underline"
             >
-                Contact
+                Model
             </Link>
             <Link
-                href="/join"
+                href="/get_in_touch"
                 className="text-text-dark dark:text-text-light hover:underline"
             >
-                Join
+                Get in Touch
+            </Link>
+            <Link
+                href="/about"
+                className="text-text-dark dark:text-text-light hover:underline"
+            >
+                About
             </Link>
         </div>
     )

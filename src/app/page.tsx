@@ -3,14 +3,16 @@ import { client } from '../../lib/contentful/client'
 import Image from 'next/image'
 import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontPageSponsorLayout'
 import InstagramSlider from '@/components/page-home/instagram-slider/InstagramSlider'
-import ThreeDModelViewer from '@/components/page-home/3d-model/3dModel'
+import BasicModel from '@/components/page-home/basic-model/BasicModel'
 
+/*
 const EventMap = dynamic(
     () => import('@/components/page-home/event-map/EventMap'),
     {
         ssr: false
     }
-)
+    )
+*/
 
 // Instagram fetch
 async function getData(url: string) {
@@ -69,7 +71,7 @@ export default async function HomePage() {
     return (
         <main>
             <div className="h-[100vh] py-6 md:py-0 bg-model-background-light dark:bg-model-background-dark">
-                <ThreeDModelViewer />
+                <BasicModel />
             </div>
             <div className="overflow-hidden">
                 <Image
@@ -81,12 +83,14 @@ export default async function HomePage() {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
+            {/* EVENT MAP
             <h3 className="text-2xl text-center md:text-4xl pt-14 pb-4 p-0 md:p-10 font-semibold">
                 Upcoming events
             </h3>
             <div className="flex flex-col mx-auto justify-center pb-14">
                 <EventMap eventData={home.upcomingEvents} />
             </div>
+            */}
             <div className="overflow-hidden">
                 <Image
                     src={`https:${home.secondBigImage.fields.file.url}`}
@@ -101,7 +105,7 @@ export default async function HomePage() {
                 Instagram
             </h3>
             <div className="w-full max-w-[100vw] flex mx-auto sm:max-w-5xl h-full justify-center">
-                <InstagramSlider instagramProps={instagram.data} />
+                <InstagramSlider imageProps={instagram.data} />
             </div>
 
             <div className="overflow-hidden">

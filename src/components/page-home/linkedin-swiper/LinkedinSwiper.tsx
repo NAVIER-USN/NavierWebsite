@@ -6,7 +6,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 
-type ImageSlides = {
+type ImageSwiper = {
     id: string
     caption: string
     media_url: string
@@ -15,10 +15,10 @@ type ImageSlides = {
     permalink: string
 }
 type ImageProps = {
-    imageProps: ImageSlides[]
+    imageProps: ImageSwiper[]
 }
 
-const ImageSlider = ({ imageProps }: ImageProps) => {
+const LinkedinSwiper = ({ imageProps }: ImageProps) => {
     return (
         <section className="max-w-full py-5">
             <div className="container">
@@ -42,7 +42,7 @@ const ImageSlider = ({ imageProps }: ImageProps) => {
                         }
                     }}
                 >
-                    {imageProps.map((item: ImageSlides, index: number) => (
+                    {imageProps.map((item: ImageSwiper, index: number) => (
                         <SwiperSlide
                             className="flex justify-center items-center gap-6 group relative px-6 py-8 cursor-pointer h-full"
                             key={item.id}
@@ -64,4 +64,4 @@ const ImageSlider = ({ imageProps }: ImageProps) => {
     )
 }
 
-export default ImageSlider
+export default LinkedinSwiper

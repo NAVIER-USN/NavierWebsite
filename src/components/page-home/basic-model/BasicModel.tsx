@@ -12,7 +12,7 @@ export const Model = () => {
     const { scene } = useGLTF('/3dmodel/model.glb')
 
     useFrame(() => {
-        scene.rotation.y += 0.0005
+        scene.rotation.y += 0.0002
     })
 
     return <primitive object={scene} />

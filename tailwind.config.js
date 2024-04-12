@@ -15,10 +15,10 @@ module.exports = {
 
                 //Lightmode
                 'background-light': '#FCF5ED',
-                'foreground-light': '#E5BA73',
+                'foreground-light': '#CFB5DB',
                 'model-background-light': '#F9F6F7',
                 'input-background-light': '#F0F0F0',
-                'button-light': '#739ee5',
+                'button-light': '#706BDB',
                 'text-dark': '#2D3748',
                 'text-hover-dark': '#cbd5e1'
             },

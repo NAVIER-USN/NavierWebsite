@@ -6,7 +6,7 @@ import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
 import {
     AiOutlineMenu,
     AiOutlineClose,
-    AiOutlineFacebook,
+    AiOutlineLinkedin,
     AiOutlineTwitter,
     AiOutlineInstagram
 } from 'react-icons/ai'
@@ -31,7 +31,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
             <div
                 className={
                     isOpen
-                        ? 'fixed right-0 top-0 w-[65%] md:hidden bg-foreground-light dark:bg-foreground-dark shadow-2xl p-5 ease-in duration-500 z-10'
+                        ? 'fixed right-0 top-0 w-[65%] lg:hidden bg-foreground-light dark:bg-foreground-dark shadow-2xl p-5 ease-in duration-500 z-10'
                         : 'fixed right-[-100%] top-0 p-10 ease-in duration-500'
                 }
             >
@@ -51,7 +51,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                         >
                             <Link
                                 href="/"
-                                className="text-text-dark dark:text-text-light hover:underline"
+                                className="text-text-dark dark:text-text-light hover:underline "
                             >
                                 Home
                             </Link>
@@ -61,10 +61,21 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             className="py-4 cursor-pointer"
                         >
                             <Link
-                                href="/members"
+                                href="/join"
                                 className="text-text-dark dark:text-text-light hover:underline"
                             >
-                                Members
+                                Join
+                            </Link>
+                        </li>
+                        <li
+                            onClick={() => setIsOpen(false)}
+                            className="py-4 cursor-pointer"
+                        >
+                            <Link
+                                href="/team"
+                                className="text-text-dark dark:text-text-light hover:underline"
+                            >
+                                Team
                             </Link>
                         </li>
                         <li
@@ -83,10 +94,10 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             className="py-4 cursor-pointer"
                         >
                             <Link
-                                href="/contact_us"
+                                href="/model"
                                 className="text-text-dark dark:text-text-light hover:underline"
                             >
-                                Contact
+                                Model
                             </Link>
                         </li>
                         <li
@@ -94,16 +105,28 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             className="py-4 cursor-pointer"
                         >
                             <Link
-                                href="/join"
+                                href="/get_in_touch"
                                 className="text-text-dark dark:text-text-light hover:underline"
                             >
-                                Join
+                                Get in Touch
+                            </Link>
+                        </li>
+                        <li
+                            onClick={() => setIsOpen(false)}
+                            className="py-4 cursor-pointer"
+                        >
+                            <Link
+                                href="/about"
+                                className="text-text-dark dark:text-text-light hover:underline"
+                            >
+                                About
                             </Link>
                         </li>
                     </ul>
                 </div>
                 <div className="flex flex-row justify-around pt-10 items-center">
-                    <AiOutlineFacebook size={40} />
+                    <AiOutlineLinkedin size={40} />
+
                     <AiOutlineTwitter size={40} />
                     <AiOutlineInstagram size={40} />
                 </div>

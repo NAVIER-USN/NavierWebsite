@@ -20,7 +20,7 @@ const Navbar = async () => {
 
     return (
         <header>
-            <nav className="w-full select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-5 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
+            <nav className="w-full select-none bg-foreground-light py-5 flex justify-between px-3 lg:px-10 dark:bg-foreground-dark">
                 <Link href="/">
                     <Image
                         src={`https:${logos[0].fields.darkmode.fields.file.url}`}
@@ -40,13 +40,13 @@ const Navbar = async () => {
                     />
                 </Link>
                 <ul className="flex items-center gap-10">
-                    <li className="hidden md:block">
+                    <li className="hidden lg:block">
                         <Links />
                     </li>
-                    <li className="hidden md:block">
+                    <li className="hidden lg:block">
                         <ThemeSwitch />
                     </li>
-                    <li className="block md:hidden">
+                    <li className="block lg:hidden">
                         <BurgerMenu
                             logoDarkmode={`https:${logos[0].fields.darkmode.fields.file.url}`}
                             logoLightmode={`https:${logos[0].fields.lightmode.fields.file.url}`}

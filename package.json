@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@emailjs/nodejs": "^2.2.0",
+        "@next/third-parties": "^14.2.1",
         "@react-spring/three": "^9.7.3",
         "@react-three/drei": "^9.102.6",
         "@react-three/fiber": "^8.16.0",

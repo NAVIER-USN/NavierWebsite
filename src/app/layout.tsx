@@ -4,6 +4,7 @@ import '../styles/globals.css'
 import Providers from '@/components/navbar/theme-switch/providers/Providers'
 import Navbar from '@/components/navbar/navbar/Navbar'
 import Footer from '@/components/footer/Footer'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +18,20 @@ export default function Layout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    if (!process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM) {
+        console.error('GTM ID is missing in production!')
+        // Additional alerting or logging mechanisms can be triggered here
+    }
     return (
         <html lang="en" suppressHydrationWarning>
             <body
                 className={`${inter.className} grid grid-rows-layout min-h-screen`}
             >
+                {process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM && (
+                    <GoogleTagManager
+                        gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM}
+                    />
+                )}
                 <Providers>
                     <Navbar />
                     <main className="bg-background-light  dark:bg-background-dark text-text-dark dark:text-text-light">

@@ -74,8 +74,20 @@ export default async function HomePage() {
             <div>
                 <Hero props={home.videoHomepageHero.fields} />
             </div>
-
-            <div className="overflow-hidden">
+            <h3 className="text-lg md:mt-32 py-4 text-center md:text-2xl font-semibold pt-5">
+                The Students
+            </h3>
+            <div className="overflow-hidden flex flex-col justify-center items-center w-full">
+                <Image
+                    src={`https:${home.currentTeamGroupImage.fields.file.url}`}
+                    alt={home.firstBigImage.fields.title}
+                    priority={true}
+                    width={4000}
+                    height={2000}
+                    className="max-w-3xl w-full object-cover"
+                />
+            </div>
+            {/*<div className="overflow-hidden">
                 <Image
                     src={`https:${home.firstBigImage.fields.file.url}`}
                     alt={home.firstBigImage.fields.title}
@@ -84,13 +96,14 @@ export default async function HomePage() {
                     height={2000}
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
-            </div>
-            {/*
-			
-            <div className="h-[100vh] py-6 md:py-0 bg-model-background-light dark:bg-model-background-dark">
+            </div>*/}
+            <h3 className="text-lg md:mt-32 py-4 text-center md:text-2xl font-semibold pt-5">
+                The Solution
+            </h3>
+            <div className="h-[100vh] w-full py-6 md:py-0 bg-model-background-light dark:bg-model-background-dark">
                 <BasicModel />
             </div>
-			*/}
+
             {/* EVENT MAP
             <h3 className="text-2xl text-center md:text-4xl pt-14 pb-4 p-0 md:p-10 font-semibold">
                 Upcoming events
@@ -99,6 +112,9 @@ export default async function HomePage() {
                 <EventMap eventData={home.upcomingEvents} />
             </div>
             */}
+
+            {/*
+
             <div className="overflow-hidden">
                 <Image
                     src={`https:${home.secondBigImage.fields.file.url}`}
@@ -109,6 +125,7 @@ export default async function HomePage() {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
+            */}
             <h3 className="text-2xl text-center md:text-4xl font-semibold pt-5">
                 Instagram
             </h3>
@@ -116,6 +133,7 @@ export default async function HomePage() {
                 <LinkedinSwiper imageProps={instagram.data} />
             </div>
 
+            {/*
             <div className="overflow-hidden">
                 <Image
                     src={`https:${home.thirdBigImage.fields.file.url}`}
@@ -126,6 +144,7 @@ export default async function HomePage() {
                     className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
                 />
             </div>
+            */}
             <div className="flex flex-col justify-center py-32">
                 <h3 className="text-2xl text-center md:text-4xl font-semibold">
                     Sponsors

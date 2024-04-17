@@ -15,7 +15,7 @@ type Props = {
 
 const Hero = ({ props }: Props) => {
     return (
-        <div className="relative min-w-full h-[850px] max-h-[80vh] lg:max-h-none overflow-hidden">
+        <div className="relative min-w-full h-[85vh] md:h-[70vh] max-h-[80vh] lg:max-h-none overflow-hidden">
             {props.file.url && (
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
@@ -27,9 +27,9 @@ const Hero = ({ props }: Props) => {
                 </video>
             )}
 
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center p-4">
-                    <p className="text-bold text-2xl text-white">
+            <div className="absolute inset-0">
+                <div className="bg-black bg-opacity-30 w-full h-full flex justify-center items-center flex-col">
+                    <p className="text-bold text-center text:md md:text-2xl text-white">
                         Todays students, tomorrows solutions
                     </p>
                     <Link

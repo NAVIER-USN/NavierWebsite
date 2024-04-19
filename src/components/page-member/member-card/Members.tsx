@@ -2,12 +2,9 @@ import Image from 'next/image'
 import React from 'react'
 import { MemberEntry, MembersProps } from './types'
 
-
 const Members = ({ allMembers }: MembersProps) => {
     let members: MemberEntry[] = []
     let management: MemberEntry[] = []
-
-    console.log('all members', allMembers)
 
     allMembers.fields.member.map((member: MemberEntry) => {
         if (member.fields.leaderRole === true) {

@@ -14,11 +14,11 @@ module.exports = {
                 'text-hover-light': '#94a3b8',
 
                 //Lightmode
-                'background-light': '#FCF5ED',
-                'foreground-light': '#CFB5DB',
-                'model-background-light': '#F9F6F7',
+                'background-light': '#FAF8F1',
+                'foreground-light': '#FAEAB1',
+                'model-background-light': '#FAF8F1',
                 'input-background-light': '#F0F0F0',
-                'button-light': '#706BDB',
+                'button-light': '#C58940',
                 'text-dark': '#2D3748',
                 'text-hover-dark': '#cbd5e1'
             },

@@ -34,7 +34,7 @@ export default function Layout({
                 )}
                 <Providers>
                     <Navbar />
-                    <main className="bg-background-light  dark:bg-background-dark text-text-dark dark:text-text-light">
+                    <main className="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light">
                         {children}
                     </main>
                     <Footer />

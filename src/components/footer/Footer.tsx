@@ -6,7 +6,6 @@ import { SocialMedia } from './types'
 
 const Footer = async () => {
     const footerData = await GetContentfulData('footer')
-    console.log('footer: ', footerData)
 
     const formattedPhoneNumber = footerData.fields.phone
         .toString()
@@ -35,9 +34,10 @@ const Footer = async () => {
                     <div>
                         <p className="font-bold">Address</p>
                         <ul>
-                            <li>{footerData.address}</li>
+                            <li>{footerData.fields.address}</li>
                             <li>
-                                {footerData.postalCode} {footerData.city}
+                                {footerData.fields.postalCode}{' '}
+                                {footerData.fields.city}
                             </li>
                         </ul>
                     </div>
@@ -49,7 +49,8 @@ const Footer = async () => {
                                 +47 {formattedPhoneNumber}
                             </li>
                             <li className="flex flex-row items-center">
-                                <FiMail className="mr-2" /> {footerData.email}
+                                <FiMail className="mr-2" />{' '}
+                                {footerData.fields.email}
                             </li>
                         </ul>
                         <div className="flex justify-center space-x-4 my-2"></div>
@@ -57,8 +58,8 @@ const Footer = async () => {
                 </div>
             </div>
             <p className="text-sm mt-4 text-center">
-                © {new Date().getFullYear()} {footerData.brand}. All rights
-                reserved.
+                © {new Date().getFullYear()} {footerData.fields.brand}. All
+                rights reserved.
             </p>
         </footer>
     )

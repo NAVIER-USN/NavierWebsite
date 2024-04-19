@@ -120,12 +120,12 @@ const InteractiveModel = () => {
     const resetMeshColors = (
         scene: THREE.Scene,
         newColorMeshName?: string,
-        newColor: string = 'hotpink'
+        newColor: string = 'red'
     ) => {
         scene.traverse((object) => {
             if (object instanceof THREE.Mesh) {
                 object.material = new THREE.MeshStandardMaterial({
-                    color: 'white',
+                    color: 'black',
                     transparent: true,
                     opacity: 1,
                     depthWrite: true
@@ -170,7 +170,7 @@ const InteractiveModel = () => {
         } else {
             setOpenItem(identifier)
             if (scene !== null) {
-                resetMeshColors(scene, meshName, 'hotpink')
+                resetMeshColors(scene, meshName, 'red')
             }
         }
     }
@@ -208,7 +208,7 @@ const InteractiveModel = () => {
                             setScene={setScene}
                         />
 
-                        <OrbitControls enableZoom={false} enablePan={false} />
+                        <OrbitControls enablePan={false} />
                         <Environment preset="sunset" background={false} />
                     </Suspense>
                 </Canvas>

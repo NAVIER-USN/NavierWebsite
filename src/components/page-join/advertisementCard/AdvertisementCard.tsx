@@ -1,21 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-
-interface AdvertisementFields {
-    position: string
-    jobDescription: string
-    active: boolean
-    formUrl: string
-    // Add other fields as needed
-}
-
-interface Advertisement {
-    fields: AdvertisementFields
-}
-
-interface AdvertisementCardProps {
-    advertisements: Advertisement[]
-}
+import { AdvertisementCardProps } from './types'
 
 const AdvertisementCard = ({ advertisements }: AdvertisementCardProps) => {
     return (

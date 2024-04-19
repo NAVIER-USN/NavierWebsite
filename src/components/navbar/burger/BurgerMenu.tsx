@@ -10,11 +10,7 @@ import {
     AiOutlineTwitter,
     AiOutlineInstagram
 } from 'react-icons/ai'
-
-type Logo = {
-    logoDarkmode: string
-    logoLightmode: string
-}
+import { Logo } from './types'
 
 const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)

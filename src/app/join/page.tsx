@@ -1,18 +1,9 @@
 import React from 'react'
-import { client } from '../../../lib/contentful/client'
 import AdvertisementCard from '@/components/page-join/advertisementCard/AdvertisementCard'
+import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
 const JoinPage = async () => {
-    let join = null
-
-    //Fetching join us page
-    try {
-        const response = await client.getEntries({ content_type: 'joinUsPage' })
-        join = response.items[0].fields
-    } catch (error) {
-        console.error('Error fetching logos:', error)
-        throw error
-    }
+    const join = await GetContentfulData('joinUsPage')
 
     return (
         <div>
@@ -22,18 +13,25 @@ const JoinPage = async () => {
                         <h3 className="text-xl md:text-2xl pb-2">
                             Joining Navier?
                         </h3>
-                        <p>{join.information.content[0].content[0].value}</p>
+                        <p>
+                            {
+                                join.fields.information.content[0].content[0]
+                                    .value
+                            }
+                        </p>
                     </div>
                     <div className="pb-10 md:pb-0">
                         <h3 className="text-xl md:text-2xl pb-2">
                             Who can join?
                         </h3>
-                        <p>{join.howToApply.content[0].content[0].value}</p>
+                        <p>
+                            {join.fields.howToApply.content[0].content[0].value}
+                        </p>
                     </div>
                 </div>
             </div>
             <div>
-                <AdvertisementCard advertisements={join.advertisement} />
+                <AdvertisementCard advertisements={join.fields.advertisement} />
             </div>
         </div>
     )

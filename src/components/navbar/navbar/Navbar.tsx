@@ -3,36 +3,27 @@ import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
 import Links from '../links/LinksNavbar'
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '../../../../lib/contentful/client'
 import BurgerMenu from '../burger/BurgerMenu'
+import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
 const Navbar = async () => {
-    let logos = []
-
-    //Fetching logos
-    try {
-        const response = await client.getEntries({ content_type: 'logo' })
-        logos = response.items
-    } catch (error) {
-        console.error('Error fetching logos:', error)
-        throw error
-    }
+    const logos = await GetContentfulData('logo')
 
     return (
         <header>
             <nav className="w-full select-none bg-foreground-light py-5 flex justify-between px-3 lg:px-10 dark:bg-foreground-dark">
                 <Link href="/">
                     <Image
-                        src={`https:${logos[0].fields.darkmode.fields.file.url}`}
-                        alt={logos[0].fields.darkmode.fields.title}
+                        src={`https:${logos.fields.darkmode.fields.file.url}`}
+                        alt={logos.fields.darkmode.fields.title}
                         width={1500}
                         height={1000}
                         priority={true}
                         className="dark:block hidden max-w-[150px]"
                     />
                     <Image
-                        src={`https:${logos[0].fields.lightmode.fields.file.url}`}
-                        alt={logos[0].fields.lightmode.fields.title}
+                        src={`https:${logos.fields.lightmode.fields.file.url}`}
+                        alt={logos.fields.lightmode.fields.title}
                         width={1500}
                         height={1000}
                         priority={true}
@@ -48,8 +39,8 @@ const Navbar = async () => {
                     </li>
                     <li className="block lg:hidden">
                         <BurgerMenu
-                            logoDarkmode={`https:${logos[0].fields.darkmode.fields.file.url}`}
-                            logoLightmode={`https:${logos[0].fields.lightmode.fields.file.url}`}
+                            logoDarkmode={`https:${logos.fields.darkmode.fields.file.url}`}
+                            logoLightmode={`https:${logos.fields.lightmode.fields.file.url}`}
                         />
                     </li>
                 </ul>

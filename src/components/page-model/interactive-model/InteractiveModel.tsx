@@ -15,20 +15,9 @@ import {
     Environment
 } from '@react-three/drei'
 import * as THREE from 'three'
+import { CustomProperty, ModelProps } from './types'
 
 useGLTF.preload('/3dmodel/model.glb')
-
-interface CustomProperty {
-    meshName: string
-    key: string
-    value: string
-    object: THREE.Object3D
-}
-
-interface ModelProps {
-    onCustomProperties: (properties: CustomProperty[]) => void
-    setScene: React.Dispatch<React.SetStateAction<THREE.Scene | null>>
-}
 
 const Model: React.FC<ModelProps> = React.memo(
     ({ onCustomProperties, setScene }) => {

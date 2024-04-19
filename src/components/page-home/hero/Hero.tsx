@@ -1,17 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-
-type Props = {
-    props: {
-        title: string
-        file: {
-            url: string
-            details: { size: number }
-            fileName: string
-            contentType: string
-        }
-    }
-}
+import { Props } from './types'
 
 const Hero = ({ props }: Props) => {
     return (

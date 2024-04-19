@@ -1,23 +1,14 @@
 import Link from 'next/link'
-import { client } from '../../../lib/contentful/client'
 import React from 'react'
 import { FiPhone, FiMail } from 'react-icons/fi'
+import GetContentfulData from '../getData/get-contentful-data/GetContentfulData'
+import { SocialMedia } from './types'
 
 const Footer = async () => {
-    let footerData = null
+    const footerData = await GetContentfulData('footer')
+    console.log('footer: ', footerData)
 
-    try {
-        const response = await client.getEntries({
-            content_type: 'footer'
-        })
-
-        footerData = response.items[0].fields
-    } catch (error) {
-        console.error('Error fetching data:', error)
-        throw error
-    }
-
-    const formattedPhoneNumber = footerData.phone
+    const formattedPhoneNumber = footerData.fields.phone
         .toString()
         .replace(/(\d{3})(\d{2})(\d{3})/, '$1 $2 $3')
 
@@ -28,8 +19,8 @@ const Footer = async () => {
                     <div>
                         <p className="font-bold">Social Media</p>
                         <div className="flex flex-col">
-                            {footerData.socialMedia.map(
-                                (media: any, index: number) => (
+                            {footerData.fields.socialMedia.map(
+                                (media: SocialMedia, index: number) => (
                                     <Link
                                         key={index}
                                         href={media.fields.url}

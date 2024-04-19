@@ -1,75 +1,15 @@
 import Image from 'next/image'
 import React from 'react'
+import { MemberEntry, MembersProps } from './types'
 
-type PhotoUrl = {
-    url: string
-}
-
-type PhotoFile = {
-    file: PhotoUrl
-}
-
-type PhotoFields = {
-    fields: PhotoFile
-}
-
-type Metadata = {
-    tags: string[]
-}
-
-type MemberFields = {
-    name: string
-    role: string
-    bio: string
-    photo: PhotoFields
-    linkedIn: string
-    leaderRole: boolean
-}
-
-type MemberEntry = {
-    metadata: Metadata
-    sys: {
-        space: any
-        id: string
-        type: string
-        createdAt: string
-        updatedAt: string
-        environment: any
-        revision: number
-        contentType: any
-        locale: string
-    }
-    fields: MemberFields
-}
-
-type AllMembersEntry = {
-    metadata: Metadata
-    sys: {
-        space: any
-        id: string
-        type: string
-        createdAt: string
-        updatedAt: string
-        environment: any
-        revision: number
-        contentType: any
-        locale: string
-    }
-    fields: {
-        title: string
-        member: MemberEntry[]
-    }
-}
-
-type MembersProps = {
-    allMembers: AllMembersEntry[]
-}
 
 const Members = ({ allMembers }: MembersProps) => {
     let members: MemberEntry[] = []
     let management: MemberEntry[] = []
 
-    allMembers[0].fields.member.map((member: MemberEntry) => {
+    console.log('all members', allMembers)
+
+    allMembers.fields.member.map((member: MemberEntry) => {
         if (member.fields.leaderRole === true) {
             management.push(member)
         } else {

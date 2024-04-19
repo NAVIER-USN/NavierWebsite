@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const SponsorOrder: React.FC<SponsorProps> = ({ sponsors }) => {
+const SponsorOrder = ({ sponsors }: SponsorProps) => {
     //Styling
     const defaultStylingCard =
         'bg-foreground-light dark:bg-foreground-dark shadow-xl rounded-lg p-6'
@@ -15,6 +15,7 @@ const SponsorOrder: React.FC<SponsorProps> = ({ sponsors }) => {
     const imageContainerPositioning =
         'min-h-64 w-full flex flex-col items-center justify-center overflow-hidden'
     const textContainerPositioning = 'w-full'
+
     const sortedSponsors = [...sponsors].sort(
         (a, b) => b.fields.importance - a.fields.importance
     )
@@ -59,47 +60,6 @@ const SponsorOrder: React.FC<SponsorProps> = ({ sponsors }) => {
                         </p>
                     </div>
                 </div>
-
-                {/* Second and third sponsors */}
-                {/*
-                <div className="lg:flex lg:flex-col grid mx-auto items-center gap-10 md:gap-20 max-w-80 row-span-2">
-                    {sortedSponsors
-                        .slice(1, 3)
-                        .map((sponsor: Sponsor, index: number) => (
-                            <div
-                                key={index}
-                                className={`${defaultStylingCard}`}
-                            >
-                                <Link href={``}></Link>
-                                <Image
-                                    src={`https:${sponsor.fields.logoDarkmode.fields.file.url}`}
-                                    alt={
-                                        sponsor.fields.logoDarkmode.fields.title
-                                    }
-                                    width={1000}
-                                    height={1000}
-                                    priority={true}
-                                    className={`${imageDarkmodeStyling}`}
-                                />
-                                <Image
-                                    src={`https:${sponsor.fields.logoLightmode.fields.file.url}`}
-                                    alt={
-                                        sponsor.fields.logoLightmode.fields
-                                            .title
-                                    }
-                                    width={1000}
-                                    height={1000}
-                                    priority={true}
-                                    className={`${imageLightmodeStyling}`}
-                                />
-                                <h3 className={`${sponsorNameStyling}`}>
-                                    {sponsor.fields.sponsor}
-                                </h3>
-                                <p>{sponsor.fields.description}</p>
-                            </div>
-                        ))}
-                </div>
-            */}
             </div>
             {/* Rest of the sponsors in rows of 3 */}
             <div

@@ -205,7 +205,7 @@ const InteractiveModel = () => {
 
     return (
         <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full pb-12">
-            <div className="flex items-center md:w-full w-[80vw]  h-2/3 md:h-[70vh]">
+            <div className="flex items-center md:w-full w-[80vw] h-2/3 md:h-[70vh]">
                 <Canvas>
                     <spotLight position={[10, 15, 10]} angle={0.3} />
                     <PerspectiveCamera
@@ -219,7 +219,7 @@ const InteractiveModel = () => {
                             setScene={setScene}
                         />
 
-                        <OrbitControls enableZoom={false} enablePan={false} />
+                        <OrbitControls enablePan={false} />
                         <Environment preset="sunset" background={false} />
                     </Suspense>
                 </Canvas>

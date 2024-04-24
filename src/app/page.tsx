@@ -100,7 +100,7 @@ export default async function HomePage() {
             <h3 className="text-lg md:mt-32 py-4 text-center md:text-2xl font-semibold pt-5">
                 The Solution
             </h3>
-            <div className="h-[100vh] w-full py-6 md:py-0 bg-model-background-light dark:bg-model-background-dark">
+            <div className="h-[100vh] w-full py-6 md:py-0 bg-background-light dark:bg-background-dark">
                 <BasicModel />
             </div>
 

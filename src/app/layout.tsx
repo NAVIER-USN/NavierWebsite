@@ -20,7 +20,6 @@ export default function Layout({
 }>) {
     if (!process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM) {
         console.error('GTM ID is missing in production!')
-        // Additional alerting or logging mechanisms can be triggered here
     }
     return (
         <html lang="en" suppressHydrationWarning>

@@ -10,11 +10,7 @@ import {
     AiOutlineTwitter,
     AiOutlineInstagram
 } from 'react-icons/ai'
-
-type Logo = {
-    logoDarkmode: string
-    logoLightmode: string
-}
+import { Logo } from './types'
 
 const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -44,15 +40,12 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                     </div>
                 </div>
                 <div className="flex-col py-4 text-xl">
-                    <ul>
+                    <ul className="text-text-dark dark:text-text-light font-semibold">
                         <li
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link
-                                href="/"
-                                className="text-text-dark dark:text-text-light hover:underline "
-                            >
+                            <Link href="/" className=" hover:underline ">
                                 Home
                             </Link>
                         </li>
@@ -60,10 +53,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link
-                                href="/join"
-                                className="text-text-dark dark:text-text-light hover:underline"
-                            >
+                            <Link href="/join" className="hover:underline">
                                 Join
                             </Link>
                         </li>
@@ -71,10 +61,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link
-                                href="/team"
-                                className="text-text-dark dark:text-text-light hover:underline"
-                            >
+                            <Link href="/team" className="hover:underline">
                                 Team
                             </Link>
                         </li>
@@ -82,10 +69,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link
-                                href="/sponsors"
-                                className="text-text-dark dark:text-text-light hover:underline"
-                            >
+                            <Link href="/sponsors" className="hover:underline">
                                 Sponsors
                             </Link>
                         </li>
@@ -93,10 +77,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link
-                                href="/model"
-                                className="text-text-dark dark:text-text-light hover:underline"
-                            >
+                            <Link href="/model" className="hover:underline">
                                 Model
                             </Link>
                         </li>
@@ -106,7 +87,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                         >
                             <Link
                                 href="/get_in_touch"
-                                className="text-text-dark dark:text-text-light hover:underline"
+                                className="hover:underline"
                             >
                                 Get in Touch
                             </Link>
@@ -115,10 +96,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link
-                                href="/about"
-                                className="text-text-dark dark:text-text-light hover:underline"
-                            >
+                            <Link href="/about" className="hover:underline">
                                 About
                             </Link>
                         </li>

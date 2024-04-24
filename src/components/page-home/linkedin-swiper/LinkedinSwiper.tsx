@@ -5,18 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
+import { ImageProps, ImageSwiper } from './types'
 
-type ImageSwiper = {
-    id: string
-    caption: string
-    media_url: string
-    timestamp: string
-    media_type: string
-    permalink: string
-}
-type ImageProps = {
-    imageProps: ImageSwiper[]
-}
 
 const LinkedinSwiper = ({ imageProps }: ImageProps) => {
     return (

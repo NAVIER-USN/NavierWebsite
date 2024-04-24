@@ -1,28 +1,10 @@
 import React from 'react'
-import { client } from '../../../lib/contentful/client'
 import Image from 'next/image'
+import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
+import { AboutTypes } from './types'
 
-type AboutTypes = {
-    fields: {
-        title?: string
-        text: string
-    }
-}
-
-async function getContentfulData(contentType: string) {
-    try {
-        const res = await client.getEntries({
-            content_type: contentType
-        })
-        return res.items[0]
-    } catch (error) {
-        console.error('Error fetching logos:', error)
-        throw error
-    }
-}
 const AboutPage = async () => {
-    const aboutUs = await getContentfulData('aboutUsPage')
-    console.log(aboutUs.fields)
+    const aboutUs = await GetContentfulData('aboutUsPage')
 
     return (
         <main>

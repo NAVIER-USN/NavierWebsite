@@ -1,23 +1,13 @@
 import Link from 'next/link'
-import { client } from '../../../lib/contentful/client'
 import React from 'react'
 import { FiPhone, FiMail } from 'react-icons/fi'
+import GetContentfulData from '../getData/get-contentful-data/GetContentfulData'
+import { SocialMedia } from './types'
 
 const Footer = async () => {
-    let footerData = null
+    const footerData = await GetContentfulData('footer')
 
-    try {
-        const response = await client.getEntries({
-            content_type: 'footer'
-        })
-
-        footerData = response.items[0].fields
-    } catch (error) {
-        console.error('Error fetching data:', error)
-        throw error
-    }
-
-    const formattedPhoneNumber = footerData.phone
+    const formattedPhoneNumber = footerData.fields.phone
         .toString()
         .replace(/(\d{3})(\d{2})(\d{3})/, '$1 $2 $3')
 
@@ -28,8 +18,8 @@ const Footer = async () => {
                     <div>
                         <p className="font-bold">Social Media</p>
                         <div className="flex flex-col">
-                            {footerData.socialMedia.map(
-                                (media: any, index: number) => (
+                            {footerData.fields.socialMedia.map(
+                                (media: SocialMedia, index: number) => (
                                     <Link
                                         key={index}
                                         href={media.fields.url}
@@ -44,9 +34,10 @@ const Footer = async () => {
                     <div>
                         <p className="font-bold">Address</p>
                         <ul>
-                            <li>{footerData.address}</li>
+                            <li>{footerData.fields.address}</li>
                             <li>
-                                {footerData.postalCode} {footerData.city}
+                                {footerData.fields.postalCode}{' '}
+                                {footerData.fields.city}
                             </li>
                         </ul>
                     </div>
@@ -58,7 +49,8 @@ const Footer = async () => {
                                 +47 {formattedPhoneNumber}
                             </li>
                             <li className="flex flex-row items-center">
-                                <FiMail className="mr-2" /> {footerData.email}
+                                <FiMail className="mr-2" />{' '}
+                                {footerData.fields.email}
                             </li>
                         </ul>
                         <div className="flex justify-center space-x-4 my-2"></div>
@@ -66,8 +58,8 @@ const Footer = async () => {
                 </div>
             </div>
             <p className="text-sm mt-4 text-center">
-                © {new Date().getFullYear()} {footerData.brand}. All rights
-                reserved.
+                © {new Date().getFullYear()} {footerData.fields.brand}. All
+                rights reserved.
             </p>
         </footer>
     )

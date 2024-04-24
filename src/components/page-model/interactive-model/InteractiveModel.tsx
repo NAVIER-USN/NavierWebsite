@@ -15,20 +15,9 @@ import {
     Environment
 } from '@react-three/drei'
 import * as THREE from 'three'
+import { CustomProperty, ModelProps } from './types'
 
 useGLTF.preload('/3dmodel/model.glb')
-
-interface CustomProperty {
-    meshName: string
-    key: string
-    value: string
-    object: THREE.Object3D
-}
-
-interface ModelProps {
-    onCustomProperties: (properties: CustomProperty[]) => void
-    setScene: React.Dispatch<React.SetStateAction<THREE.Scene | null>>
-}
 
 const Model: React.FC<ModelProps> = React.memo(
     ({ onCustomProperties, setScene }) => {
@@ -131,12 +120,12 @@ const InteractiveModel = () => {
     const resetMeshColors = (
         scene: THREE.Scene,
         newColorMeshName?: string,
-        newColor: string = 'hotpink'
+        newColor: string = 'red'
     ) => {
         scene.traverse((object) => {
             if (object instanceof THREE.Mesh) {
                 object.material = new THREE.MeshStandardMaterial({
-                    color: 'white',
+                    color: 'black',
                     transparent: true,
                     opacity: 1,
                     depthWrite: true
@@ -181,7 +170,7 @@ const InteractiveModel = () => {
         } else {
             setOpenItem(identifier)
             if (scene !== null) {
-                resetMeshColors(scene, meshName, 'hotpink')
+                resetMeshColors(scene, meshName, 'red')
             }
         }
     }

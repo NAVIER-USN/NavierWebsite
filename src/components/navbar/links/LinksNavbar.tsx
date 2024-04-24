@@ -3,47 +3,26 @@ import Link from 'next/link'
 
 const Links: React.FC = () => {
     return (
-        <div className="flex space-x-4 text-lg md:text-md">
-            <Link
-                href="/"
-                className="text-text-dark dark:text-text-light hover:underline "
-            >
+        <div className="flex space-x-4 font-semibold text-lg md:text-md text-text-dark dark:text-text-light">
+            <Link href="/" className="hover:underline">
                 Home
             </Link>
-            <Link
-                href="/join"
-                className="text-text-dark dark:text-text-light hover:underline"
-            >
+            <Link href="/join" className="hover:underline">
                 Join
             </Link>
-            <Link
-                href="/team"
-                className="text-text-dark dark:text-text-light hover:underline"
-            >
+            <Link href="/team" className="hover:underline">
                 Team
             </Link>
-            <Link
-                href="/sponsors"
-                className="text-text-dark dark:text-text-light hover:underline"
-            >
+            <Link href="/sponsors" className="hover:underline">
                 Sponsors
             </Link>
-            <Link
-                href="/model"
-                className="text-text-dark dark:text-text-light hover:underline"
-            >
+            <Link href="/model" className="hover:underline">
                 Model
             </Link>
-            <Link
-                href="/get_in_touch"
-                className="text-text-dark dark:text-text-light hover:underline"
-            >
+            <Link href="/get_in_touch" className="hover:underline">
                 Get in Touch
             </Link>
-            <Link
-                href="/about"
-                className="text-text-dark dark:text-text-light hover:underline"
-            >
+            <Link href="/about" className="hover:underline">
                 About
             </Link>
         </div>

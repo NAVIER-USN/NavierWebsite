@@ -1,19 +1,11 @@
 import React from 'react'
-import { client } from '../../../lib/contentful/client'
 import Members from '@/components/page-member/member-card/Members'
+import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
 const MembersPage = async () => {
-    let members = null
-    //Fetching members
-    try {
-        const response = await client.getEntries({
-            content_type: 'membersPage'
-        })
-        members = response.items
-    } catch (error) {
-        console.error('Error fetching logos:', error)
-        throw error
-    }
+    
+    const members = await GetContentfulData('membersPage')
+
     return (
         <div className="flex justify-center items-center ">
             <div className="max-w-6xl">

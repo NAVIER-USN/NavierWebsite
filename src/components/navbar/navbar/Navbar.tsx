@@ -49,7 +49,7 @@ const Navbar = async () => {
                 </ul>
                 <ul className="hidden xl:flex font-semibold text-lg md:text-md items-center bg-background-light dark:bg-background-dark rounded-l-3xl w-full">
                     <li>
-                        <button className="px-4 py-2 ml-16 bg-background-dark dark:bg-background-light text-text-light dark:text-text-dark rounded-full">
+                        <button className="px-4 py-3 ml-16 bg-background-dark dark:bg-background-light text-text-light dark:text-text-dark rounded-full">
                             <Link href="/join" className="hover:underline">
                                 Become a member!
                             </Link>

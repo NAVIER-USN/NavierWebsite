@@ -1,9 +1,10 @@
 import { client } from '../../../../lib/contentful/client'
 
-async function GetContentfulData(contentType: string) {
+async function GetContentfulData(contentType?: string, slug?: string) {
     try {
         const res = await client.getEntries({
-            content_type: contentType
+            content_type: contentType,
+            'fields.title': slug
         })
         return res.items[0]
     } catch (error) {

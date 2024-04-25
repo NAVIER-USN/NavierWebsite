@@ -8,6 +8,7 @@ import GetContentfulData from '@/components/getData/get-contentful-data/GetConte
 
 const Navbar = async () => {
     const logos = await GetContentfulData('logo')
+    const teams = await GetContentfulData('allTeamsPage')
 
     return (
         <header>
@@ -32,7 +33,7 @@ const Navbar = async () => {
                 </Link>
                 <ul className="flex items-center gap-10">
                     <li className="hidden lg:block">
-                        <Links />
+                        <Links teams={teams.fields.teams} />
                     </li>
                     <li className="hidden lg:block">
                         <ThemeSwitch />

@@ -3,78 +3,62 @@ import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
 import Links from '../links/LinksNavbar'
 import Link from 'next/link'
 import Image from 'next/image'
-import { client } from '../../../../lib/contentful/client'
 import BurgerMenu from '../burger/BurgerMenu'
+import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
 const Navbar = async () => {
-    let logos = []
-    let logoDarkmode = ''
-    let logoLightmode = ''
-
-    //Fetching logos
-    try {
-        const response = await client.getEntries({ content_type: 'logo' })
-        logos = response.items
-    } catch (error) {
-        console.error('Error fetching logos:', error)
-        throw error
-    }
-
-    //Placing logos in variables
-    for (let i = 0; i < logos[0].fields.logos.length; i++) {
-        if (
-            logos &&
-            logos[0].fields.logos[i].fields.title.toLowerCase() === 'darkmode'
-        ) {
-            logoDarkmode = `https:${logos[0].fields.logos[i].fields.file.url}`
-        } else if (
-            logos &&
-            logos[0].fields.logos[i].fields.title.toLowerCase() === 'lightmode'
-        ) {
-            logoLightmode = `https:${logos[0].fields.logos[i].fields.file.url}`
-        } else {
-            console.error('Error handling logos')
-        }
-    }
+    const logos = await GetContentfulData('logo')
+    const teams = await GetContentfulData('allTeamsPage')
 
     return (
-        <header>
-            <nav className="w-full select-none border-solid border-b-2 border-gray-300 bg-foreground-light py-5 flex justify-between px-3 md:px-10 dark:bg-foreground-dark dark:border-0">
-                <Link href="/">
-                    <Image
-                        src={logoDarkmode}
-                        alt="Navier logo"
-                        width={1500}
-                        height={1000}
-                        priority={true}
-                        className="dark:block hidden max-w-[150px]"
-                    />
-                    <Image
-                        src={logoLightmode}
-                        alt="Navier logo"
-                        width={1500}
-                        height={1000}
-                        priority={true}
-                        className="block dark:hidden max-w-[150px]"
-                    />
-                </Link>
-                <ul className="flex items-center gap-10">
-                    <li className="hidden md:block">
-                        <Links />
+        <header className="absolute left-0 top-0 h-28 z-10 w-full xl:bg-opacity-30 xl:dark:bg-opacity-30 shadow-lg bg-background-light dark:bg-background-dark">
+            <nav className="h-full xl:mx-auto select-none flex justify-between">
+                <div className="bg-background-light dark:bg-background-dark rounded-r-3xl w-full flex xl:justify-end items-center">
+                    <Link href="/">
+                        <Image
+                            src={`https:${logos.fields.darkmode.fields.file.url}`}
+                            alt={logos.fields.darkmode.fields.title}
+                            width={1500}
+                            height={1000}
+                            priority={true}
+                            className="dark:block hidden max-w-[150px] mx-2 xl:mx-16 h-full"
+                        />
+                        <Image
+                            src={`https:${logos.fields.lightmode.fields.file.url}`}
+                            alt={logos.fields.lightmode.fields.title}
+                            width={1500}
+                            height={1000}
+                            priority={true}
+                            className="block dark:hidden max-w-[150px] mx-2 xl:mx-16 h-full"
+                        />
+                    </Link>
+                </div>
+                <ul className="flex justify-end xl:justify-center items-center mx-6 xl:mx-12 h-full 3xl:px-40 w-full text-text-dark dark:text-text-light">
+                    <li className="hidden xl:block">
+                        <Links teams={teams.fields.teams} />
                     </li>
-                    <li className="hidden md:block">
+                    <li className="hidden xl:block ml-16">
                         <ThemeSwitch />
                     </li>
-                    <li className="block md:hidden">
+                    <li className="block xl:hidden ">
                         <BurgerMenu
-                            logoLightmode={logoLightmode}
-                            logoDarkmode={logoDarkmode}
+                            logoDarkmode={`https:${logos.fields.darkmode.fields.file.url}`}
+                            logoLightmode={`https:${logos.fields.lightmode.fields.file.url}`}
+                            teams={teams.fields.teams}
                         />
+                    </li>
+                </ul>
+                <ul className="hidden xl:flex font-semibold text-lg md:text-md items-center bg-background-light dark:bg-background-dark rounded-l-3xl w-full">
+                    <li>
+                        <button className="px-4 py-3 ml-16 bg-button-light dark:bg-button-dark text-text-light dark:text-text-light rounded-full">
+                            <Link href="/join" className="hover:underline">
+                                Join us!
+                            </Link>
+                        </button>
                     </li>
                 </ul>
             </nav>
         </header>
     )
 }
-
 export default Navbar

@@ -7,17 +7,20 @@ module.exports = {
                 //Darkmode
                 'background-dark': '#222831',
                 'foreground-dark': '#31363F',
+                'model-background-dark': '#222831',
+                'input-background-dark': '#EEEEEE',
+                'button-dark': '#C58940',
                 'text-light': '#e5e7eb',
                 'text-hover-light': '#94a3b8',
-                'input-background-dark': '#EEEEEE',
-                'button-dark': '#76ABAE',
+
                 //Lightmode
-                'background-light': '#F7FBFC',
-                'foreground-light': '#D6E6F2',
+                'background-light': '#F9F7F7',
+                'foreground-light': '#DBE2EF',
+                'model-background-light': '#FAF8F1',
+                'input-background-light': '#F0F0F0',
+                'button-light': '#3F72AF',
                 'text-dark': '#2D3748',
-                'text-hover-dark': '#cbd5e1',
-                'input-background-light': '#B9D7EA',
-                'button-light': '#769FCD'
+                'text-hover-dark': '#cbd5e1'
             },
 
             gridTemplateRows: {

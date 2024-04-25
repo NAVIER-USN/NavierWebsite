@@ -1,128 +1,76 @@
-import dynamic from 'next/dynamic'
-import { client } from '../../lib/contentful/client'
 import Image from 'next/image'
 import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontPageSponsorLayout'
-import InstagramSlider from '@/components/page-home/instagram-slider/InstagramSlider'
+import BasicModel from '@/components/page-home/basic-model/BasicModel'
+import Hero from '@/components/page-home/hero/Hero'
+import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
-const EventMap = dynamic(
-    () => import('@/components/page-home/event-map/EventMap'),
-    {
-        ssr: false
-    }
-)
-
-// Instagram fetch
-async function getData(url: string) {
-    const res = await fetch(url)
-
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
-
-    return res.json()
-}
-
-/*
-
-async function getContentfulData(contentType: string) {
-	const res = await client.getEntries({
-		content_type: contentType
-	})
-	
-    if (!res.ok) {
-		throw new Error('Failed to fetch data')
-    }
-	
-    return res.json()
-}
-
-*/
-/*
-
-const home = getContentfulData('homePage')
-const sponsors = getContentfulData('sponsorsPage')
-	
-*/
+// import LinkedinSwiper from '@/components/page-home/linkedin-swiper/LinkedinSwiper'
+// import GetRegularData from '@/components/getData/get-regular-data/GetRegularData'
 
 export default async function HomePage() {
-    const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.NAVIER_INSTAGRAM_ACCESS_TOKEN}&limit=10`
-    const instagram = await getData(instagramUrl)
-    let home = null
-    let sponsors = null
-
-    try {
-        const homeRes = await client.getEntries({
-            content_type: 'homePage'
-        })
-        const sponsorRes = await client.getEntries({
-            content_type: 'sponsorsPage'
-        })
-
-        home = homeRes.items[0].fields
-        sponsors = sponsorRes.items[0].fields.sponsors
-    } catch (error) {
-        console.error('Error fetching logos:', error)
-        throw error
-    }
-    /*
-
-	<div className="w-full max-w-[100vw] mx-auto sm:max-w-5xl h-full justify-center pt-12">
-        <InstagramSlider instagramProps={instagram.data} />
-    </div>
-
-	*/
+    // const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.NAVIER_INSTAGRAM_ACCESS_TOKEN}&limit=10`
+    // const instagram = await GetRegularData(instagramUrl)
+    const home = await GetContentfulData('homePage')
+    const sponsors = await GetContentfulData('sponsorsPage')
+    const path = ''
+    ///3dmodel/model.glb
 
     return (
         <main>
-            <div className="overflow-hidden">
-                <Image
-                    src={`https:${home.firstBigImage.fields.file.url}`}
-                    alt={home.firstBigImage.fields.title}
-                    priority={true}
-                    width={2000}
-                    height={2000}
-                    className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
-                />
+            <div>
+                <Hero props={home.fields.videoHomepageHero.fields} />
             </div>
-            <h3 className="text-2xl text-center md:text-4xl pt-14 pb-4 p-0 md:p-10 font-semibold">
-                Upcoming events
-            </h3>
-            <div className="flex flex-col mx-auto justify-center pb-14">
-                <EventMap eventData={home.upcomingEvents} />
+            <div className="flex justify-center w-full">
+                {/* Centering the max-width container */}
+                <div className="max-w-5xl w-full">
+                    {/* Max-width container for the sections */}
+                    {/* Flex container for horizontal layout */}
+                    <div className="xl:flex flex-wrap justify-center items-stretch xl:flex-nowrap">
+                        {/* The Students Section */}
+                        <div className="flex-1 text-center p-4 min-w-[50%]">
+                            <h3 className="text-lg md:mt-32 py-4 md:text-2xl font-semibold">
+                                The Students
+                            </h3>
+                            <div className="overflow-hidden flex justify-center items-center w-full">
+                                <Image
+                                    src={`https:${home.fields.currentTeamGroupImage.fields.file.url}`}
+                                    alt={home.fields.firstBigImage.fields.title}
+                                    priority={true}
+                                    width={4000}
+                                    height={2000}
+                                    className="max-w-3xl w-full object-cover"
+                                />
+                            </div>
+                        </div>
+
+                        {/* The Solution Section */}
+                        <div className="flex-1 text-center p-4 min-w-[50%]">
+                            <h3 className="text-lg md:mt-32 py-4 md:text-2xl font-semibold">
+                                The Solution
+                            </h3>
+                            <div className="h-full w-full py-6 md:py-0 bg-background-light dark:bg-background-dark">
+                                <BasicModel prop={path} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="overflow-hidden">
-                <Image
-                    src={`https:${home.secondBigImage.fields.file.url}`}
-                    alt={home.firstBigImage.fields.title}
-                    priority={true}
-                    width={2000}
-                    height={2000}
-                    className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
-                />
-            </div>
+            {/*
             <h3 className="text-2xl text-center md:text-4xl font-semibold pt-5">
-                Instagram
+			Instagram
             </h3>
             <div className="w-full max-w-[100vw] flex mx-auto sm:max-w-5xl h-full justify-center">
-                <InstagramSlider instagramProps={instagram.data} />
+			<LinkedinSwiper imageProps={instagram.data} />
             </div>
-
-            <div className="overflow-hidden">
-                <Image
-                    src={`https:${home.thirdBigImage.fields.file.url}`}
-                    alt={home.thirdBigImage.fields.title}
-                    priority={true}
-                    width={2000}
-                    height={2000}
-                    className="h-[100vh] min-w-full sm:min-w-none sm:max-h-[50vh] object-cover"
-                />
-            </div>
-            <div className="flex flex-col justify-center py-32">
+		*/}
+            <div className="flex flex-col justify-center mt-32">
                 <h3 className="text-2xl text-center md:text-4xl font-semibold">
                     Sponsors
                 </h3>
-                <div className="mx-auto sm:px-7 md:px-20 p-2">
-                    <FrontpageSponsorLayout sponsors={sponsors} />
+                <div className="mx-auto sm:px-7 md:px-20 p-2 mb-12">
+                    <FrontpageSponsorLayout
+                        sponsors={sponsors.fields.sponsors}
+                    />
                 </div>
             </div>
         </main>

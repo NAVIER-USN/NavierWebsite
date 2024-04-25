@@ -5,26 +5,9 @@ import { SlArrowDown, SlArrowUp } from 'react-icons/sl'
 import 'leaflet-defaulticon-compatibility'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import 'leaflet/dist/leaflet.css'
+import { EventData, LocationCoordinates, Props } from './types'
 
-type EventData = {
-    fields: {
-        city: string
-        country: string
-        eventDate: string
-        eventDescription: string
-        eventName: string
-        location: string
-    }
-}
 
-type LocationCoordinates = {
-    latitude: number
-    longitude: number
-}
-
-type Props = {
-    eventData: EventData[]
-}
 
 const MapEffect = ({ onMapReady }: { onMapReady: (map: any) => void }) => {
     const map = useMap()
@@ -73,7 +56,7 @@ const EventMap = ({ eventData }: Props) => {
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
-            <div className="w-full max-w-[2000px] bg-foreground-light dark:bg-foreground-dark shadow-2xl rounded-lg md:rounded-r-lg">
+            <div className="w-full max-w-[2000px] bg-foreground-light dark:bg-foreground-dark shadow-lg">
                 <div className="flex flex-col lg:flex-row">
                     <div className="w-full lg:w-4/5">
                         <MapContainer
@@ -113,7 +96,7 @@ const EventMap = ({ eventData }: Props) => {
                         </MapContainer>
                     </div>
                     <div className=" w-full lg:w-1/5 pt-3 lg:pt-0">
-                        <ul className="max-h-[60vh] overflow-y-auto p-5">
+                        <ul className="max-h-[60vh] overflow-y-auto custom-scrollbar p-5">
                             {eventData.map((event, index) => (
                                 <li key={index} className="pb-2">
                                     <div
@@ -161,3 +144,19 @@ const EventMap = ({ eventData }: Props) => {
 }
 
 export default EventMap
+
+/* DYNAMIC IMPORT
+    const EventMap = dynamic(
+        () => import('@/components/page-home/event-map/EventMap'),
+        {ssr: false}
+    )
+*/
+
+/* EVENT MAP IN PARENT PAGE
+    <h3 className="text-2xl text-center md:text-4xl pt-14 pb-4 p-0 md:p-10 font-semibold">
+        Upcoming events
+    </h3>
+    <div className="flex flex-col mx-auto justify-center pb-14">
+        <EventMap eventData={home.upcomingEvents} />
+    </div>
+*/

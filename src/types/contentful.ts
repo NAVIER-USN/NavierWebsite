@@ -6,13 +6,28 @@ export interface Link {
     }
 }
 
+export type PhotoUrl = {
+    url: string
+}
+
+export type PhotoFile = {
+    title: string
+    file: PhotoUrl
+}
+
+export type PhotoFields = {
+    fields: PhotoFile
+}
+
 export interface MemberProfile {
     sys: Link
     fields: {
         name: string
         role: string
         bio: string
-        photo: Link
+        photo: PhotoFields
+        linkedIn: string
+        leaderRole: boolean
     }
 }
 
@@ -45,6 +60,39 @@ export interface Asset {
     }
 }
 
+export type Metadata = {
+    tags: string[]
+}
+
+export type MemberEntry = {
+    metadata: Metadata
+    sys: {
+        space: any
+        id: string
+        type: string
+        createdAt: string
+        updatedAt: string
+        environment: any
+        revision: number
+        contentType: any
+        locale: string
+    }
+    fields: MemberProfile['fields']
+}
+
+export type AllMembersEntry = {
+    metadata: Metadata
+    sys: MemberEntry['sys']
+    fields: {
+        title: string
+        member: MemberEntry[]
+    }
+}
+
+export type MembersProps = {
+    allMembers: AllMembersEntry
+}
+
 export interface SponsorProps {
     sponsors: Sponsor[]
 }
@@ -53,24 +101,11 @@ export interface Sponsor {
     metadata: any
     sys: any
     fields: {
-        logoDarkmode: {
-            fields: {
-                file: {
-                    url: string
-                }
-                title: string
-            }
-        }
-        logoLightmode: {
-            fields: {
-                file: {
-                    url: string
-                }
-                title: string
-            }
-        }
+        logoDarkmode: PhotoFields
+        logoLightmode: PhotoFields
         sponsor: string
         description: string
         importance: number
+        url: string
     }
 }

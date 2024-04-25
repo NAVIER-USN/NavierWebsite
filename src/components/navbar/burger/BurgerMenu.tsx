@@ -10,14 +10,20 @@ import {
     AiOutlineTwitter,
     AiOutlineInstagram
 } from 'react-icons/ai'
-import { Logo } from './types'
+import { Fields, Logo } from './types'
 
-const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
+const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const handleNav = () => {
         setIsOpen(!isOpen)
     }
+
+    const sortedTeams = teams.sort((a: Fields, b: Fields) => {
+        const yearA = parseInt(a.fields.title.split('-')[1], 10)
+        const yearB = parseInt(b.fields.title.split('-')[1], 10)
+        return yearB - yearA
+    })
 
     return (
         <div>
@@ -59,11 +65,25 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
                         </li>
                         <li
                             onClick={() => setIsOpen(false)}
-                            className="py-4 cursor-pointer"
+                            className="pt-4 cursor-pointer"
                         >
-                            <Link href="/team" className="hover:underline">
-                                Team
+                            <Link href="/teams" className=" hover:underline ">
+                                Teams
                             </Link>
+                        </li>
+                        <li
+                            onClick={() => setIsOpen(false)}
+                            className="pb-4 pt-2 cursor-pointer"
+                        >
+                            {sortedTeams.map((team: Fields, i: number) => (
+                                <Link
+                                    key={i}
+                                    href={`/team/${team.fields.title}`}
+                                    className="block w-32 px-4 py-2 text-sm hover:bg-background-light hover:dark:bg-background-dark rounded-lg text-center"
+                                >
+                                    {team.fields.title}
+                                </Link>
+                            ))}
                         </li>
                         <li
                             onClick={() => setIsOpen(false)}

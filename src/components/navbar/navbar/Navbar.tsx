@@ -44,6 +44,7 @@ const Navbar = async () => {
                         <BurgerMenu
                             logoDarkmode={`https:${logos.fields.darkmode.fields.file.url}`}
                             logoLightmode={`https:${logos.fields.lightmode.fields.file.url}`}
+                            teams={teams.fields.teams}
                         />
                     </li>
                 </ul>

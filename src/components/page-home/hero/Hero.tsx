@@ -22,11 +22,11 @@ const Hero = ({ props }: Props) => {
                         Todays students, tomorrows solutions
                     </p>
                     <p className="text-bold text-center text:lg md:text-xl text-white my-4">
-                        We are always looking for new talent to elevate Navier
+                        {`We are always looking for new talent to elevate Navier
                         to the next level!
-                        <br />
+                        ${(<br />)}
                         If you feel like taking on a challenge, don't hesitate
-                        to apply!
+                        to apply!`}
                     </p>
                     <Link
                         href="/join"

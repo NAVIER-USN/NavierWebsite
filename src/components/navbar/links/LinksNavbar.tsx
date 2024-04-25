@@ -2,29 +2,31 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { FaAngleDown } from 'react-icons/fa'
+import { Fields, Teams } from './types'
 
-const Links = ({ teams }) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const dropdownRef = useRef(null)
+const Links = ({ teams }: Teams) => {
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const dropdownRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: MouseEvent) => {
             if (
                 dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
+                !dropdownRef.current.contains(event.target as Node)
             ) {
                 setIsOpen(false)
             }
         }
+
         document.addEventListener('mousedown', handleClickOutside)
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [dropdownRef])
+    }, [])
 
-    const sortedTeams = teams.sort((a, b) => {
-        const yearA = parseInt(a.fields.title.split('-')[1])
-        const yearB = parseInt(b.fields.title.split('-')[1])
+    const sortedTeams = teams.sort((a: Fields, b: Fields) => {
+        const yearA = parseInt(a.fields.title.split('-')[1], 10)
+        const yearB = parseInt(b.fields.title.split('-')[1], 10)
         return yearB - yearA
     })
 
@@ -45,7 +47,7 @@ const Links = ({ teams }) => {
                 </button>
                 {isOpen && (
                     <div className="absolute left-0 mt-2 bg-foreground-light dark:bg-foreground-dark shadow-lg rounded-lg z-40 border-gray-500 border-[1px]">
-                        {sortedTeams.map((team, i: number) => (
+                        {sortedTeams.map((team: Fields, i: number) => (
                             <Link
                                 key={i}
                                 href={`/team/${team.fields.title}`}

@@ -31,7 +31,7 @@ const Links = ({ teams }) => {
     const closeDropdown = () => setIsOpen(false)
 
     return (
-        <div className="flex space-x-4 font-semibold text-lg md:text-md">
+        <div className="flex md:space-x-6 2xl:space-x-16 font-semibold text-lg md:text-md">
             <Link href="/" className="hover:underline">
                 Home
             </Link>
@@ -45,7 +45,7 @@ const Links = ({ teams }) => {
                 </button>
                 {isOpen && (
                     <div className="absolute left-0 mt-2 bg-foreground-light dark:bg-foreground-dark shadow-lg rounded-lg z-40 border-gray-500 border-[1px]">
-                        {sortedTeams.map((team, i) => (
+                        {sortedTeams.map((team, i: number) => (
                             <Link
                                 key={i}
                                 href={`/team/${team.fields.title}`}

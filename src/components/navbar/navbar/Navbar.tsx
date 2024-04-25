@@ -33,11 +33,11 @@ const Navbar = async () => {
                         />
                     </Link>
                 </div>
-                <ul className="flex justify-end xl:justify-center items-center gap-10 mx-6 xl:mx-12 h-full 3xl:px-40 w-full text-text-dark dark:text-text-light">
+                <ul className="flex justify-end xl:justify-center items-center mx-6 xl:mx-12 h-full 3xl:px-40 w-full text-text-dark dark:text-text-light">
                     <li className="hidden xl:block">
                         <Links teams={teams.fields.teams} />
                     </li>
-                    <li className="hidden xl:block">
+                    <li className="hidden xl:block ml-16">
                         <ThemeSwitch />
                     </li>
                     <li className="block xl:hidden ">
@@ -49,9 +49,9 @@ const Navbar = async () => {
                 </ul>
                 <ul className="hidden xl:flex font-semibold text-lg md:text-md items-center bg-background-light dark:bg-background-dark rounded-l-3xl w-full">
                     <li>
-                        <button className="px-4 py-3 ml-16 bg-background-dark dark:bg-background-light text-text-light dark:text-text-dark rounded-full">
+                        <button className="px-4 py-3 ml-16 bg-button-light dark:bg-button-dark text-text-light dark:text-text-light rounded-full">
                             <Link href="/join" className="hover:underline">
-                                Become a member!
+                                Join us!
                             </Link>
                         </button>
                     </li>

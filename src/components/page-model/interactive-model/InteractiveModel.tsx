@@ -125,7 +125,7 @@ const InteractiveModel = () => {
         scene.traverse((object) => {
             if (object instanceof THREE.Mesh) {
                 object.material = new THREE.MeshStandardMaterial({
-                    color: 'black',
+                    color: 'white',
                     transparent: true,
                     opacity: 1,
                     depthWrite: true

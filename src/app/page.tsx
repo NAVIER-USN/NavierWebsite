@@ -12,6 +12,8 @@ export default async function HomePage() {
     // const instagram = await GetRegularData(instagramUrl)
     const home = await GetContentfulData('homePage')
     const sponsors = await GetContentfulData('sponsorsPage')
+    const path = ''
+    ///3dmodel/model.glb
 
     return (
         <main>
@@ -47,7 +49,7 @@ export default async function HomePage() {
                                 The Solution
                             </h3>
                             <div className="h-full w-full py-6 md:py-0 bg-background-light dark:bg-background-dark">
-                                <BasicModel />
+                                <BasicModel prop={path} />
                             </div>
                         </div>
                     </div>

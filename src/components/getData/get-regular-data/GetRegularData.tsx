@@ -4,7 +4,7 @@ async function GetRegularData(url: string) {
 
         return res.json()
     } catch (error) {
-        console.error('Error fetching logos:', error)
+        console.error(`Error fetching ${url} :`, error)
         throw error
     }
 }

@@ -195,23 +195,29 @@ const InteractiveModel = () => {
     return (
         <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full pb-12">
             <div className="flex items-center md:w-full w-full h-[50vh] md:h-[70vh]">
-                <Canvas>
-                    <spotLight position={[10, 15, 10]} angle={0.3} />
-                    <PerspectiveCamera
-                        ref={cameraRef}
-                        makeDefault
-                        position={[40, 18, 50]}
-                    />
-                    <Suspense fallback={null}>
-                        <Model
-                            onCustomProperties={handleCustomProperties}
-                            setScene={setScene}
+                {scene ? (
+                    <Canvas>
+                        <spotLight position={[10, 15, 10]} angle={0.3} />
+                        <PerspectiveCamera
+                            ref={cameraRef}
+                            makeDefault
+                            position={[40, 18, 50]}
                         />
+                        <Suspense fallback={null}>
+                            <Model
+                                onCustomProperties={handleCustomProperties}
+                                setScene={setScene}
+                            />
 
-                        <OrbitControls enablePan={false} />
-                        <Environment preset="sunset" background={false} />
-                    </Suspense>
-                </Canvas>
+                            <OrbitControls enablePan={false} />
+                            <Environment preset="sunset" background={false} />
+                        </Suspense>
+                    </Canvas>
+                ) : (
+                    <h3 className="text-2xl font-semibold mx-auto">
+                        404 Model Not Found
+                    </h3>
+                )}
                 {scene ? (
                     <div className="absolute right-0 max-w-[300px] max-h-[300px] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
                         <h3 className="text-2xl">{selectedPropertyName}</h3>

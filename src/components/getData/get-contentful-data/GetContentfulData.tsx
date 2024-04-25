@@ -8,7 +8,7 @@ async function GetContentfulData(contentType?: string, slug?: string) {
         })
         return res.items[0]
     } catch (error) {
-        console.error('Error fetching logos:', error)
+        console.error(`Error fetching ${contentType} :`, error)
         throw error
     }
 }

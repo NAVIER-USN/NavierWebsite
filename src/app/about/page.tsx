@@ -7,9 +7,9 @@ const AboutPage = async () => {
     const aboutUs = await GetContentfulData('aboutUsPage')
 
     return (
-        <main>
-            <div className="flex flex-col justify-center items-center mx-auto">
-                <div className="max-h-80 overflow-hidden flex flex-col justify-center items-center sm:max-w-[40vw]">
+        <main className="mt-32 max-w-4xl mx-auto p-2 sm:p-4 md:p-6 lg:p-0">
+            <div>
+                <div className=" overflow-hidden flex flex-col justify-center items-center">
                     <Image
                         src={`https:${aboutUs.fields.teamGroupPhoto.fields.file.url}`}
                         alt={aboutUs.fields.teamGroupPhoto.fields.title}
@@ -19,20 +19,20 @@ const AboutPage = async () => {
                         className="w-full object-cover"
                     />
                 </div>
-                <div className="flex flex-col justify-center items-center max-w-5xl">
+                <div>
                     <div className="pt-6 md:pt-16">
                         {aboutUs.fields.aboutParagraphRef.map(
                             (purpose: AboutTypes, index: number) => (
                                 <div key={index}>
                                     <div>
                                         {purpose.fields.title && (
-                                            <h3 className="text-xl md:text-2xl pb-3 text-text-dark dark:text-text-light text-center">
+                                            <h3 className="text-xl md:text-2xl pb-6 md:pb-3 text-text-dark dark:text-text-light text-center">
                                                 {purpose.fields.title}
                                             </h3>
                                         )}
                                     </div>
                                     <div>
-                                        <p className="px-4 text-md text-text-dark dark:text-text-light">
+                                        <p className="text-md text-text-dark dark:text-text-light">
                                             {purpose.fields.text}
                                         </p>
                                     </div>
@@ -46,13 +46,13 @@ const AboutPage = async () => {
                                 <div key={index}>
                                     <div>
                                         {purpose.fields.title && (
-                                            <h3 className="text-xl md:text-2xl pb-3 text-text-dark dark:text-text-light text-center">
+                                            <h3 className="text-xl md:text-2xl pb-6 md:pb-3 text-text-dark dark:text-text-light text-center">
                                                 {purpose.fields.title}
                                             </h3>
                                         )}
                                     </div>
                                     <div>
-                                        <p className="px-4 text-md text-text-dark dark:text-text-light">
+                                        <p className="text-md text-text-dark dark:text-text-light">
                                             {purpose.fields.text}
                                         </p>
                                     </div>
@@ -72,7 +72,7 @@ const AboutPage = async () => {
                                         )}
                                     </div>
                                     <div>
-                                        <p className="px-4 text-md text-text-dark dark:text-text-light">
+                                        <p className="text-md text-text-dark dark:text-text-light">
                                             {goal.fields.text}
                                         </p>
                                     </div>

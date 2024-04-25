@@ -6,7 +6,7 @@ const SponsorsPage = async () => {
     const sponsors = await GetContentfulData('sponsorsPage')
 
     return (
-        <main className="mx-auto sm:px-7 md:px-20 px-2">
+        <main className="mx-auto sm:px-7 md:px-20 px-2 mt-32">
             <SponsorOrder sponsors={sponsors.fields.sponsors} />
         </main>
     )

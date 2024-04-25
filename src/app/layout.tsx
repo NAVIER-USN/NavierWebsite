@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../styles/globals.css'
 import Providers from '@/components/navbar/theme-switch/providers/Providers'
-import Navbar from '@/components/navbar/navbar/Navbar'
 import Footer from '@/components/footer/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
+import Navbar from '@/components/navbar/navbar/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
     useGLTF,
     OrbitControls,

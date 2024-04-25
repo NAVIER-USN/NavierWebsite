@@ -6,7 +6,7 @@ const ContactUsPage = async () => {
     const contact = await GetContentfulData('contactInfoPage')
 
     return (
-        <div>
+        <main className="mt-32">
             <div className="max-w-6xl md:flex justify-center mx-auto p-3 md:p-10">
                 <div className="lg:flex flex-row justify-center gap-10">
                     <div className="py-10 md:py-0">
@@ -22,7 +22,7 @@ const ContactUsPage = async () => {
                 </div>
             </div>
             <div>{/* Card Component*/}</div>
-        </div>
+        </main>
     )
 }
 

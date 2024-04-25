@@ -31,14 +31,10 @@ const Links = ({ teams }) => {
     const closeDropdown = () => setIsOpen(false)
 
     return (
-        <div className="flex space-x-4 font-semibold text-lg md:text-md text-text-dark dark:text-text-light">
+        <div className="flex space-x-4 font-semibold text-lg md:text-md">
             <Link href="/" className="hover:underline">
                 Home
             </Link>
-            <Link href="/join" className="hover:underline">
-                Join
-            </Link>
-
             <div className="relative" ref={dropdownRef}>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
@@ -70,7 +66,7 @@ const Links = ({ teams }) => {
                 Model
             </Link>
             <Link href="/get_in_touch" className="hover:underline">
-                Get in Touch
+                Contact
             </Link>
             <Link href="/about" className="hover:underline">
                 About

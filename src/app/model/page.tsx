@@ -2,7 +2,11 @@ import InteractiveModel from '@/components/page-model/interactive-model/Interact
 import React from 'react'
 
 const ModelPage = () => {
-    return <InteractiveModel />
+    return (
+        <main className="mt-32">
+            <InteractiveModel />
+        </main>
+    )
 }
 
 export default ModelPage

@@ -8,18 +8,18 @@ const Team = async ({ params }: { params: { teamId: string } }) => {
 
     if (!team) {
         return (
-            <div className="flex flex-col items-center text-3xl">
+            <div className="flex flex-col items-center text-3xl mt-32">
                 <p>Team not found</p>
             </div>
         )
     }
 
     return (
-        <div className="flex justify-center items-center ">
+        <main className="flex justify-center items-center mt-32">
             <div className="max-w-6xl">
                 <Members allMembers={team} />
             </div>
-        </div>
+        </main>
     )
 }
 

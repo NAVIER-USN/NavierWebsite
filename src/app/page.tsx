@@ -3,6 +3,7 @@ import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontP
 import BasicModel from '@/components/page-home/basic-model/BasicModel'
 import Hero from '@/components/page-home/hero/Hero'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
+import HomeNavbar from '@/components/navbar/navbar/Navbar'
 // import LinkedinSwiper from '@/components/page-home/linkedin-swiper/LinkedinSwiper'
 // import GetRegularData from '@/components/getData/get-regular-data/GetRegularData'
 
@@ -33,20 +34,19 @@ export default async function HomePage() {
             <h3 className="text-lg md:mt-32 py-4 text-center md:text-2xl font-semibold pt-5">
                 The Solution
             </h3>
-            <div className="h-[100vh] w-full py-6 md:py-0 bg-background-light dark:bg-background-dark">
-                <BasicModel />
-            </div>
 
             {/*
             <h3 className="text-2xl text-center md:text-4xl font-semibold pt-5">
-                Instagram
+			Instagram
             </h3>
             <div className="w-full max-w-[100vw] flex mx-auto sm:max-w-5xl h-full justify-center">
-                <LinkedinSwiper imageProps={instagram.data} />
+			<LinkedinSwiper imageProps={instagram.data} />
             </div>
-            */}
-
-            <div className="flex flex-col justify-center py-32">
+		*/}
+            <div className="h-[80vh] w-full py-6 md:py-0 bg-background-light dark:bg-background-dark">
+                <BasicModel />
+            </div>
+            <div className="flex flex-col justify-center">
                 <h3 className="text-2xl text-center md:text-4xl font-semibold">
                     Sponsors
                 </h3>

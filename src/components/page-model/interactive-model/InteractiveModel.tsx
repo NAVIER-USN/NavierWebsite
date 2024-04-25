@@ -194,7 +194,7 @@ const InteractiveModel = () => {
 
     return (
         <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full pb-12">
-            <div className="flex items-center md:w-full w-[80vw] h-2/3 md:h-[70vh]">
+            <div className="flex items-center md:w-full w-full h-[50vh] md:h-[70vh]">
                 <Canvas>
                     <spotLight position={[10, 15, 10]} angle={0.3} />
                     <PerspectiveCamera
@@ -212,10 +212,14 @@ const InteractiveModel = () => {
                         <Environment preset="sunset" background={false} />
                     </Suspense>
                 </Canvas>
-                <div className="hidden px-4 mr-8 py-3 md:block w-[40%] h-[40%] overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
-                    <h3 className="text-2xl">{selectedPropertyName}</h3>
-                    <p className="pt-2">{selectedPropertyValue}</p>
-                </div>
+                {scene ? (
+                    <div className="absolute right-0 max-w-[300px] max-h-[300px] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
+                        <h3 className="text-2xl">{selectedPropertyName}</h3>
+                        <p className="pt-2">{selectedPropertyValue}</p>
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
             <div
                 ref={containerRef}

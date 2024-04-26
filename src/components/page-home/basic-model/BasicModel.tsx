@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import {
     useGLTF,
     OrbitControls,
@@ -44,7 +44,7 @@ const BasicModel = ({ prop }: Prop) => {
                     </Canvas>
                 ) : (
                     <h3 className="text-2xl font-semibold mx-auto">
-                        404 Model Not Found
+                        Model Not Found
                     </h3>
                 )}
             </div>

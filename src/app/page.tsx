@@ -3,6 +3,8 @@ import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontP
 import BasicModel from '@/components/page-home/basic-model/BasicModel'
 import Hero from '@/components/page-home/hero/Hero'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
+import { existsSync } from 'fs'
+import { join } from 'path'
 
 // import LinkedinSwiper from '@/components/page-home/linkedin-swiper/LinkedinSwiper'
 // import GetRegularData from '@/components/getData/get-regular-data/GetRegularData'
@@ -12,8 +14,13 @@ export default async function HomePage() {
     // const instagram = await GetRegularData(instagramUrl)
     const home = await GetContentfulData('homePage')
     const sponsors = await GetContentfulData('sponsorsPage')
-    const path = ''
-    ///3dmodel/model.glb
+    //Check if there is a 3d model
+    const filePath = existsSync(
+        join(process.cwd(), 'public', '3dmodel', 'model.glb')
+    )
+        ? '3dmodel/model.glb'
+        : ''
+    const path = filePath
 
     return (
         <main>
@@ -22,7 +29,7 @@ export default async function HomePage() {
             </div>
             <div className="flex justify-center w-full">
                 {/* Centering the max-width container */}
-                <div className="max-w-5xl w-full">
+                <div className=" w-full">
                     {/* Max-width container for the sections */}
                     {/* Flex container for horizontal layout */}
                     <div className="xl:flex flex-wrap justify-center items-stretch xl:flex-nowrap">

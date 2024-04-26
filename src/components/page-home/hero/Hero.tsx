@@ -4,7 +4,7 @@ import { Props } from './types'
 
 const Hero = ({ props }: Props) => {
     return (
-        <div className="relative min-w-full h-[85vh] md:h-[80vh] max-h-[80vh] lg:max-h-none overflow-hidden">
+        <div className="relative min-w-full h-[85vh] md:h-[100vh] max-h-[80vh] lg:max-h-none overflow-hidden">
             {props.file.url && (
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
@@ -17,14 +17,15 @@ const Hero = ({ props }: Props) => {
             )}
 
             <div className="absolute inset-0">
-                <div className="bg-black bg-opacity-30 w-full h-full flex justify-end flex-col">
+                <div className="dark:bg-background-dark dark:bg-opacity-70 w-full h-full flex justify-end flex-col">
                     <p className="text-bold text-center text:2xl md:text-4xl text-white">
                         Todays students, tomorrows solutions
                     </p>
                     <p className="text-bold text-center text:lg md:text-xl text-white my-4">
                         {`We are always looking for new talent to elevate Navier
-                        to the next level!
-                        ${(<br />)}
+                        to the next level!`}
+                        <br />
+                        {`
                         If you feel like taking on a challenge, don't hesitate
                         to apply!`}
                     </p>

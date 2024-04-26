@@ -8,4 +8,8 @@ export interface CustomProperty {
 export interface ModelProps {
     onCustomProperties: (properties: CustomProperty[]) => void
     setScene: React.Dispatch<React.SetStateAction<THREE.Scene | null>>
+    path: string
+}
+export interface InteractiveModelInterface {
+    path: string
 }

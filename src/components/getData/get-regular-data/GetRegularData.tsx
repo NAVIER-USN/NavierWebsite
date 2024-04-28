@@ -1,14 +1,6 @@
 async function GetRegularData(url: string) {
     try {
         const response = await fetch(url)
-        if (!response.ok) {
-            return {
-                redirect: {
-                    destination: '/',
-                    permanent: false
-                }
-            }
-        }
 
         const data = await response.json()
 

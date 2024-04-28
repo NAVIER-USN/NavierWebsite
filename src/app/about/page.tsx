@@ -11,8 +11,8 @@ const AboutPage = async () => {
             <div>
                 <div className=" overflow-hidden flex flex-col justify-center items-center">
                     <Image
-                        src={`https:${aboutUs.fields.teamGroupPhoto.fields.file.url}`}
-                        alt={aboutUs.fields.teamGroupPhoto.fields.title}
+                        src={`https:${aboutUs.teamGroupPhoto.fields.file.url}`}
+                        alt={aboutUs.teamGroupPhoto.fields.title}
                         priority={true}
                         width={4000}
                         height={2000}
@@ -21,7 +21,7 @@ const AboutPage = async () => {
                 </div>
                 <div>
                     <div className="pt-6 md:pt-16">
-                        {aboutUs.fields.aboutParagraphRef.map(
+                        {aboutUs.aboutParagraphRef.map(
                             (purpose: AboutTypes, index: number) => (
                                 <div key={index}>
                                     <div>
@@ -41,7 +41,7 @@ const AboutPage = async () => {
                         )}
                     </div>
                     <div className="pt-6 md:pt-16">
-                        {aboutUs.fields.purposes.map(
+                        {aboutUs.purposes.map(
                             (purpose: AboutTypes, index: number) => (
                                 <div key={index}>
                                     <div>
@@ -61,7 +61,7 @@ const AboutPage = async () => {
                         )}
                     </div>
                     <div className="py-6 md:py-16">
-                        {aboutUs.fields.goals.map(
+                        {aboutUs.goals.map(
                             (goal: AboutTypes, index: number) => (
                                 <div key={index}>
                                     <div>

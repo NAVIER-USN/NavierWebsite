@@ -6,9 +6,22 @@ async function GetContentfulData(contentType?: string, slug?: string) {
             content_type: contentType,
             'fields.title': slug
         })
-        return res.items[0]
+        if (!res.items?.length) {
+            return {
+                redirect: {
+                    destination: `/`,
+                    permanent: false
+                }
+            }
+        }
+
+        const data = res.items[0].fields
+        return {
+            ...data,
+            revalidate: 60
+        }
     } catch (error) {
-        console.error(`Error fetching ${contentType} :`, error)
+        console.error(`Error fetching ${contentType}:`, error)
         throw error
     }
 }

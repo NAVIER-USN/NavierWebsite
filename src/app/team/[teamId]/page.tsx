@@ -4,9 +4,8 @@ import React from 'react'
 
 const Team = async ({ params }: { params: { teamId: string } }) => {
     const team = await GetContentfulData('membersPage', params.teamId)
-    console.log('teams', team.fields)
 
-    if (!team) {
+    if (!team.title) {
         return (
             <div className="flex flex-col items-center text-3xl mt-32">
                 <p>Team not found</p>

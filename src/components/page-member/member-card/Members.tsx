@@ -6,7 +6,7 @@ const Members = ({ allMembers }: MembersProps) => {
     let members: MemberEntry[] = []
     let management: MemberEntry[] = []
 
-    allMembers.fields.member.map((member: MemberEntry) => {
+    allMembers.member.map((member: MemberEntry) => {
         if (member.fields.leaderRole === true) {
             management.push(member)
         } else {

@@ -25,7 +25,7 @@ export default async function HomePage() {
     return (
         <main>
             <div>
-                <Hero props={home.fields.videoHomepageHero.fields} />
+                <Hero props={home.videoHomepageHero.fields} />
             </div>
             <div className="flex justify-center w-full">
                 {/* Centering the max-width container */}
@@ -40,8 +40,8 @@ export default async function HomePage() {
                             </h3>
                             <div className="overflow-hidden flex justify-center items-center w-full">
                                 <Image
-                                    src={`https:${home.fields.currentTeamGroupImage.fields.file.url}`}
-                                    alt={home.fields.firstBigImage.fields.title}
+                                    src={`https:${home.currentTeamGroupImage.fields.file.url}`}
+                                    alt={home.firstBigImage.fields.title}
                                     priority={true}
                                     width={4000}
                                     height={2000}
@@ -75,9 +75,7 @@ export default async function HomePage() {
                     Sponsors
                 </h3>
                 <div className="mx-auto sm:px-7 md:px-20 p-2 mb-12">
-                    <FrontpageSponsorLayout
-                        sponsors={sponsors.fields.sponsors}
-                    />
+                    <FrontpageSponsorLayout sponsors={sponsors.sponsors} />
                 </div>
             </div>
         </main>

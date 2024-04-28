@@ -1,8 +1,4 @@
 export interface Footer {
-    fields: Fields
-}
-
-export interface Fields {
     brand: string
     phone: number
     email: string

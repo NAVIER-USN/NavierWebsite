@@ -13,25 +13,18 @@ const JoinPage = async () => {
                         <h3 className="text-xl md:text-2xl pb-2">
                             Joining Navier?
                         </h3>
-                        <p>
-                            {
-                                join.fields.information.content[0].content[0]
-                                    .value
-                            }
-                        </p>
+                        <p>{join.information.content[0].content[0].value}</p>
                     </div>
                     <div className="pb-10 md:pb-0">
                         <h3 className="text-xl md:text-2xl pb-2">
                             Who can join?
                         </h3>
-                        <p>
-                            {join.fields.howToApply.content[0].content[0].value}
-                        </p>
+                        <p>{join.howToApply.content[0].content[0].value}</p>
                     </div>
                 </div>
             </div>
             <div>
-                <AdvertisementCard advertisements={join.fields.advertisement} />
+                <AdvertisementCard advertisements={join.advertisement} />
             </div>
         </main>
     )

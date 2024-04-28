@@ -52,10 +52,9 @@ export interface AllMembersEntry {
         contentType: any
         locale: string
     }
-    fields: {
-        title: string
-        member: MemberEntry[]
-    }
+
+    title: string
+    member: MemberEntry[]
 }
 
 export interface MembersProps {

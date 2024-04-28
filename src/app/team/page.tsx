@@ -7,7 +7,7 @@ import { Teams } from './types'
 const TeamsPage = async () => {
     const teams = await GetContentfulData('allTeamsPage')
 
-    const sortedTeams = teams.fields.teams.sort((a: Teams, b: Teams) => {
+    const sortedTeams = teams.teams.sort((a: Teams, b: Teams) => {
         const yearA = parseInt(a.fields.title.split('-')[1], 10)
         const yearB = parseInt(b.fields.title.split('-')[1], 10)
         return yearB - yearA

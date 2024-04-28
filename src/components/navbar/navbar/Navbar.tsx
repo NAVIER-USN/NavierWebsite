@@ -16,16 +16,16 @@ const Navbar = async () => {
                 <div className="bg-background-light dark:bg-background-dark rounded-r-3xl w-full flex xl:justify-end items-center">
                     <Link href="/">
                         <Image
-                            src={`https:${logos.fields.darkmode.fields.file.url}`}
-                            alt={logos.fields.darkmode.fields.title}
+                            src={`https:${logos.darkmode.fields.file.url}`}
+                            alt={logos.darkmode.fields.title}
                             width={1500}
                             height={1000}
                             priority={true}
                             className="dark:block hidden max-w-[150px] mx-2 xl:mx-16 h-full"
                         />
                         <Image
-                            src={`https:${logos.fields.lightmode.fields.file.url}`}
-                            alt={logos.fields.lightmode.fields.title}
+                            src={`https:${logos.lightmode.fields.file.url}`}
+                            alt={logos.lightmode.fields.title}
                             width={1500}
                             height={1000}
                             priority={true}
@@ -35,16 +35,16 @@ const Navbar = async () => {
                 </div>
                 <ul className="flex justify-end xl:justify-center items-center mx-6 xl:mx-12 h-full 3xl:px-40 w-full text-text-dark dark:text-text-light">
                     <li className="hidden xl:block">
-                        <Links teams={teams.fields.teams} />
+                        <Links teams={teams.teams} />
                     </li>
                     <li className="hidden xl:block ml-16">
                         <ThemeSwitch />
                     </li>
                     <li className="block xl:hidden ">
                         <BurgerMenu
-                            logoDarkmode={`https:${logos.fields.darkmode.fields.file.url}`}
-                            logoLightmode={`https:${logos.fields.lightmode.fields.file.url}`}
-                            teams={teams.fields.teams}
+                            logoDarkmode={`https:${logos.darkmode.fields.file.url}`}
+                            logoLightmode={`https:${logos.lightmode.fields.file.url}`}
+                            teams={teams.teams}
                         />
                     </li>
                 </ul>

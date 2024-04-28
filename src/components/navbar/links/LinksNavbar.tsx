@@ -51,7 +51,7 @@ const Links = ({ teams }: Teams) => {
                             <Link
                                 key={i}
                                 href={`/team/${team.fields.title}`}
-                                className="block w-32 px-4 py-2 text-sm hover:bg-background-light hover:dark:bg-background-dark rounded-lg text-center"
+                                className="block w-32 px-4 py-2 text-sm bg-background-light dark:bg-background-dark hover:bg-foreground-light hover:dark:bg-foreground-dark rounded-lg text-center"
                                 onClick={closeDropdown}
                             >
                                 {team.fields.title}

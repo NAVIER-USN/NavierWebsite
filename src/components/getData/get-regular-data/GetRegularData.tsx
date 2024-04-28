@@ -1,10 +1,23 @@
 async function GetRegularData(url: string) {
     try {
-        const res = await fetch(url)
+        const response = await fetch(url)
+        if (!response.ok) {
+            return {
+                redirect: {
+                    destination: '/',
+                    permanent: false
+                }
+            }
+        }
 
-        return res.json()
+        const data = await response.json()
+
+        return {
+            data,
+            revalidate: 60
+        }
     } catch (error) {
-        console.error(`Error fetching ${url} :`, error)
+        console.error(`Error fetching ${url}:`, error)
         throw error
     }
 }

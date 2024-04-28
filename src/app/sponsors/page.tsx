@@ -7,7 +7,7 @@ const SponsorsPage = async () => {
 
     return (
         <main className="mx-auto sm:px-7 md:px-20 px-2 mt-32">
-            <SponsorOrder sponsors={sponsors.fields.sponsors} />
+            <SponsorOrder sponsors={sponsors.sponsors} />
         </main>
     )
 }

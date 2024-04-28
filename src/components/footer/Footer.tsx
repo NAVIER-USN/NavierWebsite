@@ -7,7 +7,7 @@ import { SocialMedia } from './types'
 const Footer = async () => {
     const footerData = await GetContentfulData('footer')
 
-    const formattedPhoneNumber = footerData.fields.phone
+    const formattedPhoneNumber = footerData.phone
         .toString()
         .replace(/(\d{3})(\d{2})(\d{3})/, '$1 $2 $3')
 
@@ -18,7 +18,8 @@ const Footer = async () => {
                     <div>
                         <p className="font-bold">Social Media</p>
                         <div className="flex flex-col">
-                            {footerData.fields.socialMedia.map(
+                            {' '}
+                            {footerData.socialMedia.map(
                                 (media: SocialMedia, index: number) => (
                                     <Link
                                         key={index}
@@ -34,10 +35,9 @@ const Footer = async () => {
                     <div>
                         <p className="font-bold">Address</p>
                         <ul>
-                            <li>{footerData.fields.address}</li>
+                            <li>{footerData.address}</li>
                             <li>
-                                {footerData.fields.postalCode}{' '}
-                                {footerData.fields.city}
+                                {footerData.postalCode} {footerData.city}
                             </li>
                         </ul>
                     </div>
@@ -49,8 +49,7 @@ const Footer = async () => {
                                 +47 {formattedPhoneNumber}
                             </li>
                             <li className="flex flex-row items-center">
-                                <FiMail className="mr-2" />{' '}
-                                {footerData.fields.email}
+                                <FiMail className="mr-2" /> {footerData.email}
                             </li>
                         </ul>
                         <div className="flex justify-center space-x-4 my-2"></div>
@@ -58,8 +57,8 @@ const Footer = async () => {
                 </div>
             </div>
             <p className="text-sm mt-4 text-center">
-                © {new Date().getFullYear()} {footerData.fields.brand}. All
-                rights reserved.
+                © {new Date().getFullYear()} {footerData.brand}. All rights
+                reserved.
             </p>
         </footer>
     )

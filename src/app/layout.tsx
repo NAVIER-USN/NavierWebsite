@@ -27,9 +27,7 @@ export default function Layout({
                 className={`${inter.className} grid grid-rows-layout min-h-screen`}
             >
                 {process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM && (
-                    <GoogleTagManager
-                        gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM}
-                    />
+                    <GoogleTagManager gtmId="GTM-K2T9SX86" />
                 )}
                 <Providers>
                     <Navbar />

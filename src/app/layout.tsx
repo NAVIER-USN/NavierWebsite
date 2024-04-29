@@ -28,7 +28,11 @@ export default function Layout({
                     <main className="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light">
                         {children}
                     </main>
-                    <GoogleTagManager gtmId="GTM-PBB7S8L7" />
+                    {process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM && (
+                        <GoogleTagManager
+                            gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM}
+                        />
+                    )}
                     <Footer />
                 </Providers>
             </body>

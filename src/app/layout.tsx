@@ -28,7 +28,7 @@ export default function Layout({
                     <main className="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light">
                         {children}
                     </main>
-                    <GoogleTagManager gtmId="GTM-K2T9SX86" />
+                    <GoogleTagManager gtmId="GTM-PBB7S8L7" />
                     <Footer />
                 </Providers>
             </body>

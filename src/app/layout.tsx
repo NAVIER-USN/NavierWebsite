@@ -9,7 +9,7 @@ import Navbar from '@/components/navbar/navbar/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Navier',
+    title: 'NavierUSN',
     description: 'Welcome'
 }
 
@@ -18,22 +18,17 @@ export default function Layout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    if (!process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM) {
-        console.error('GTM ID is missing in production!')
-    }
     return (
         <html lang="en" suppressHydrationWarning>
             <body
                 className={`${inter.className} grid grid-rows-layout min-h-screen`}
             >
-                {process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM && (
-                    <GoogleTagManager gtmId="GTM-K2T9SX86" />
-                )}
                 <Providers>
                     <Navbar />
                     <main className="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light">
                         {children}
                     </main>
+                    <GoogleTagManager gtmId="GTM-K2T9SX86" />
                     <Footer />
                 </Providers>
             </body>

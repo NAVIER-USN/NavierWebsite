@@ -64,8 +64,8 @@ const Links = ({ teams }: Teams) => {
             <Link href="/sponsors" className="hover:underline">
                 Sponsors
             </Link>
-            <Link href="/model" className="hover:underline">
-                Model
+            <Link href="/technical" className="hover:underline">
+                Technical
             </Link>
             <Link href="/get_in_touch" className="hover:underline">
                 Contact

@@ -97,8 +97,8 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-4 cursor-pointer"
                         >
-                            <Link href="/model" className="hover:underline">
-                                Model
+                            <Link href="/technical" className="hover:underline">
+                                Technical
                             </Link>
                         </li>
                         <li

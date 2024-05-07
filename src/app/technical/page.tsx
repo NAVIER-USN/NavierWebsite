@@ -13,7 +13,7 @@ const ModelPage = async () => {
     const path = filePath
 
     return (
-        <main className="mt-32">
+        <main className="mt-32 px-3 max-w-full">
             <InteractiveModel path={path} />
         </main>
     )

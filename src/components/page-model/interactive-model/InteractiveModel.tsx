@@ -51,6 +51,7 @@ const Model: React.FC<ModelProps> = React.memo(
                 }
             })
             onCustomProperties(properties)
+            console.log(properties)
         }, [scene, onCustomProperties, setScene])
 
         return <primitive object={scene} />

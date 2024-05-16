@@ -1,16 +1,25 @@
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 import Members from '@/components/page-member/member-card/Members'
 import React from 'react'
+import { Metadata } from 'next'
+
+type Props = {
+    params: {
+        teamId: string
+    }
+}
+
+export const generateMetadata = ({ params }: Props): Metadata => {
+    return {
+        title: `Navier team ${params.teamId}`
+    }
+}
 
 const Team = async ({ params }: { params: { teamId: string } }) => {
     const team = await GetContentfulData('membersPage', params.teamId)
 
-    if (!team.title) {
-        return (
-            <div className="flex flex-col items-center text-3xl mt-32">
-                <p>Team not found</p>
-            </div>
-        )
+    if (!team) {
+        throw new Error('Team not found.')
     }
 
     return (

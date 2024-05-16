@@ -3,8 +3,18 @@ import Image from 'next/image'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 import { AboutTypes } from './types'
 
+export const generateMetadata = () => {
+    return {
+        title: `About`
+    }
+}
+
 const AboutPage = async () => {
     const aboutUs = await GetContentfulData('aboutUsPage')
+
+    if (!aboutUs) {
+        throw new Error('Error loading aboutpage data.')
+    }
 
     return (
         <main className="mt-32 max-w-4xl mx-auto p-2 sm:p-4 md:p-6 lg:p-0">

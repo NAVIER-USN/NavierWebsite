@@ -2,8 +2,18 @@ import React from 'react'
 import EmailForm from '@/components/page-contact/email-form/EmailForm'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
+export const generateMetadata = () => {
+    return {
+        title: `Get in touch`
+    }
+}
+
 const ContactUsPage = async () => {
     const contact = await GetContentfulData('contactInfoPage')
+
+    if (!contact) {
+        throw new Error('Error loading contactpage data.')
+    }
 
     return (
         <main className="mt-32">

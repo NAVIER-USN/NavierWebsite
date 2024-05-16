@@ -10,8 +10,15 @@ const Navbar = async () => {
     const logos = await GetContentfulData('logo')
     const teams = await GetContentfulData('allTeamsPage')
 
+    if (!logos) {
+        throw new Error('Error loading navbar logo data.')
+    }
+    if (!teams) {
+        throw new Error('Error loading navbar team data.')
+    }
+
     return (
-        <header className="absolute left-0 top-0 h-28 z-10 w-full xl:bg-opacity-30 xl:dark:bg-opacity-30 shadow-lg bg-background-light dark:bg-background-dark">
+        <header className="absolute w-full left-0 top-0 h-28 z-10 xl:bg-opacity-30 xl:dark:bg-opacity-30 shadow-lg bg-background-light dark:bg-background-dark">
             <nav className="h-full xl:mx-auto select-none flex justify-between">
                 <div className="bg-background-light dark:bg-background-dark rounded-r-3xl w-full flex xl:justify-end items-center">
                     <Link href="/">

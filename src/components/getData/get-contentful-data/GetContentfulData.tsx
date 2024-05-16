@@ -6,14 +6,16 @@ async function GetContentfulData(contentType?: string, slug?: string) {
             content_type: contentType,
             'fields.title': slug
         })
-
-        const data = res.items[0].fields
-        return {
-            ...data
+        if (res.items[0]) {
+            const data = res.items[0].fields
+            return {
+                ...data
+            }
         }
     } catch (error) {
         console.error(`Error fetching ${contentType}:`, error)
-        throw error
+
+        throw new Error('ERROR FETCHING')
     }
 }
 

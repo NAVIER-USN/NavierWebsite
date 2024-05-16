@@ -4,8 +4,18 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Teams } from './types'
 
+export const generateMetadata = () => {
+    return {
+        title: `Teams`
+    }
+}
+
 const TeamsPage = async () => {
     const teams = await GetContentfulData('allTeamsPage')
+
+    if (!teams) {
+        throw new Error('Error loading team data.')
+    }
 
     const sortedTeams = teams.teams.sort((a: Teams, b: Teams) => {
         const yearA = parseInt(a.fields.title.split('-')[1], 10)

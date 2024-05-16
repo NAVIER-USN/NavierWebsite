@@ -7,7 +7,7 @@ const Hero = ({ props }: Props) => {
         <div className="relative min-w-full h-[85vh] md:h-[100vh] max-h-[80vh] lg:max-h-none overflow-hidden">
             {props.file.url && (
                 <video
-                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    className="absolute top-0 left-0 w-full h-full object-cover select-none"
                     loop
                     autoPlay
                     muted
@@ -35,7 +35,7 @@ const Hero = ({ props }: Props) => {
                     >
                         <button
                             aria-label="Join us"
-                            className="mb-20 rounded-full mt-4 px-10 py-2 text-3xl bg-button-light dark:bg-button-dark transition duration-200 text-white hover:underline shadow-lg"
+                            className="select-none mb-20 rounded-full mt-4 px-10 py-2 text-3xl bg-button-light dark:bg-button-dark transition duration-200 text-white hover:underline shadow-lg"
                         >
                             APPLY
                         </button>

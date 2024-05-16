@@ -2,8 +2,18 @@ import React from 'react'
 import AdvertisementCard from '@/components/page-join/advertisementCard/AdvertisementCard'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
+export const generateMetadata = () => {
+    return {
+        title: `Join`
+    }
+}
+
 const JoinPage = async () => {
     const join = await GetContentfulData('joinUsPage')
+
+    if (!join) {
+        throw new Error('Error loading joinpage data.')
+    }
 
     return (
         <main className="mt-32">

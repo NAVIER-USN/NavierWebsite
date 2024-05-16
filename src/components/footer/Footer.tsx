@@ -7,6 +7,10 @@ import { SocialMedia } from './types'
 const Footer = async () => {
     const footerData = await GetContentfulData('footer')
 
+    if (!footerData) {
+        throw new Error('Error loading footer data.')
+    }
+
     const formattedPhoneNumber = footerData.phone
         .toString()
         .replace(/(\d{3})(\d{2})(\d{3})/, '$1 $2 $3')
@@ -17,7 +21,7 @@ const Footer = async () => {
                 <div className="flex flex-col text-center md:text-left md:flex-row gap-6 md:gap-16">
                     <div>
                         <p className="font-bold">Social Media</p>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col select-none">
                             {' '}
                             {footerData.socialMedia.map(
                                 (media: SocialMedia, index: number) => (

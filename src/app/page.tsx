@@ -64,7 +64,7 @@ export default async function HomePage() {
             </div>
             {/*
             <h3 className="text-2xl text-center md:text-4xl font-semibold pt-5">
-			Instagram
+			LinkedIn
             </h3>
             <div className="w-full max-w-[100vw] flex mx-auto sm:max-w-5xl h-full justify-center">
 			<LinkedinSwiper imageProps={instagram.data} />

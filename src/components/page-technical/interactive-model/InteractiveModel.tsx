@@ -214,7 +214,7 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
                     </h3>
                 )}
                 {path ? (
-                    <div className="absolute right-0 max-w-[300px] max-h-[55%] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg select-none">
+                    <div className="absolute right-0 max-w-[300px] max-h-[55%] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg select-none rounded-md">
                         <h3 className="text-2xl">{selectedPropertyName}</h3>
                         <p className="pt-2">{selectedPropertyValue}</p>
                     </div>

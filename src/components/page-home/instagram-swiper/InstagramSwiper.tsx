@@ -138,7 +138,8 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                     )}
                 </Swiper>
                 {/* Open in Instagram Link */}
-                {filteredImageProps.length > 0 && (
+
+                {filteredImageProps.length ? (
                     <div className="mb-3">
                         <Link
                             href={
@@ -153,6 +154,8 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                             </p>
                         </Link>
                     </div>
+                ) : (
+                    <h3>Error Loading Image Data</h3>
                 )}
             </div>
         </section>

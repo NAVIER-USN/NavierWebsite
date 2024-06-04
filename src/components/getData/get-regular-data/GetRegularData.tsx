@@ -1,16 +1,39 @@
 async function GetRegularData(url: string) {
     try {
-        const response = await fetch(url)
+        const res = await fetch(url, {
+            next: { revalidate: 60 }
+        })
 
-        const data = await response.json()
-
-        return {
-            data,
-            revalidate: 60
+        if (!res.ok) {
+            console.error(`HTTP error! status: ${res.status}`)
+            return {
+                status: res.status,
+                error: `HTTP error! status: ${res.status}`
+            }
         }
-    } catch (error) {
-        console.error(`Error fetching ${url}:`, error)
-        throw error
+
+        const data = await res.json()
+
+        if (data && data.data) {
+            return {
+                status: res.status,
+                data: data.data
+            }
+        } else {
+            console.error('Data is empty or invalid')
+            return { status: res.status, error: 'Data is empty or invalid' }
+        }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error(`Error fetching ${url}:`, error)
+            return {
+                status: 500,
+                error: `Error fetching ${url}: ${error.message}`
+            }
+        } else {
+            console.error(`Unexpected error fetching ${url}`)
+            return { status: 500, error: `Unexpected error fetching ${url}` }
+        }
     }
 }
 

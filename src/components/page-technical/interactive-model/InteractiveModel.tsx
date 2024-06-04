@@ -17,10 +17,12 @@ import {
 import * as THREE from 'three'
 import { CustomProperty, InteractiveModelInterface, ModelProps } from './types'
 
+// Model component responsible for loading and displaying the 3D model
 const Model: React.FC<ModelProps> = React.memo(
     ({ onCustomProperties, setScene, path }) => {
         const { scene } = useGLTF(path) as any
 
+        // Rotate the model slightly on each frame
         useFrame(() => {
             scene.rotation.y += 0.00005
         })
@@ -59,7 +61,12 @@ const Model: React.FC<ModelProps> = React.memo(
 
 Model.displayName = 'Model'
 
+// InteractiveModel component for rendering the 3D model and handling interactions
 const InteractiveModel = ({ path }: InteractiveModelInterface) => {
+    const defaultPropertyName = 'Triton'
+    const defaultPropertyValue =
+        'After many months of hard work, we are proud to present our latest model: Triton. Created by a dedicated team of students at USN, Triton is an autonomous boat designed for the Autodrone competition. While the hull is still under construction, the core components have been thoroughly developed and tested on another boat. This project has significantly enhanced our technical skills and fostered a spirit of collaboration and problem-solving. Triton represents our commitment to pushing the boundaries of autonomous maritime technology.'
+
     const [customProperties, setCustomProperties] = useState<CustomProperty[]>(
         []
     )
@@ -72,21 +79,12 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
     const [selectedPropertyValue, setSelectedPropertyValue] = useState<
         string | null
     >(null)
-
-    const [defaultPropertyName, setDefaultPropertyName] = useState<
-        string | null
-    >('Navier')
-    const [defaultPropertyValue, setDefaultPropertyValue] = useState<
-        string | null
-    >(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    )
     const [isDragging, setIsDragging] = useState<boolean>(false)
     const dragStartX = useRef<number>(0)
     const scrollStartX = useRef<number>(0)
     const containerRef = useRef<HTMLDivElement | null>(null)
-    const [isMobile, setIsMobile] = useState<boolean>(false)
 
+    // Callback to handle custom properties from the model
     const handleCustomProperties = useCallback(
         (properties: CustomProperty[]) => {
             setCustomProperties(properties)
@@ -94,26 +92,20 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
         []
     )
 
+    // Set default selected properties on component mount
     useEffect(() => {
         setSelectedPropertyName(defaultPropertyName)
         setSelectedPropertyValue(defaultPropertyValue)
     }, [])
 
+    // Reset mesh colors when the scene changes
     useEffect(() => {
         if (scene) {
             resetMeshColors(scene)
         }
     }, [scene])
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
-        }
-        handleResize()
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
+    // Function to reset mesh colors and highlight a selected mesh
     const resetMeshColors = (
         scene: THREE.Scene,
         newColorMeshName?: string,
@@ -146,12 +138,13 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
             const selectedMesh = scene.getObjectByName(newColorMeshName)
             if (selectedMesh instanceof THREE.Mesh) {
                 selectedMesh.material.color.set(newColor)
-                selectedMesh.material.opacity = 1
+                selectedMesh.material.opacity = 0.7
                 selectedMesh.renderOrder = 2
             }
         }
     }
 
+    // Handle opening and closing of property details
     const requestOpen = (meshName: string, key: string, value: string) => {
         const identifier = `${meshName}-${key}`
         setSelectedPropertyName(key)
@@ -171,12 +164,15 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
             }
         }
     }
+
+    // Handle mouse down event for dragging
     const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         setIsDragging(true)
         dragStartX.current = e.clientX
         scrollStartX.current = containerRef.current?.scrollLeft || 0
     }
 
+    // Handle mouse move event for dragging
     const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!isDragging) return
         const dragAmount = dragStartX.current - e.clientX
@@ -185,6 +181,7 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
         }
     }
 
+    // Handle mouse up event to stop dragging
     const onMouseUp = () => {
         setIsDragging(false)
     }
@@ -217,7 +214,7 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
                     </h3>
                 )}
                 {path ? (
-                    <div className="absolute right-0 max-w-[300px] max-h-[300px] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg">
+                    <div className="absolute right-0 max-w-[300px] max-h-[55%] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg select-none">
                         <h3 className="text-2xl">{selectedPropertyName}</h3>
                         <p className="pt-2">{selectedPropertyValue}</p>
                     </div>

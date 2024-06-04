@@ -120,7 +120,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
                             {sortedTeams.map((team: Fields, i: number) => (
                                 <Link
                                     key={i}
-                                    href={`/team/${team.fields.title}`}
+                                    href={`/teams/${team.fields.title}`}
                                     className="block w-32 px-4 py-2 text-sm hover:bg-background-light hover:dark:bg-background-dark rounded-lg text-center"
                                 >
                                     {team.fields.title}

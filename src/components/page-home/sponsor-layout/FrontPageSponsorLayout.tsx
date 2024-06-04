@@ -9,10 +9,9 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
     )
 
     return (
-        <div className="max-w-5xl">
-            {' '}
+        <div>
             <Link href={sortedSponsors[0].fields.url}>
-                <div className="max-w-96 mx-auto py-8">
+                <div className="max-w-96 mx-auto py-8 md:px-4">
                     <Image
                         src={`https:${sortedSponsors[0].fields.logoDarkmode.fields.file.url}`}
                         alt={sortedSponsors[0].fields.logoDarkmode.fields.title}
@@ -33,7 +32,7 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
                     />
                 </div>
             </Link>
-            <div className="grid grid-cols-3 grid-rows-auto gap-4 items-center">
+            <div className="grid grid-cols-3 grid-rows-auto gap-4 md:px-8 lg:gap-10 items-center">
                 {sortedSponsors
                     .slice(1)
                     .map((sponsor: Sponsor, index: number) => (

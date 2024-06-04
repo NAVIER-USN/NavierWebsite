@@ -46,12 +46,18 @@ const Links = ({ teams }: Teams) => {
                     <FaAngleDown />
                 </button>
                 {isOpen && (
-                    <div className="absolute left-0 mt-2 bg-foreground-light dark:bg-foreground-dark shadow-lg rounded-lg z-40 border-gray-500 border-[1px]">
+                    <div className="absolute left-0 mt-2 bg-foreground-light dark:bg-foreground-dark shadow-lg rounded-lg z-40 border-gray-500 border-[1px] overflow-hidden">
+                        <Link
+                            href="/teams"
+                            className="block w-40 px-4 py-2 text-sm bg-background-light dark:bg-background-dark hover:bg-foreground-light hover:dark:bg-foreground-dark text-center border-b-2-black-200"
+                        >
+                            View all teams
+                        </Link>
                         {sortedTeams.map((team: Fields, i: number) => (
                             <Link
                                 key={i}
-                                href={`/team/${team.fields.title}`}
-                                className="block w-32 px-4 py-2 text-sm bg-background-light dark:bg-background-dark hover:bg-foreground-light hover:dark:bg-foreground-dark rounded-lg text-center"
+                                href={`/teams/${team.fields.title}`}
+                                className="block w-40 px-4 py-2 text-sm bg-background-light dark:bg-background-dark hover:bg-foreground-light hover:dark:bg-foreground-dark text-center"
                                 onClick={closeDropdown}
                             >
                                 {team.fields.title}

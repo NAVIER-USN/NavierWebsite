@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
     title: 'Navier USN',
     description:
-        'Explore Navier USN, a pioneering student group at USN developing Triton, a fully electric autonomous boat. Sponsored by Kongsberg, this talented team leverages cutting-edge technologies like lidar, GPS, Jetson, and more. Proud winners of the first prize at Autodrone Horten, Navier USN exemplifies innovation and engineering excellence.',
+        'Navier USN, a student group at the University of South-Eastern Norway developing autonomous vessels.',
     keywords:
         'NavierUSN, USN, Triton, electric autonomous boat, Kongsberg, Sprout, Kartverket, Link, Celerway, Emcom, Telia, lidar, GPS, Jetson, modem, Xsens, Zed-X, Autodrone Horten, technology, innovation, engineering, competition, careers at Kongsberg, student project, autonomous navigation'
 }

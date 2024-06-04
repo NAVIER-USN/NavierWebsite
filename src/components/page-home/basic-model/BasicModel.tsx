@@ -1,5 +1,5 @@
 'use client'
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
     useGLTF,
@@ -7,6 +7,7 @@ import {
     PerspectiveCamera,
     Environment
 } from '@react-three/drei'
+import * as THREE from 'three'
 
 interface Prop {
     prop: string
@@ -18,6 +19,26 @@ export const Model = ({ prop }: Prop) => {
     useFrame(() => {
         scene.rotation.y += 0.0002
     })
+
+    const resetMeshColors = (object: THREE.Object3D) => {
+        object.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.material = new THREE.MeshStandardMaterial({
+                    color: 'white',
+                    transparent: true,
+                    opacity: 1,
+                    depthWrite: true
+                })
+            }
+        })
+    }
+
+    // Use useEffect to reset mesh colors when the component mounts
+    useEffect(() => {
+        if (scene) {
+            resetMeshColors(scene)
+        }
+    }, [scene])
 
     return <primitive object={scene} />
 }
@@ -31,7 +52,7 @@ const BasicModel = ({ prop }: Prop) => {
                         <spotLight position={[10, 15, 10]} angle={0.3} />
                         <PerspectiveCamera
                             makeDefault
-                            position={[10, 24, 50]}
+                            position={[10, 14, 50]}
                         />
                         <Suspense fallback={null}>
                             <Model prop={prop} />

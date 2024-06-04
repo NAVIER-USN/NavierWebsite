@@ -18,7 +18,7 @@ const Navbar = async () => {
     }
 
     return (
-        <header className="absolute w-full left-0 top-0 h-28 z-10 xl:bg-opacity-30 xl:dark:bg-opacity-30 shadow-lg bg-background-light dark:bg-background-dark">
+        <header className="absolute w-full left-0 top-0 h-28 z-10 xl:bg-opacity-55 xl:dark:bg-opacity-40 shadow-lg bg-background-light dark:bg-background-dark">
             <nav className="h-full xl:mx-auto select-none flex justify-between">
                 <div className="bg-background-light dark:bg-background-dark rounded-r-3xl w-full flex xl:justify-end items-center">
                     <Link href="/">
@@ -28,7 +28,7 @@ const Navbar = async () => {
                             width={1500}
                             height={1000}
                             priority={true}
-                            className="dark:block hidden max-w-[150px] mx-2 xl:mx-16 h-full"
+                            className="dark:block hidden max-w-[150px] w-full mx-2 xl:mx-16 h-full"
                         />
                         <Image
                             src={`https:${logos.lightmode.fields.file.url}`}
@@ -36,7 +36,7 @@ const Navbar = async () => {
                             width={1500}
                             height={1000}
                             priority={true}
-                            className="block dark:hidden max-w-[150px] mx-2 xl:mx-16 h-full"
+                            className="block dark:hidden max-w-[150px] w-full mx-2 xl:mx-16 h-full"
                         />
                     </Link>
                 </div>

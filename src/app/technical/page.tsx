@@ -1,7 +1,13 @@
-import InteractiveModel from '@/components/page-model/interactive-model/InteractiveModel'
+import InteractiveModel from '@/components/page-technical/interactive-model/InteractiveModel'
 import React from 'react'
 import { existsSync } from 'fs'
 import { join } from 'path'
+
+export const generateMetadata = () => {
+    return {
+        title: `Technical`
+    }
+}
 
 const ModelPage = async () => {
     //Check if there is a 3d model

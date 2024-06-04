@@ -86,13 +86,7 @@ export default async function HomePage() {
                 Instagram
             </h3>
             <div className="max-w-5xl mx-auto">
-                {instagram.status === 200 ? (
-                    <InstagramSwiper imageProps={instagram.data} />
-                ) : (
-                    <h3 className="pt-10 text-xl text-center">
-                        Error fetching Instagram posts: {instagram.error}
-                    </h3>
-                )}
+                <InstagramSwiper imageProps={instagram.data} />
             </div>
 
             <div className="flex flex-col justify-center pt-20 select-none">

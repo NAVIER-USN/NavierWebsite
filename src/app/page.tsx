@@ -22,13 +22,7 @@ export default async function HomePage() {
         throw new Error('Error loading sponsor data.')
     }
 
-    //Check if there is a 3d model
-    const filePath = existsSync(
-        join(process.cwd(), 'public', '3dmodel', 'model.glb')
-    )
-        ? '3dmodel/model.glb'
-        : ''
-    const path = filePath
+    const path = '3dmodel/model.glb'
 
     return (
         <main>

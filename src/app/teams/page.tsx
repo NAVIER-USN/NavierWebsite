@@ -28,7 +28,7 @@ const TeamsPage = async () => {
             <div className="max-w-5xl px-12 md:px-20 xl:px-32">
                 {sortedTeams.map((team: Teams, i: number) => (
                     <div className="py-3 md:py-6 lg:py-12 " key={i}>
-                        <Link key={i} href={`/team/${team.fields.title}`}>
+                        <Link key={i} href={`/teams/${team.fields.title}`}>
                             <h3 className="text-center font-semibold text-3xl">
                                 {team.fields.title}
                             </h3>

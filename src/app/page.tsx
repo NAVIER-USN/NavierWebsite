@@ -88,7 +88,7 @@ export default async function HomePage() {
                 <h3 className="text-2xl text-center md:text-4xl font-semibold">
                     Sponsors
                 </h3>
-                <div className="mx-auto sm:px-7 md:px-20 p-2 mb-12 max-w-5xl">
+                <div className="mx-auto px-10 md:px-20 p-2 mb-12 max-w-5xl">
                     <FrontpageSponsorLayout sponsors={sponsors.sponsors} />
                 </div>
             </div>

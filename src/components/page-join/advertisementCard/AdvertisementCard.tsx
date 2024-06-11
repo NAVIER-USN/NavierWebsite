@@ -4,7 +4,7 @@ import { AdvertisementCardProps } from './types'
 
 const AdvertisementCard = ({ advertisements }: AdvertisementCardProps) => {
     return (
-        <div className="max-w-6xl md:flex justify-center mx-auto p-3 md:p-10">
+        <div className="max-w-6xl md:flex justify-center mx-auto py-3 md:py-10">
             <div className="flex flex-wrap mx-4">
                 {advertisements && advertisements.length > 0 ? (
                     advertisements.map((advertisement, index) => {

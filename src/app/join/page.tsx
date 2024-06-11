@@ -17,7 +17,7 @@ const JoinPage = async () => {
 
     return (
         <main className="mt-32">
-            <div className="max-w-6xl md:flex justify-center mx-auto p-3 md:p-10">
+            <div className="max-w-6xl md:flex justify-center mx-auto py-3 md:p-10">
                 <div className="md:flex  flex-row justify-center gap-10">
                     <div className="py-10 md:py-0">
                         <h3 className="text-xl md:text-2xl pb-2">

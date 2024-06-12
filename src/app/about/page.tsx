@@ -16,7 +16,7 @@ const AboutPage = async () => {
     }
 
     return (
-        <main className="mt-32 max-w-4xl mx-auto p-2 sm:p-4 md:p-6 lg:p-0">
+        <main className="mt-32 max-w-4xl mx-auto py-3 px-8  sm:p-4 md:p-6 lg:p-0">
             <div>
                 <div className=" overflow-hidden flex flex-col justify-center items-center">
                     <img

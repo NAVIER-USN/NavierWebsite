@@ -5,6 +5,7 @@ import Providers from '@/components/navbar/theme-switch/providers/Providers'
 import Footer from '@/components/footer/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
 import Navbar from '@/components/navbar/navbar/Navbar'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         />
                     )}
                     <Footer />
+                    <Analytics />
                 </Providers>
             </body>
         </html>

@@ -10,6 +10,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { ImageProps, ImageSwiper } from './types'
+import { IoLogoInstagram } from 'react-icons/io'
 
 const InstagramSwiper = ({ imageProps }: ImageProps) => {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
@@ -70,7 +71,7 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                         filteredImageProps.map(
                             (item: ImageSwiper, index: number) => (
                                 <SwiperSlide key={index}>
-                                    <div className="flex h-full w-full items-center justify-center">
+                                    <div className="relative flex h-full w-full items-center justify-center">
                                         <img
                                             src={item.media_url}
                                             alt={
@@ -81,6 +82,14 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                                             height={1000}
                                             className="block h-full w-full object-cover"
                                         />
+                                        <Link
+                                            href={item.permalink || '#'}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="absolute bottom-0 left-0 m-2 text-text-dark dark:text-text-light underline font-bold p-3  bg-opacity-50 rounded select-none"
+                                        >
+                                            <IoLogoInstagram size={40} />
+                                        </Link>
                                     </div>
                                 </SwiperSlide>
                             )
@@ -134,26 +143,6 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                         <h3>Error Loading Thumbnail</h3>
                     )}
                 </Swiper>
-                {/* Open in Instagram Link */}
-
-                {filteredImageProps.length ? (
-                    <div className="mb-3">
-                        <Link
-                            href={
-                                filteredImageProps[activeIndex]?.permalink ||
-                                '#'
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <p className="text-blue-500 underline font-bold p-3 md:px-0">
-                                Open image in Instagram
-                            </p>
-                        </Link>
-                    </div>
-                ) : (
-                    <h3>Error Loading Image Data</h3>
-                )}
             </div>
         </section>
     )

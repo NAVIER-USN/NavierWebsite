@@ -24,7 +24,11 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
             <div className="max-w-lg items-center">
                 <div className={`${defaultStylingCard} row-span-2 `}>
                     <div className={`${imageContainerPositioning}`}>
-                        <Link href={sortedSponsors[0].fields.url}>
+                        <Link
+                            href={sortedSponsors[0].fields.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <img
                                 src={`https:${sortedSponsors[0].fields.logoDarkmode.fields.file.url}`}
                                 alt={
@@ -69,7 +73,11 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                             key={index}
                             className={`${defaultStylingCard} max-w-80`}
                         >
-                            <Link href={sponsor.fields.url}>
+                            <Link
+                                href={sponsor.fields.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <div className={`${imageContainerPositioning}`}>
                                     <img
                                         src={`https:${sponsor.fields.logoDarkmode.fields.file.url}`}

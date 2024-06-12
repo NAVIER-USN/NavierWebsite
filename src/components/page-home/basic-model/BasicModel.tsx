@@ -46,7 +46,7 @@ export const Model = ({ prop }: Prop) => {
 const BasicModel = ({ prop }: Prop) => {
     return (
         <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full max-w[2000px]">
-            <div className="flex items-center w-full max-w-6xl h-[40vh]">
+            <div className="flex items-center w-full max-w-6xl h-[40vh] hover:cursor-pointer">
                 {prop ? (
                     <Canvas>
                         <spotLight position={[10, 15, 10]} angle={0.3} />

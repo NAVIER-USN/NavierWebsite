@@ -1,5 +1,6 @@
 import React from 'react'
 import { MemberEntry, MembersProps } from './types'
+import { CiLinkedin } from 'react-icons/ci'
 
 const Members = ({ allMembers }: MembersProps) => {
     let members: MemberEntry[] = []
@@ -47,9 +48,12 @@ const Members = ({ allMembers }: MembersProps) => {
                                     <h3 className="text-lg font-bold mb-1">
                                         {member.fields.name}
                                     </h3>
-                                    <h4 className="text-md dark:text-gray-400">
-                                        {member.fields.role}
-                                    </h4>
+                                    <div className="flex justify-between">
+                                        <h4 className="text-md dark:text-gray-400">
+                                            {member.fields.role}
+                                        </h4>
+                                        <CiLinkedin size={30} />
+                                    </div>
                                 </div>
                             </div>
                         ) : null
@@ -83,10 +87,11 @@ const Members = ({ allMembers }: MembersProps) => {
                                             {member.fields.name}
                                         </h3>
                                     </div>
-                                    <div>
+                                    <div className="flex justify-between">
                                         <h4 className="text-md dark:text-gray-400">
                                             {member.fields.role}
                                         </h4>
+                                        <CiLinkedin size={30} />
                                     </div>
                                 </div>
                             </div>

@@ -19,22 +19,26 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={`${inter.className} min-h-screen flex flex-col`}>
-                <Providers>
-                    <Navbar />
-                    <main className="flex-grow bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light">
-                        {children}
-                    </main>
-                    {process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM && (
-                        <GoogleTagManager
-                            gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM}
-                        />
-                    )}
-                    <Footer />
-                    <Analytics />
-                </Providers>
-            </body>
-        </html>
+        <>
+            <html lang="en" suppressHydrationWarning>
+                <body
+                    className={`${inter.className} min-h-screen flex flex-col`}
+                >
+                    <Providers>
+                        <Navbar />
+                        <main className="flex-grow bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light">
+                            {children}
+                        </main>
+                        {process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM && (
+                            <GoogleTagManager
+                                gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_GTM}
+                            />
+                        )}
+                        <Footer />
+                    </Providers>
+                </body>
+            </html>
+            <Analytics />
+        </>
     )
 }

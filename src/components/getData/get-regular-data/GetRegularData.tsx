@@ -1,7 +1,7 @@
 async function GetRegularData(url: string) {
     try {
         const res = await fetch(url, {
-            next: { revalidate: 60 }
+            next: { revalidate: 1000 }
         })
 
         if (!res.ok) {

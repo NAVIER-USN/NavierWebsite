@@ -120,8 +120,8 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                                                 item.caption ||
                                                 'Instagram Image'
                                             }
-                                            width={1000}
-                                            height={1000}
+                                            width={150}
+                                            height={150}
                                             priority={true}
                                             className={`block h-full w-full object-cover transition-opacity duration-300 ${
                                                 activeIndex === index

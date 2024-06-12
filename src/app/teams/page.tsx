@@ -1,7 +1,6 @@
 import React from 'react'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Teams } from './types'
 
 export const generateMetadata = () => {

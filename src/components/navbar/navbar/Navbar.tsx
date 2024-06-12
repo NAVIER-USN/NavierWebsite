@@ -2,7 +2,6 @@ import React from 'react'
 import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
 import Links from '../links/LinksNavbar'
 import Link from 'next/link'
-import Image from 'next/image'
 import BurgerMenu from '../burger/BurgerMenu'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 
@@ -22,20 +21,18 @@ const Navbar = async () => {
             <nav className="h-full xl:mx-auto select-none flex justify-between">
                 <div className="bg-background-light dark:bg-background-dark rounded-r-3xl w-full flex xl:justify-end items-center">
                     <Link href="/">
-                        <Image
+                        <img
                             src={`https:${logos.darkmode.fields.file.url}`}
                             alt={logos.darkmode.fields.title}
                             width={1500}
                             height={1000}
-                            priority={true}
                             className="dark:block hidden max-w-[150px] w-full mx-2 xl:mx-16 h-full"
                         />
-                        <Image
+                        <img
                             src={`https:${logos.lightmode.fields.file.url}`}
                             alt={logos.lightmode.fields.title}
                             width={1500}
                             height={1000}
-                            priority={true}
                             className="block dark:hidden max-w-[150px] w-full mx-2 xl:mx-16 h-full"
                         />
                     </Link>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Swiper as SwiperType } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -72,7 +71,7 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                             (item: ImageSwiper, index: number) => (
                                 <SwiperSlide key={index}>
                                     <div className="flex h-full w-full items-center justify-center">
-                                        <Image
+                                        <img
                                             src={item.media_url}
                                             alt={
                                                 item.caption ||
@@ -80,7 +79,6 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                                             }
                                             width={1000}
                                             height={1000}
-                                            priority={true}
                                             className="block h-full w-full object-cover"
                                         />
                                     </div>
@@ -114,7 +112,7 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                                             handleThumbnailClick(index)
                                         }
                                     >
-                                        <Image
+                                        <img
                                             src={item.media_url}
                                             alt={
                                                 item.caption ||
@@ -122,7 +120,6 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                                             }
                                             width={150}
                                             height={150}
-                                            priority={true}
                                             className={`block h-full w-full object-cover transition-opacity duration-300 ${
                                                 activeIndex === index
                                                     ? 'opacity-100'

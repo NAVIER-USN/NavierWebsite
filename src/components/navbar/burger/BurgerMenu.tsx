@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import Image from 'next/image'
 import React, { useState, useEffect, useRef } from 'react'
 import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
 import {
@@ -64,20 +63,18 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
                 <div className="flex w-full items-center justify-between">
                     <div className="flex justify-center">
                         <Link href="/">
-                            <Image
+                            <img
                                 src={logoDarkmode}
                                 alt="Navier logo"
                                 width={150}
                                 height={100}
-                                priority={true}
                                 className="dark:block hidden"
                             />
-                            <Image
+                            <img
                                 src={logoLightmode}
                                 alt="Navier logo"
                                 width={150}
                                 height={100}
-                                priority={true}
                                 className="block dark:hidden"
                             />
                         </Link>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
 import { AboutTypes } from './types'
 
@@ -20,10 +19,9 @@ const AboutPage = async () => {
         <main className="mt-32 max-w-4xl mx-auto p-2 sm:p-4 md:p-6 lg:p-0">
             <div>
                 <div className=" overflow-hidden flex flex-col justify-center items-center">
-                    <Image
+                    <img
                         src={`https:${aboutUs.teamGroupPhoto.fields.file.url}`}
                         alt={aboutUs.teamGroupPhoto.fields.title}
-                        priority={true}
                         width={4000}
                         height={2000}
                         className="w-full object-cover"

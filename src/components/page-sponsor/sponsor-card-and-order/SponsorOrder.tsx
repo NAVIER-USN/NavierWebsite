@@ -1,5 +1,4 @@
 import { Sponsor, SponsorProps } from '@/types/contentful'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -26,7 +25,7 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                 <div className={`${defaultStylingCard} row-span-2 `}>
                     <div className={`${imageContainerPositioning}`}>
                         <Link href={sortedSponsors[0].fields.url}>
-                            <Image
+                            <img
                                 src={`https:${sortedSponsors[0].fields.logoDarkmode.fields.file.url}`}
                                 alt={
                                     sortedSponsors[0].fields.logoDarkmode.fields
@@ -34,10 +33,9 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                                 }
                                 width={1000}
                                 height={1000}
-                                priority={true}
                                 className={`${imageDarkmodeStyling}`}
                             />
-                            <Image
+                            <img
                                 src={`https:${sortedSponsors[0].fields.logoLightmode.fields.file.url}`}
                                 alt={
                                     sortedSponsors[0].fields.logoLightmode
@@ -45,7 +43,6 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                                 }
                                 width={1000}
                                 height={1000}
-                                priority={true}
                                 className={`${imageLightmodeStyling}`}
                             />
                         </Link>
@@ -74,7 +71,7 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                         >
                             <Link href={sponsor.fields.url}>
                                 <div className={`${imageContainerPositioning}`}>
-                                    <Image
+                                    <img
                                         src={`https:${sponsor.fields.logoDarkmode.fields.file.url}`}
                                         alt={
                                             sponsor.fields.logoDarkmode.fields
@@ -82,10 +79,9 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                                         }
                                         width={1000}
                                         height={1000}
-                                        priority={true}
                                         className={`${imageDarkmodeStyling}`}
                                     />
-                                    <Image
+                                    <img
                                         src={`https:${sponsor.fields.logoLightmode.fields.file.url}`}
                                         alt={
                                             sponsor.fields.logoLightmode.fields
@@ -93,7 +89,6 @@ const SponsorOrder = ({ sponsors }: SponsorProps) => {
                                         }
                                         width={1000}
                                         height={1000}
-                                        priority={true}
                                         className={`${imageLightmodeStyling}`}
                                     />
                                 </div>

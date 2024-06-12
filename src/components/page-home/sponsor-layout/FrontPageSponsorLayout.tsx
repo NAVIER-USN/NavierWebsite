@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import { Sponsor, SponsorProps } from '@/types/contentful'
 import Link from 'next/link'
@@ -12,22 +11,20 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
         <div>
             <Link href={sortedSponsors[0].fields.url}>
                 <div className="max-w-96 mx-auto py-8 md:px-4">
-                    <Image
+                    <img
                         src={`https:${sortedSponsors[0].fields.logoDarkmode.fields.file.url}`}
                         alt={sortedSponsors[0].fields.logoDarkmode.fields.title}
                         width={1000}
                         height={1000}
-                        priority={true}
                         className="dark:block hidden w-full object-contain"
                     />
-                    <Image
+                    <img
                         src={`https:${sortedSponsors[0].fields.logoLightmode.fields.file.url}`}
                         alt={
                             sortedSponsors[0].fields.logoLightmode.fields.title
                         }
                         width={1000}
                         height={1000}
-                        priority={true}
                         className="block dark:hidden w-full object-contain"
                     />
                 </div>
@@ -41,17 +38,16 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
                             className="flex justify-center max-h-32 max-w-64"
                         >
                             <Link href={sponsor.fields.url}>
-                                <Image
+                                <img
                                     src={`https:${sponsor.fields.logoDarkmode.fields.file.url}`}
                                     alt={
                                         sponsor.fields.logoDarkmode.fields.title
                                     }
                                     width={1000}
                                     height={1000}
-                                    priority={true}
                                     className="dark:block hidden w-full object-contain"
                                 />
-                                <Image
+                                <img
                                     src={`https:${sponsor.fields.logoLightmode.fields.file.url}`}
                                     alt={
                                         sponsor.fields.logoLightmode.fields
@@ -59,7 +55,6 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
                                     }
                                     width={1000}
                                     height={1000}
-                                    priority={true}
                                     className="block dark:hidden w-full object-contain"
                                 />
                             </Link>

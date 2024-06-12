@@ -1,10 +1,7 @@
-import Image from 'next/image'
 import FrontpageSponsorLayout from '@/components/page-home/sponsor-layout/FrontPageSponsorLayout'
 import BasicModel from '@/components/page-home/basic-model/BasicModel'
 import Hero from '@/components/page-home/hero/Hero'
 import GetContentfulData from '@/components/getData/get-contentful-data/GetContentfulData'
-import { existsSync } from 'fs'
-import { join } from 'path'
 import InstagramSwiper from '@/components/page-home/instagram-swiper/InstagramSwiper'
 import GetRegularData from '@/components/getData/get-regular-data/GetRegularData'
 
@@ -34,12 +31,11 @@ export default async function HomePage() {
                         {/* The Students Section */}
                         <div className="flex-1 text-center min-w-[65%]">
                             <div className="overflow-hidden flex justify-center items-center w-full">
-                                <Image
+                                <img
                                     src={`https:${home.currentTeamGroupImage.fields.file.url}`}
                                     alt={
                                         home.currentTeamGroupImage.fields.title
                                     }
-                                    priority={true}
                                     width={4000}
                                     height={2000}
                                     className="max-w-3xl w-full object-cover select-none"

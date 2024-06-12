@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import { MemberEntry, MembersProps } from './types'
 
@@ -32,14 +31,13 @@ const Members = ({ allMembers }: MembersProps) => {
                                 key={index}
                                 className="bg-foreground-light dark:bg-foreground-dark rounded-br-xl overflow-hidden shadow-md"
                             >
-                                <div className="relative h-64 max-w-[256px]">
+                                <div className="relative h-64 max-w-full">
                                     {member.fields.photo?.fields.file.url && (
-                                        <Image
+                                        <img
                                             alt={`${member.fields.name}'s picture`}
                                             src={`https:${member.fields.photo.fields.file.url}`}
                                             width={750}
                                             height={750}
-                                            priority={true}
                                             className="object-cover h-full"
                                         />
                                     )}
@@ -67,14 +65,13 @@ const Members = ({ allMembers }: MembersProps) => {
                                 key={index}
                                 className="bg-foreground-light dark:bg-foreground-dark rounded-br-xl overflow-hidden shadow-md flex flex-col"
                             >
-                                <div className="relative h-64 max-w-[256px]">
+                                <div className="relative h-64 max-w-full">
                                     {member.fields.photo?.fields.file.url && (
-                                        <Image
+                                        <img
                                             alt={`${member.fields.name}'s picture`}
                                             src={`https:${member.fields.photo.fields.file.url}`}
                                             width={750}
                                             height={750}
-                                            priority={true}
                                             className="object-cover h-full"
                                         />
                                     )}

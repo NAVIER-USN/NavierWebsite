@@ -32,7 +32,7 @@ const TeamsPage = async () => {
                             <h3 className="text-center font-semibold text-3xl">
                                 {team.fields.title}
                             </h3>
-                            <Image
+                            <img
                                 className="shadow-xl"
                                 src={`https:${team.fields.teamGroupImage.fields.file.url}`}
                                 alt={`Group image of the team: ${team.fields.title}`}

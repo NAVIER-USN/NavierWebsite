@@ -1,6 +1,7 @@
 import React from 'react'
 import { MemberEntry, MembersProps } from './types'
 import { CiLinkedin } from 'react-icons/ci'
+import Link from 'next/link'
 
 const Members = ({ allMembers }: MembersProps) => {
     let members: MemberEntry[] = []
@@ -48,11 +49,24 @@ const Members = ({ allMembers }: MembersProps) => {
                                     <h3 className="text-lg font-bold mb-1">
                                         {member.fields.name}
                                     </h3>
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between items-center">
                                         <h4 className="text-md dark:text-gray-400">
                                             {member.fields.role}
                                         </h4>
-                                        <CiLinkedin size={30} />
+                                        {member.fields.linkedIn ? (
+                                            <Link
+                                                href={member.fields.linkedIn}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <CiLinkedin
+                                                    className="hover:cursor-pointer"
+                                                    size={30}
+                                                />
+                                            </Link>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -87,11 +101,24 @@ const Members = ({ allMembers }: MembersProps) => {
                                             {member.fields.name}
                                         </h3>
                                     </div>
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between items-center">
                                         <h4 className="text-md dark:text-gray-400">
                                             {member.fields.role}
                                         </h4>
-                                        <CiLinkedin size={30} />
+                                        {member.fields.linkedIn ? (
+                                            <Link
+                                                href={member.fields.linkedIn}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <CiLinkedin
+                                                    className="hover:cursor-pointer"
+                                                    size={30}
+                                                />
+                                            </Link>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </div>
                                 </div>
                             </div>

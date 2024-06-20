@@ -13,14 +13,6 @@ export async function POST(request: Request) {
             from_phoneNumber: data.phoneNumber
         }
 
-        console.log('Template Params:', templateParams)
-        console.log('Environment Variables:', {
-            serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-            templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-            publicKey: process.env.EMAILJS_PUBLIC_KEY,
-            privateKey: process.env.EMAILJS_PRIVATE_KEY
-        })
-
         const response = await emailjs.send(
             process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
             process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,

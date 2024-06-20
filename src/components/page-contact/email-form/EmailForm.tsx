@@ -9,6 +9,7 @@ const EmailForm = () => {
     const [email, setEmail] = useState<string>('')
     const [message, setMessage] = useState<string>('')
     const [phoneNumber, setPhoneNumber] = useState<string>('')
+    const [feedback, setFeedback] = useState<string>('')
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -21,12 +22,14 @@ const EmailForm = () => {
                 phoneNumber
             })
             console.log('Email sent successfully!', response.data)
+            setFeedback('Email sent successfully!')
             setName('')
             setEmail('')
             setMessage('')
             setPhoneNumber('')
         } catch (error) {
             console.error('Error sending email:', error)
+            setFeedback('Failed to send email. Please try again later.')
         }
     }
 
@@ -98,6 +101,7 @@ const EmailForm = () => {
                 >
                     Send <IoMdSend className="ml-2" />
                 </button>
+                {feedback && <p className="mt-4">{feedback}</p>}
             </form>
         </div>
     )

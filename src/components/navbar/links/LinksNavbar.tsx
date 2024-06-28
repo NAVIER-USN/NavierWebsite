@@ -33,7 +33,7 @@ const Links = ({ teams }: Teams) => {
     const closeDropdown = () => setIsOpen(false)
 
     return (
-        <div className="flex md:space-x-6 2xl:space-x-16 font-semibold text-lg md:text-md">
+        <div className="flex md:space-x-6 2xl:space-x-10 font-semibold text-lg md:text-md">
             <Link href="/" className="hover:underline">
                 Home
             </Link>
@@ -76,6 +76,11 @@ const Links = ({ teams }: Teams) => {
             <Link href="/get_in_touch" className="hover:underline">
                 Contact
             </Link>
+
+            <Link href="/competitions" className="hover:underline">
+                Competitions
+            </Link>
+
             <Link href="/about" className="hover:underline">
                 About
             </Link>

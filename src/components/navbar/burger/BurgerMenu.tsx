@@ -155,6 +155,17 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
                             onClick={() => setIsOpen(false)}
                             className="py-3 cursor-pointer"
                         >
+                            <Link
+                                href="/competitions"
+                                className="hover:underline"
+                            >
+                                Competitions
+                            </Link>
+                        </li>
+                        <li
+                            onClick={() => setIsOpen(false)}
+                            className="py-3 cursor-pointer"
+                        >
                             <Link href="/about" className="hover:underline">
                                 About
                             </Link>

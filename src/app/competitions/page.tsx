@@ -15,8 +15,8 @@ const CompetitionPage = async () => {
         throw new Error('Error loading competition page data.')
     }
     return (
-        <main className="mt-32 max-w-3xl mx-auto">
-            <div className="p-6">
+        <main className="mt-28 max-w-3xl mx-auto">
+            <div className="pt-4 md:pt-6 p-4 md:p-0">
                 <Competitions competitions={competitions.competitions} />
             </div>
         </main>

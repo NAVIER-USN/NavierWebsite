@@ -76,9 +76,11 @@ export default async function HomePage() {
                 Instagram
             </h3>
 
-            <div className="max-w-5xl mx-auto">
+            {/*
+             <div className="max-w-5xl mx-auto">
                 <InstagramSwiper imageProps={instagram.data} />
             </div>
+                 */}
 
             <div className="flex flex-col justify-center pt-20 select-none">
                 <h3 className="text-2xl text-center md:text-4xl font-semibold">

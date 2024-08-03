@@ -10,7 +10,12 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
     return (
         <div>
             <div className="max-w-96 mx-auto py-8 md:px-4">
-                <Link href={'/sponsors'} className="hover:cursor-pointer">
+                <Link
+                    href={sortedSponsors[0].fields.url}
+                    className="hover:cursor-pointer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <img
                         src={`https:${sortedSponsors[0].fields.logoDarkmode.fields.file.url}`}
                         alt={sortedSponsors[0].fields.logoDarkmode.fields.title}
@@ -38,8 +43,10 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
                             className="flex justify-center max-h-32 max-w-64"
                         >
                             <Link
-                                href={'/sponsors'}
+                                href={sponsor.fields.url}
                                 className="hover:cursor-pointer"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 <img
                                     src={`https:${sponsor.fields.logoDarkmode.fields.file.url}`}

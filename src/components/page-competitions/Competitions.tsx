@@ -12,19 +12,22 @@ const Competitions = ({ competitions }: CompetitionsProps) => {
 
     return (
         <div>
-            <h2 className="text-center text-2xl pt-8">Competitions</h2>
+            <h2 className="md:text-center text-3xl pt-8 pb-10">Competitions</h2>
             {competitions.map((competition, index) => (
-                <div key={index} className="max-w-full py-5">
-                    <h3 className="text-lg font-bold pb-3">
-                        {competition.fields?.competition}
+                <div key={index} className="max-w-full pb-10">
+                    <h3 className="text-lg font-bold pb-2">
+                        {competition.fields?.competition}{' '}
+                        {competition.fields?.location && (
+                            <p className="inline-block font-normal">
+                                in {competition.fields.location}
+                            </p>
+                        )}
                     </h3>
-                    {competition.fields?.location && (
-                        <p className="pb-2">
-                            Location: {competition.fields.location}
-                        </p>
-                    )}
+
                     {competition.fields?.description && (
-                        <p className="pb-2">{competition.fields.description}</p>
+                        <p className="pb-4 pt-2">
+                            {competition.fields.description}
+                        </p>
                     )}
                     {competition.fields.teamPhoto?.fields?.file?.url && (
                         <img
@@ -34,7 +37,7 @@ const Competitions = ({ competitions }: CompetitionsProps) => {
                     )}
                     {competition.fields?.startDate &&
                         competition.fields?.endDate && (
-                            <p className="py-3">
+                            <p className="pt-2 pb-4 text-sm">
                                 {formatDate(competition.fields.startDate)} -{' '}
                                 {formatDate(competition.fields.endDate)}
                             </p>

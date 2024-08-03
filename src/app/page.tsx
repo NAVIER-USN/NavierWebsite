@@ -75,12 +75,10 @@ export default async function HomePage() {
             <h3 className="text-2xl text-center md:text-4xl font-semibold md:pt-40">
                 Instagram
             </h3>
-
-            {/*
-             <div className="max-w-5xl mx-auto">
+            {/* The Instagram swiper bugs in devmode, but works perfectly in prod. Comment this component out for dev mode on front page */}
+            <div className="max-w-5xl mx-auto">
                 <InstagramSwiper imageProps={instagram.data} />
             </div>
-                 */}
 
             <div className="flex flex-col justify-center pt-20 select-none">
                 <h3 className="text-2xl text-center md:text-4xl font-semibold">

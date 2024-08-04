@@ -63,7 +63,7 @@ const InstagramSwiper = ({ imageProps }: ImageProps) => {
                     navigation={true}
                     thumbs={{ swiper: thumbsSwiper }}
                     modules={[FreeMode, Navigation, Thumbs]}
-                    className="h-[60vh] w-full rounded-lg"
+                    className="h-[80vh] w-full rounded-lg"
                     onSlideChange={handleSlideChange}
                     onSwiper={setMainSwiper}
                 >

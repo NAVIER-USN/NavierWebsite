@@ -34,7 +34,7 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
                     />
                 </Link>
             </div>
-            <div className="grid grid-cols-3 grid-rows-auto gap-4 md:px-8 lg:gap-10 items-center">
+            <div className="grid grid-cols-3 grid-rows-auto gap-4 md:px-8 lg:gap-16 md:pt-10 items-center">
                 {sortedSponsors
                     .slice(1)
                     .map((sponsor: Sponsor, index: number) => (
@@ -44,7 +44,7 @@ const FrontpageSponsorLayout = ({ sponsors }: SponsorProps) => {
                         >
                             <Link
                                 href={sponsor.fields.url}
-                                className="hover:cursor-pointer"
+                                className="hover:cursor-pointer w-full"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

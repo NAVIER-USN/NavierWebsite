@@ -187,67 +187,83 @@ const InteractiveModel = ({ path }: InteractiveModelInterface) => {
     }
 
     return (
-        <div className="flex flex-col mx-auto md:flex-col items-center w-full h-full pb-12">
-            <div className="flex items-center md:w-full w-full h-[50vh] md:h-[70vh]">
+        <div className="container mx-auto px-4 py-4 flex flex-col gap-8">
+            <div className="relative w-full aspect-[16/9] bg-black/5 rounded-2xl overflow-hidden">
                 {path ? (
-                    <Canvas>
-                        <spotLight position={[10, 15, 10]} angle={0.3} />
-                        <PerspectiveCamera
-                            ref={cameraRef}
-                            makeDefault
-                            position={[40, 18, 50]}
-                        />
-                        <Suspense fallback={null}>
-                            <Model
-                                path={path}
-                                onCustomProperties={handleCustomProperties}
-                                setScene={setScene}
+                    <>
+                        <Canvas className="w-full h-full">
+                            <spotLight position={[10, 15, 10]} angle={0.3} />
+                            <PerspectiveCamera
+                                ref={cameraRef}
+                                makeDefault
+                                position={[40, 18, 50]}
                             />
-
-                            <OrbitControls enablePan={false} />
-                            <Environment preset="sunset" background={false} />
-                        </Suspense>
-                    </Canvas>
+                            <Suspense fallback={null}>
+                                <Model
+                                    path={path}
+                                    onCustomProperties={handleCustomProperties}
+                                    setScene={setScene}
+                                />
+                                <OrbitControls enablePan={false} />
+                                <Environment preset="sunset" background={false} />
+                            </Suspense>
+                        </Canvas>
+                        
+                        <div className="absolute right-6 top-6 w-80 hidden lg:block">
+                            <div className="backdrop-blur-xl bg-white/80 dark:bg-gray/80 p-6 rounded-2xl shadow-lg">
+                                <h3 className="text-2xl font-bold mb-3 text-gray-600 dark:text-black-900">{selectedPropertyName}</h3>
+                                <p className="text-sm leading-relaxed text-gray-600 dark:text-black-900">
+                                    {selectedPropertyValue}
+                                </p>
+                            </div>
+                        </div>
+                    </>
                 ) : (
-                    <h3 className="text-2xl font-semibold mx-auto">
-                        Model Not Found
-                    </h3>
-                )}
-                {path ? (
-                    <div className="absolute right-0 max-w-[300px] max-h-[55%] hidden px-4 mr-8 py-3 md:block overflow-auto custom-scrollbar bg-foreground-light dark:bg-foreground-dark shadow-lg select-none rounded-md">
-                        <h3 className="text-2xl">{selectedPropertyName}</h3>
-                        <p className="pt-2">{selectedPropertyValue}</p>
+                    <div className="w-full h-full flex items-center justify-center">
+                        <h3 className="text-2xl font-bold text-gray-400">Model Not Found</h3>
                     </div>
-                ) : (
-                    <></>
                 )}
             </div>
+    
             <div
                 ref={containerRef}
-                className="flex flex-col md:flex-row w-full max-w-4xl gap-2 md:gap-5 overflow-auto max-h-full custom-scrollbar select-none rounded-md"
+                className="flex gap-4 pb-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUp}
                 onMouseLeave={onMouseUp}
             >
-                {customProperties.map((prop, index) => (
+                {customProperties.map((prop) => (
                     <div
                         key={`${prop.meshName}-${prop.key}`}
-                        className="w-full"
+                        className="snap-start shrink-0"
                     >
-                        <div
-                            onClick={() =>
-                                requestOpen(prop.meshName, prop.key, prop.value)
-                            }
-                            className="flex flex-col cursor-pointer p-3 md:mb-4 bg-foreground-light dark:bg-foreground-dark rounded-md shadow-lg"
+                        <button
+                            ref={(el) => {
+                                if (el && openItem === `${prop.meshName}-${prop.key}`) {
+                                    el.scrollIntoView({ 
+                                        behavior: 'smooth', 
+                                        block: 'nearest',
+                                        inline: 'center'
+                                    });
+                                }
+                            }}
+                            onClick={() => requestOpen(prop.meshName, prop.key, prop.value)}
+                            className={`
+                                w-72 p-6 rounded-xl transition-all
+                                ${openItem === `${prop.meshName}-${prop.key}`
+                                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/25'
+                                    : 'bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md'
+                                }
+                            `}
                         >
-                            <p className="truncate text-xl">{prop.key}</p>
+                            <h4 className="text-lg font-semibold mb-2">{prop.key}</h4>
                             {openItem === `${prop.meshName}-${prop.key}` && (
-                                <div className="block md:hidden pt-4 bg-foreground-light dark:bg-foreground-dark rounded-md">
-                                    <p>{prop.value}</p>
-                                </div>
+                                <p className="text-sm lg:hidden opacity-90">
+                                    {prop.value}
+                                </p>
                             )}
-                        </div>
+                        </button>
                     </div>
                 ))}
             </div>

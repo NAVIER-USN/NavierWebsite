@@ -34,15 +34,15 @@ const EmailForm = () => {
     }
 
     return (
-        <div className="bg-foreground-light dark:bg-foreground-dark p-4 shadow-xl">
+        <div className="bg-foreground-light dark:bg-foreground-dark p-4 shadow-xl rounded-lg">
             <form onSubmit={handleSubmit} className="">
                 <div className="mb-5">
-                    <label htmlFor="name" className="block mb-1">
-                        Name<span>*</span>
+                    <label htmlFor="name" className="block mb-1 text-sm font-semibold text-text-dark dark:text-text-light">
+                        Name<span className="text-red-500">*</span>
                     </label>
                     <input
                         id="name"
-                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark w-full p-2 rounded-md border-gray-300 border-2 dark:border"
+                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark dark:text-text-light w-full p-3 rounded-md border-2 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
                         type="text"
                         placeholder="Your Name"
                         value={name}
@@ -52,12 +52,12 @@ const EmailForm = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label htmlFor="email" className="block mb-1">
-                        Email<span>*</span>
+                    <label htmlFor="email" className="block mb-1 text-sm font-semibold text-text-dark dark:text-text-light">
+                        Email<span className="text-red-500">*</span>
                     </label>
                     <input
                         id="email"
-                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark w-full p-2 rounded-md border-gray-300 border-2 dark:border"
+                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark dark:text-text-light w-full p-3 rounded-md border-2 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
                         type="email"
                         placeholder="Your Email"
                         value={email}
@@ -67,12 +67,12 @@ const EmailForm = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label htmlFor="phoneNumber" className="block mb-1">
+                    <label htmlFor="phoneNumber" className="block mb-1 text-sm font-semibold text-text-dark dark:text-text-light">
                         Phone Number
                     </label>
                     <input
                         id="phoneNumber"
-                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark w-full p-2 rounded-md border-gray-300 border-2 dark:border"
+                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark dark:text-text-light w-full p-3 rounded-md border-2 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
                         type="text"
                         placeholder="Your Phone Number"
                         value={phoneNumber}
@@ -81,29 +81,32 @@ const EmailForm = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label htmlFor="message" className="block mb-1">
-                        Message<span>*</span>
+                    <label htmlFor="message" className="block mb-1 text-sm font-semibold text-text-dark dark:text-text-light">
+                        Message<span className="text-red-500">*</span>
                     </label>
                     <textarea
                         id="message"
-                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark w-full p-2 w-full min-h-20 max-h-40 resize-none border-gray-300 rounded-lg border-2 dark:border"
+                        className="bg-input-background-light dark:bg-input-background-dark text-text-dark dark:text-text-light w-full p-3 min-h-20 max-h-40 resize-none border-2 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300 rounded-md"
                         value={message}
-                        placeholder="Message"
+                        placeholder="Your Message"
                         onChange={(e) => setMessage(e.target.value)}
                         required
                     />
                 </div>
 
                 <button
-                    className="bg-button-light dark:bg-button-dark text-text-light w-full flex flex-row justify-center items-center py-2 rounded-lg shadow-lg hover:underline hover:cursor-pointer"
+                    className="bg-button-light dark:bg-button-dark mb-2 text-text-light w-full py-3 rounded-lg shadow-lg hover:underline hover:cursor-pointer transition-all duration-300 ease-in-out flex flex-row justify-center items-center"
                     type="submit"
                     value="Send"
                 >
                     Send <IoMdSend className="ml-2" />
                 </button>
-                {feedback && <p className="mt-4">{feedback}</p>}
+
+                {/* Feedback Message */}
+                {feedback && <p className="mt-4 text-sm text-green-500 dark:text-green-400">{feedback}</p>}
             </form>
         </div>
+
     )
 }
 

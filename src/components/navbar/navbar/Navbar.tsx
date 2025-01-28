@@ -7,60 +7,44 @@ import GetContentfulData from '@/components/getData/get-contentful-data/GetConte
 
 const Navbar = async () => {
     const logos = await GetContentfulData('logo')
-    const teams = await GetContentfulData('allTeamsPage')
 
     if (!logos) {
         throw new Error('Error loading navbar logo data.')
     }
-    if (!teams) {
-        throw new Error('Error loading navbar team data.')
-    }
 
     return (
-        <header className="absolute w-full left-0 top-0 h-28 z-10 xl:bg-opacity-55 xl:dark:bg-opacity-40 shadow-lg bg-background-light dark:bg-background-dark">
-            <nav className="h-full xl:mx-auto select-none flex justify-between">
-                <div className="bg-background-light dark:bg-background-dark rounded-r-3xl w-full flex xl:justify-center items-center">
-                    <Link href="/">
+        <header className="fixed w-full left-0 top-0 h-20 z-50">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#222831] via-[#31363F] to-[#222831] backdrop-blur-xl">
+                <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent"></div>
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C58940]/20 to-transparent"></div>
+            </div>
+            
+            <nav className="relative h-full max-w-7xl mx-auto px-6">
+                <div className="flex items-center justify-between h-full">
+                    <Link href="/" className="relative flex items-center">
                         <img
                             src={`https:${logos.darkmode.fields.file.url}`}
                             alt={logos.darkmode.fields.title}
                             width={1500}
                             height={1000}
-                            className="dark:block hidden max-w-[150px] w-full mx-2 h-full"
-                        />
-                        <img
-                            src={`https:${logos.lightmode.fields.file.url}`}
-                            alt={logos.lightmode.fields.title}
-                            width={1500}
-                            height={1000}
-                            className="block dark:hidden max-w-[150px] w-full mx-2 h-full"
+                            className="max-w-[140px] w-full transition-transform duration-200 hover:scale-105"
                         />
                     </Link>
-                </div>
-                <ul className="flex justify-end xl:justify-center items-center mx-6 xl:mx-10 h-full 3xl:px-50 w-full text-text-dark dark:text-text-light">
-                    <li className="hidden xl:block">
-                        <Links teams={teams.teams} />
-                    </li>
-                    <li className="hidden xl:block pl-5">
-                        <ThemeSwitch />
-                    </li>
-                    <li className="block xl:hidden ">
+    
+                    <div className="hidden xl:flex items-center space-x-4">
+                        <Links />
+                    </div>
+    
+                    <div className="xl:hidden flex items-center space-x-4">
                         <BurgerMenu
                             logoDarkmode={`https:${logos.darkmode.fields.file.url}`}
                             logoLightmode={`https:${logos.lightmode.fields.file.url}`}
-                            teams={teams.teams}
                         />
-                    </li>
-                </ul>
-                <ul className="hidden xl:flex font-semibold text-lg md:text-md justify-center items-center bg-background-light dark:bg-background-dark rounded-l-3xl w-full">
-                    <li>
-                        <button className="px-4 py-3 bg-button-light dark:bg-button-dark text-text-light dark:text-text-light rounded-full">
-                            <Link href="/join" className="hover:underline">
-                                Join us!
-                            </Link>
-                        </button>
-                    </li>
-                </ul>
+                    </div>
+
+
+
+                </div>
             </nav>
         </header>
     )

@@ -20,6 +20,7 @@ export interface MemberFields {
     bio: string
     photo: PhotoFields
     linkedIn: string
+    email: string
     leaderRole: boolean
 }
 

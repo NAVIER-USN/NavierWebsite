@@ -9,21 +9,35 @@ import {
     AiOutlineTwitter,
     AiOutlineInstagram
 } from 'react-icons/ai'
-import { Fields, Logo } from './types'
 
-const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
+interface Logo {
+    logoDarkmode: string;
+    logoLightmode: string;
+}
+
+const NAVIGATION_LINKS = [
+    { href: "/", text: "Home" },
+    { href: "/teams", text: "Team" },
+    { href: "/technical", text: "Technical" },
+    { href: "/sponsors", text: "Sponsors" },
+    { href: "/competitions", text: "Competitions" },
+    { href: "/about", text: "About" },
+    { href: "/get_in_touch", text: "Contact" },
+    { href: "/join", text: "Join us!" }
+]
+
+const SOCIAL_LINKS = [
+    { href: "https://www.linkedin.com/company/navierusn", Icon: AiOutlineLinkedin },
+    { href: "https://www.instagram.com/navierusn/", Icon: AiOutlineInstagram },
+]
+
+const BurgerMenu = ({ logoDarkmode, logoLightmode }: Logo) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const menuRef = useRef<HTMLDivElement>(null)
 
     const handleNav = () => {
         setIsOpen(!isOpen)
     }
-
-    const sortedTeams = teams.sort((a: Fields, b: Fields) => {
-        const yearA = parseInt(a.fields.title.split('-')[1], 10)
-        const yearB = parseInt(b.fields.title.split('-')[1], 10)
-        return yearB - yearA
-    })
 
     // Close the menu when clicking outside
     useEffect(() => {
@@ -49,7 +63,7 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
 
     return (
         <div>
-            <div onClick={handleNav}>
+            <div onClick={handleNav} className="text-white">
                 <AiOutlineMenu size={40} />
             </div>
             <div
@@ -80,96 +94,23 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
                         </Link>
                     </div>
 
-                    <div onClick={handleNav} className="cursor-pointer">
+                    <div onClick={handleNav} className="cursor-pointer text-white">
                         <AiOutlineClose size={40} />
                     </div>
                 </div>
                 <div className="flex-col py-4 text-xl">
                     <ul className="text-text-dark dark:text-text-light font-semibold">
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link href="/" className=" hover:underline ">
-                                Home
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link href="/join" className="hover:underline">
-                                Join
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="pt-3 cursor-pointer"
-                        >
-                            <Link href="/teams" className=" hover:underline ">
-                                Teams
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="pb-2 pt-3 cursor-pointer"
-                        >
-                            {sortedTeams.map((team: Fields, i: number) => (
-                                <Link
-                                    key={i}
-                                    href={`/teams/${team.fields.title}`}
-                                    className="block w-32 px-4 py-2 text-sm hover:bg-background-light hover:dark:bg-background-dark rounded-lg text-center"
-                                >
-                                    {team.fields.title}
+                        {NAVIGATION_LINKS.map((link) => (
+                            <li
+                                key={link.href}
+                                onClick={() => setIsOpen(false)}
+                                className="py-3 cursor-pointer"
+                            >
+                                <Link href={link.href} className="hover:underline">
+                                    {link.text}
                                 </Link>
-                            ))}
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link href="/sponsors" className="hover:underline">
-                                Sponsors
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link href="/technical" className="hover:underline">
-                                Technical
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link
-                                href="/get_in_touch"
-                                className="hover:underline"
-                            >
-                                Get in Touch
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link
-                                href="/competitions"
-                                className="hover:underline"
-                            >
-                                Competitions
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => setIsOpen(false)}
-                            className="py-3 cursor-pointer"
-                        >
-                            <Link href="/about" className="hover:underline">
-                                About
-                            </Link>
-                        </li>
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <div className="flex items-center justify-between w-full">
@@ -177,12 +118,11 @@ const BurgerMenu = ({ logoDarkmode, logoLightmode, teams }: Logo) => {
                         <ThemeSwitch />
                     </div>
                     <div className="flex gap-4 items-center">
-                        <Link href="https://www.linkedin.com/company/navierusn">
-                            <AiOutlineLinkedin size={40} />
-                        </Link>
-                        <Link href="https://www.instagram.com/navierusn/">
-                            <AiOutlineInstagram size={40} />
-                        </Link>
+                        {SOCIAL_LINKS.map(({ href, Icon }) => (
+                            <Link key={href} href={href}>
+                                <Icon size={40} />
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>

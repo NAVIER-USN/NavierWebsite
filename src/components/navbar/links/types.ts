@@ -1,7 +1,3 @@
-export interface Teams {
-    teams: Fields[]
-}
-
 export interface Fields {
     fields: Title
 }

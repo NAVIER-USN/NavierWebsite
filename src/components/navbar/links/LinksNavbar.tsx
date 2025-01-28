@@ -1,89 +1,70 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { FaAngleDown } from 'react-icons/fa'
-import { Fields, Teams } from './types'
+import ThemeSwitch from '../theme-switch/theme-switch/ThemeSwitch'
+import { AiOutlineLinkedin, AiOutlineInstagram } from 'react-icons/ai'
 
-const Links = ({ teams }: Teams) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-    const dropdownRef = useRef<HTMLDivElement>(null)
+const NAVIGATION_LINKS = [
+    { href: "/", text: "Home" },
+    { href: "/teams", text: "Team" },
+    { href: "/technical", text: "Technical" },
+    { href: "/sponsors", text: "Sponsors" },
+    { href: "/competitions", text: "Competitions" },
+    { href: "/about", text: "About" },
+    { href: "/get_in_touch", text: "Contact" }
+] as const
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target as Node)
-            ) {
-                setIsOpen(false)
-            }
-        }
+const SOCIAL_LINKS = [
+    { href: "https://www.linkedin.com/company/navierusn", icon: AiOutlineLinkedin },
+    { href: "https://www.instagram.com/navierusn/", icon: AiOutlineInstagram },
+] as const
 
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
-
-    const sortedTeams = teams.sort((a: Fields, b: Fields) => {
-        const yearA = parseInt(a.fields.title.split('-')[1], 10)
-        const yearB = parseInt(b.fields.title.split('-')[1], 10)
-        return yearB - yearA
-    })
-
-    const closeDropdown = () => setIsOpen(false)
-
+const Links = () => {
     return (
-        <div className="flex md:space-x-6 2xl:space-x-10 font-semibold text-lg md:text-md">
-            <Link href="/" className="hover:underline">
-                Home
-            </Link>
-            <div className="relative" ref={dropdownRef}>
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center space-x-1 hover:underline focus:outline-none"
-                >
-                    <span>Teams</span>
-                    <FaAngleDown />
-                </button>
-                {isOpen && (
-                    <div className="absolute left-0 mt-2 bg-foreground-light dark:bg-foreground-dark shadow-lg rounded-lg z-40 border-gray-500 border-[1px] overflow-hidden">
-                        <Link
-                            href="/teams"
-                            className="block w-40 px-4 py-2 text-sm bg-background-light dark:bg-background-dark hover:bg-foreground-light hover:dark:bg-foreground-dark text-center border-b-2-black-200"
-                        >
-                            View all teams
-                        </Link>
-                        {sortedTeams.map((team: Fields, i: number) => (
-                            <Link
-                                key={i}
-                                href={`/teams/${team.fields.title}`}
-                                className="block w-40 px-4 py-2 text-sm bg-background-light dark:bg-background-dark hover:bg-foreground-light hover:dark:bg-foreground-dark text-center"
-                                onClick={closeDropdown}
-                            >
-                                {team.fields.title}
-                            </Link>
-                        ))}
-                    </div>
-                )}
+        <div className="flex items-center space-x-6">
+            
+            <div className="flex items-center space-x-4">
+                {NAVIGATION_LINKS.map((link) => (
+                    <Link 
+                        key={link.href} 
+                        href={link.href} 
+                        className="relative py-2 text-[#e5e7eb] hover:text-[#94a3b8] transition-colors duration-200 group text-sm font-medium"
+                    >
+                        <span className="relative">
+                            {link.text}
+                            <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#C58940] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                        </span>
+                    </Link>
+                ))}
             </div>
 
-            <Link href="/sponsors" className="hover:underline">
-                Sponsors
-            </Link>
-            <Link href="/technical" className="hover:underline">
-                Technical
-            </Link>
-            <Link href="/get_in_touch" className="hover:underline">
-                Contact
-            </Link>
+           
+            <div className="flex items-center space-x-2">
+                {SOCIAL_LINKS.map(({ href, icon: Icon }) => (
+                    <Link 
+                        key={href}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#e5e7eb] hover:text-[#94a3b8] transition-colors duration-200"
+                    >
+                        <Icon size={25} />
+                    </Link>
+                ))}
+                
+                <div className="flex items-center space-x-2">
+                    <ThemeSwitch />
+                </div>
+            </div>
 
-            <Link href="/competitions" className="hover:underline">
-                Competitions
-            </Link>
-
-            <Link href="/about" className="hover:underline">
-                About
-            </Link>
+            
+            <div className="flex items-center">
+                <Link href="/join">
+                    <button className="px-5 py-2.5 bg-[#C58940] hover:bg-[#C58940]/90 text-[#e5e7eb] rounded-lg transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg text-sm font-medium">
+                        Join us!
+                    </button>
+                </Link>
+            </div>
         </div>
     )
 }

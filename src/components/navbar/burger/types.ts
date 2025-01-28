@@ -1,7 +1,6 @@
 export interface Logo {
     logoDarkmode: string
     logoLightmode: string
-    teams: Fields[]
 }
 
 export interface Fields {

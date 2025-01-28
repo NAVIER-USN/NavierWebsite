@@ -8,6 +8,18 @@ interface TeamPhoto {
     }
 }
 
+interface ReportLink {
+    fields?: {
+        file?: File
+    }
+}
+
+interface CompetitionLogo {
+    fields?: {
+        file?: File
+    }
+}
+
 interface CompetitionFields {
     competition: string
     location?: string
@@ -15,6 +27,11 @@ interface CompetitionFields {
     teamPhoto?: TeamPhoto
     startDate?: string
     endDate?: string
+    place?: string;
+    competitionLink?: string
+    teamVideoLink?: string
+    competitionLogo?: CompetitionLogo
+    technicalReportLink?:ReportLink
 }
 
 interface Competition {

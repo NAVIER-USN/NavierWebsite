@@ -5,7 +5,7 @@ import { Props } from './types'
 const Hero = ({ props }: Props) => {
   return (
     <div className="bg-gray-50">
-      <div className="relative min-w-full h-[50vh] overflow-hidden">
+      <div className="relative min-w-full h-[95vh] overflow-hidden">
         {props.file.url && (
           <video
             className="absolute top-0 left-0 w-full h-full object-cover select-none"
@@ -18,16 +18,16 @@ const Hero = ({ props }: Props) => {
         )}
         <div className="absolute inset-0">
           <div className="bg-background-dark bg-opacity-70 w-full h-full">
-            <section className="flex justify-start items-end h-[calc(50vh-5rem)]">
-              <div className="px-4 w-full max-w-7xl mx-auto sm:px-6 lg:px-8 pb-8 lg:pb-12">
+            <section className="flex justify-start items-end h-full">
+              <div className="px-4 w-full max-w-7xl mx-auto sm:px-6 lg:px-8 pb-6">
                 <div className="max-w-lg lg:max-w-xl">
                   <div className="text-left">
                     <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl font-pj">
-                      Today's students, tomorrow's solutions
+                      Today&apos;s students, tomorrow&apos;s solutions
                     </h2>
                     <p className="mt-2 text-sm sm:text-base text-white sm:mt-4 font-inter max-w-md">
                       We are always looking for new talent to elevate Navier to the next level!
-                      If you feel like taking on a challenge, don't hesitate to apply!
+                      If you feel like taking on a challenge, don&apos;t hesitate to apply!
                     </p>
                     <div className="mt-4 sm:mt-6">
                       <Link href="/join" className="inline-flex">
@@ -51,3 +51,4 @@ const Hero = ({ props }: Props) => {
 }
 
 export default Hero
+

@@ -23,11 +23,11 @@ const Hero = ({ props }: Props) => {
                 <div className="max-w-lg lg:max-w-xl">
                   <div className="text-left">
                     <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl font-pj">
-                      Today's students, tomorrow's solutions
+                      Today&apos;s students, tomorrow&apos;s solutions
                     </h2>
                     <p className="mt-2 text-sm sm:text-base text-white sm:mt-4 font-inter max-w-md">
                       We are always looking for new talent to elevate Navier to the next level!
-                      If you feel like taking on a challenge, don't hesitate to apply!
+                      If you feel like taking on a challenge, don&apos;t hesitate to apply!
                     </p>
                     <div className="mt-4 sm:mt-6">
                       <Link href="/join" className="inline-flex">
@@ -51,5 +51,6 @@ const Hero = ({ props }: Props) => {
 }
 
 export default Hero
+
 
 

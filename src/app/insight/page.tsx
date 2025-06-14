@@ -21,7 +21,8 @@ const BLOG_SECTIONS = [
   }
 ];
 
-const PostCard = ({ embedUrl }) => (
+// ✅ Endret her – definert typen for embedUrl
+const PostCard = ({ embedUrl }: { embedUrl: string }) => (
   <div className="group relative bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
     <div className="p-6">
       <iframe

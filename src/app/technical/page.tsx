@@ -37,9 +37,9 @@ const ModelPage = async () => {
                   <h3 className="text-xl font-light">Hull Design</h3>
                 </div>
                 <ul className="space-y-2 text-sm">
-                  <li>Length: 140 cm</li>
-                  <li>Width: 90 cm</li>
-                  <li>Weight: 20 kg (base)</li>
+                  <li>Length: 140cm</li>
+                  <li>Width: 90cm</li>
+                  <li>Weight: ~60kg</li>
                   <li>Trimaran Configuration</li>
                   <li>PLA with Fiberglass Reinforcement</li>
                   <li>Modular Component Design</li>
@@ -66,11 +66,11 @@ const ModelPage = async () => {
                   <h3 className="text-xl font-light">Power System</h3>
                 </div>
                 <ul className="space-y-2 text-sm">
-                  <li>2x 12V 20Ah LiFePO4 (30A BMS)</li>
+                  <li>3x 12V 20Ah LiFePO4 (30A BMS)</li>
                   <li>1x 12V 50Ah LiFePO4 (50A BMS)</li>
                   <li>Bluetooth Monitoring</li>
                   <li>Extended Runtime Capability</li>
-                  <li>Smart Power Management</li>
+                  <li>Custom Battery Management System</li>
                 </ul>
               </div>
   
@@ -81,7 +81,7 @@ const ModelPage = async () => {
                 </div>
                 <ul className="space-y-2 text-sm">
                   <li>XSENS MTi-680G RTK GNSS/INS</li>
-                  <li>Sub-1cm Position Accuracy</li>
+                  <li>sub .5cm Position Accuracy</li>
                   <li>Advanced Inertial Sensing</li>
                   <li>Real-time Kinematics</li>
                   <li>Celerways Stratus 5G Connection</li>
@@ -115,9 +115,9 @@ const ModelPage = async () => {
                 </div>
                 <ul className="space-y-2 text-sm">
                   <li>ROBIN E LiDAR (120° FOV)</li>
-                  <li>Velodyne VLP-16 (360° Coverage)</li>
                   <li>0.1° Resolution</li>
-                  <li>100m Detection Range</li>
+                  <li>300m Detection Range</li>
+                  <li>10/20 FPS</li>
                 </ul>
               </div>
   
@@ -162,9 +162,9 @@ const ModelPage = async () => {
                   <h3 className="text-xl font-light">Control Systems</h3>
                 </div>
                 <ul className="space-y-2 text-sm">
-                  <li>PD Controllers for Navigation</li>
-                  <li>Autopath Action Server</li>
-                  <li>Keep Position Server</li>
+                  <li>PID Controllers for Navigation</li>
+                  <li>Custom Autopath algorithm</li>
+                  <li>Custom Dynamic Positioning System</li>
                   <li>GPS-IMU Fusion</li>
                   <li>LiDAR-Camera Fusion</li>
                   <li>Manual/Auto Mode Switching</li>

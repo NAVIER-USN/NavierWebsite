@@ -45,7 +45,7 @@ const AboutPage = async () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
                             { icon: FiUsers, number: '21', label: 'Team Members' },
-                            { icon: FiTarget, number: '4', label: 'Competitions' },
+                            { icon: FiTarget, number: '6', label: 'Competitions' },
                             { icon: FiClock, number: '3', label: 'Years of Innovation' },
                             { icon: FiGlobe, number: '11', label: 'Sponsors' }
                         ].map((stat, index) => (
